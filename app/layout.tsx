@@ -2,6 +2,10 @@ import type { Metadata, Viewport } from "next";
 import { DM_Sans, DM_Serif_Display, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
+const siteUrl = process.env.GITHUB_PAGES === "true"
+  ? "https://luckyz777.github.io/PortWeb"
+  : "https://luckyz777.github.io";
+
 const dmSerif = DM_Serif_Display({
   subsets: ["latin"],
   weight: "400",
@@ -29,7 +33,7 @@ export const metadata: Metadata = {
   title: "Anirut Butnongwa | Industrial Software Portfolio",
   description:
     "Mechanical engineering graduate building Python and web tools for CNC, toolpath, and fixture workflows.",
-  metadataBase: new URL("https://luckyz777.github.io"),
+  metadataBase: new URL(siteUrl),
   openGraph: {
     title: "Anirut Butnongwa | Industrial Software Portfolio",
     description:
