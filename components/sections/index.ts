@@ -1,0 +1,9 @@
+export { Header } from "./header";
+export { Hero } from "./hero";
+export { ProjectsSection } from "./projects";
+export { PrototypeSection } from "./prototype";
+export { AboutSection } from "./about";
+export { SkillsSection } from "./skills";
+export { EngineeringSection } from "./engineering";
+export { ContactSection } from "./contact";
+export { Footer } from "./footer";
