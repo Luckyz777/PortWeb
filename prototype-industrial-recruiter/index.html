@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anirut Butnongwa - Industrial Software Portfolio Prototype</title>
+  <style>
+    :root {
+      --bg: oklch(98% 0.005 250);
+      --surface: oklch(100% 0 0);
+      --fg: oklch(22% 0.02 240);
+      --muted: oklch(50% 0.018 240);
+      --border: oklch(90% 0.008 240);
+      --accent: oklch(58% 0.16 145);
+      --font-display: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', system-ui, sans-serif;
+      --font-body: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+      --container: min(1180px, calc(100vw - 32px));
+      --radius: 8px;
+      color-scheme: light;
+    }
+
+    [data-theme="dark"] {
+      --bg: oklch(17% 0.018 240);
+      --surface: oklch(21% 0.018 240);
+      --fg: oklch(94% 0.006 240);
+      --muted: oklch(70% 0.018 240);
+      --border: oklch(32% 0.018 240);
+      --accent: oklch(68% 0.16 145);
+      color-scheme: dark;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        linear-gradient(90deg, color-mix(in oklch, var(--border) 34%, transparent) 1px, transparent 1px) 0 0 / 72px 72px,
+        linear-gradient(0deg, color-mix(in oklch, var(--border) 28%, transparent) 1px, transparent 1px) 0 0 / 72px 72px,
+        var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      letter-spacing: 0;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    button { font: inherit; }
+    :focus-visible { outline: 3px solid color-mix(in oklch, var(--accent) 70%, white); outline-offset: 3px; }
+
+    .shell { min-height: 100vh; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--border);
+      background: color-mix(in oklch, var(--bg) 88%, transparent);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      width: var(--container);
+      height: 64px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: grid;
+      gap: 1px;
+      min-width: 180px;
+    }
+
+    .brand strong {
+      font-size: 14px;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .brand span, .mono {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .navlinks {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    .controls { display: flex; gap: 8px; align-items: center; }
+    .icon-btn, .lang-btn {
+      min-width: 44px;
+      min-height: 38px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--fg);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      transition: border-color .2s ease, transform .2s ease;
+    }
+
+    .lang-btn {
+      padding: 0 14px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .icon-btn:hover, .lang-btn:hover { border-color: var(--accent); transform: translateY(-1px); }
+    .icon-btn svg { width: 17px; height: 17px; }
+
+    .hero {
+      width: var(--container);
+      margin: 0 auto;
+      padding: clamp(48px, 8vw, 104px) 0 56px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(340px, .92fr);
+      gap: clamp(28px, 5vw, 68px);
+      align-items: stretch;
+    }
+
+    .hero-copy { display: grid; align-content: center; gap: 28px; }
+    h1 {
+      margin: 0;
+      max-width: 780px;
+      font-family: var(--font-display);
+      font-size: clamp(44px, 7vw, 88px);
+      line-height: .94;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+
+    .lead {
+      margin: 0;
+      max-width: 680px;
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 21px);
+      line-height: 1.58;
+      text-wrap: pretty;
+    }
+
+    .action-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--fg);
+      background: var(--surface);
+    }
+
+    .btn.primary {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: oklch(12% 0.018 145);
+      font-weight: 700;
+    }
+
+    .briefing {
+      border: 1px solid var(--border);
+      background: color-mix(in oklch, var(--surface) 88%, transparent);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 24px 70px color-mix(in oklch, var(--fg) 8%, transparent);
+    }
+
+    .panel-head {
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+      background: color-mix(in oklch, var(--bg) 70%, var(--surface));
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--fg);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px color-mix(in oklch, var(--accent) 18%, transparent);
+    }
+
+    .brief-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brief-cell {
+      padding: 18px;
+      min-height: 112px;
+      border-right: 1px solid var(--border);
+      display: grid;
+      align-content: space-between;
+      gap: 12px;
+    }
+
+    .brief-cell:nth-child(2n) { border-right: 0; }
+    .brief-cell b {
+      display: block;
+      font-size: 26px;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .terminal {
+      padding: 18px;
+      display: grid;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    .line {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 14px;
+      color: var(--muted);
+    }
+
+    .line span:last-child { color: var(--fg); }
+    .line .ok { color: var(--accent); }
+
+    section { width: var(--container); margin: 0 auto; padding: 58px 0; }
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(180px, 280px) minmax(0, 1fr);
+      gap: clamp(24px, 5vw, 76px);
+      align-items: start;
+      margin-bottom: 24px;
+    }
+
+    .label {
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--accent);
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 52px);
+      line-height: 1.02;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+
+    .section-head p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      max-width: 680px;
+      font-size: 16px;
+    }
+
+    .proof-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .proof {
+      padding: 18px;
+      border-right: 1px solid var(--border);
+      min-height: 122px;
+      display: grid;
+      align-content: space-between;
+      gap: 16px;
+    }
+
+    .proof:last-child { border-right: 0; }
+    .proof strong { font-size: 24px; line-height: 1; font-variant-numeric: tabular-nums; }
+    .proof span { color: var(--muted); font-size: 13px; }
+
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .case-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      overflow: hidden;
+      display: grid;
+      min-height: 100%;
+    }
+
+    .case-visual {
+      min-height: 178px;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 30% 20%, color-mix(in oklch, var(--accent) 18%, transparent), transparent 34%),
+        color-mix(in oklch, var(--bg) 62%, var(--surface));
+      padding: 24px;
+    }
+
+    .case-visual img {
+      max-height: 120px;
+      object-fit: contain;
+      filter: drop-shadow(0 18px 22px color-mix(in oklch, var(--fg) 12%, transparent));
+    }
+
+    .case-body {
+      padding: 20px;
+      display: grid;
+      gap: 15px;
+    }
+
+    .case-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 13px;
+    }
+
+    .case-title h3 { margin: 0; font-size: 21px; letter-spacing: 0; }
+    .case-title span { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+    .case-card p { margin: 0; color: var(--muted); font-size: 14px; }
+    .case-card ul { margin: 0; padding: 0; display: grid; gap: 9px; }
+    .case-card li {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 16px 1fr;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--fg);
+    }
+
+    .case-card li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      margin-top: 7px;
+      border-radius: 2px;
+      background: color-mix(in oklch, var(--accent) 76%, var(--fg));
+    }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px 9px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      background: color-mix(in oklch, var(--bg) 58%, var(--surface));
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .timeline, .skills {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      overflow: hidden;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 24px;
+      padding: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .timeline-item:last-child { border-bottom: 0; }
+    .timeline-item h3 { margin: 0 0 7px; font-size: 18px; }
+    .timeline-item p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .skill-row {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 14px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .skill-row:last-child { border-bottom: 0; }
+    .skill-row strong { font-size: 14px; }
+    .skill-row div { display: flex; gap: 7px; flex-wrap: wrap; }
+
+    .contact {
+      margin-bottom: 48px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      padding: clamp(22px, 4vw, 34px);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .contact h2 { max-width: 720px; }
+    .contact p { margin: 12px 0 0; color: var(--muted); max-width: 720px; }
+
+    @media (max-width: 940px) {
+      .hero, .section-head, .split, .contact { grid-template-columns: 1fr; }
+      .briefing { max-width: 680px; }
+      .proof-strip, .case-grid { grid-template-columns: 1fr 1fr; }
+      .navlinks { display: none; }
+    }
+
+    @media (max-width: 620px) {
+      .nav { height: auto; padding: 12px 0; align-items: flex-start; }
+      .brand { min-width: 0; }
+      .hero { padding-top: 42px; grid-template-columns: 1fr; }
+      .brief-grid, .proof-strip, .case-grid { grid-template-columns: 1fr; }
+      .brief-cell, .proof { border-right: 0; border-bottom: 1px solid var(--border); }
+      .proof:last-child { border-bottom: 0; }
+      .timeline-item, .skill-row { grid-template-columns: 1fr; gap: 8px; }
+      .line { grid-template-columns: 56px 1fr; }
+      .controls { flex-wrap: wrap; justify-content: flex-end; }
+      h1 { font-size: clamp(40px, 14vw, 64px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .001ms !important; animation-duration: .001ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell" data-theme="light">
+    <header class="topbar">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="#top" aria-label="Anirut portfolio home">
+          <strong>Anirut Butnongwa</strong>
+          <span data-i18n="brandSub">Industrial software portfolio</span>
+        </a>
+        <div class="navlinks" aria-label="Page sections">
+          <a href="#work" data-i18n="navWork">Work</a>
+          <a href="#evidence" data-i18n="navEvidence">Evidence</a>
+          <a href="#contact" data-i18n="navContact">Contact</a>
+        </div>
+        <div class="controls" aria-label="Display controls">
+          <button class="lang-btn" type="button" data-lang-toggle aria-label="Switch language">EN / TH</button>
+          <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle dark and light theme">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v2.2M12 18.8V21M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M3 12h2.2M18.8 12H21M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/><circle cx="12" cy="12" r="4.2"/></svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main id="top">
+      <div class="hero">
+        <div class="hero-copy">
+          <div class="mono" data-i18n="heroMeta">OPEN TO ENTRY-LEVEL ROLES - MAY 2026</div>
+          <h1 data-i18n="heroTitle">Mechanical engineer building software for CNC production teams.</h1>
+          <p class="lead" data-i18n="heroLead">A recruiter-ready portfolio for process engineering, manufacturing software, CNC automation, and industrial application roles. The strongest proof is three tools built from real shop-floor constraints during a process engineering internship.</p>
+          <div class="action-row">
+            <a class="btn primary" href="mailto:anirut.choky46@gmail.com?subject=Job%20Inquiry%20-%20Anirut%20Portfolio" data-i18n="ctaEmail">Email for interview</a>
+            <a class="btn" href="https://github.com/Luckyz777" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="btn" href="https://www.linkedin.com/in/anirut-butnongwa" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="btn" href="../public/Anirut Resume.pdf" data-i18n="ctaResume">Resume PDF</a>
+          </div>
+        </div>
+
+        <aside class="briefing" aria-label="Recruiter briefing">
+          <div class="panel-head">
+            <span>candidate.snapshot</span>
+            <span class="status"><span class="dot"></span><span data-i18n="available">Available May 2026</span></span>
+          </div>
+          <div class="brief-grid">
+            <div class="brief-cell"><span class="mono" data-i18n="briefRole">Target roles</span><b data-i18n="briefRoleValue">Process / industrial software</b></div>
+            <div class="brief-cell"><span class="mono" data-i18n="briefTools">Production tools shipped</span><b>3</b></div>
+            <div class="brief-cell"><span class="mono" data-i18n="briefDegree">Education</span><b>B.Eng.</b></div>
+            <div class="brief-cell"><span class="mono" data-i18n="briefBase">Base</span><b data-i18n="briefBaseValue">Nakhon Ratchasima</b></div>
+          </div>
+          <div class="terminal" aria-label="Portfolio summary">
+            <div class="line"><span>domain</span><span>CNC, G-code, fixture workflow, setup sheets</span></div>
+            <div class="line"><span>stack</span><span>Python, PySide6, React, FastAPI, pandas</span></div>
+            <div class="line"><span>signal</span><span data-i18n="terminalSignal">Built tools with operators and production handoff in mind.</span></div>
+            <div class="line"><span class="ok">status</span><span data-i18n="terminalStatus">Ready for HR screening and technical conversation.</span></div>
+          </div>
+        </aside>
+      </div>
+
+      <section aria-labelledby="proof-title">
+        <div class="section-head">
+          <p class="label">01 / recruiter proof</p>
+          <div>
+            <h2 id="proof-title" data-i18n="proofTitle">Fast scan: why this profile is different.</h2>
+            <p data-i18n="proofCopy">The page is positioned around evidence a recruiter can verify quickly: real internship context, specific production problems, shipped repositories, and a clear role target.</p>
+          </div>
+        </div>
+        <div class="proof-strip">
+          <div class="proof"><strong>3</strong><span data-i18n="proofOne">production workflow tools from one internship</span></div>
+          <div class="proof"><strong>2026</strong><span data-i18n="proofTwo">Mechanical Engineering graduate, Suranaree University of Technology</span></div>
+          <div class="proof"><strong>EN / TH</strong><span data-i18n="proofThree">bilingual portfolio experience for local and international screening</span></div>
+          <div class="proof"><strong>CNC</strong><span data-i18n="proofFour">domain experience in G-code, setup sheets, fixture handling, and toolpath review</span></div>
+        </div>
+      </section>
+
+      <section id="work" aria-labelledby="work-title">
+        <div class="section-head">
+          <p class="label">02 / selected systems</p>
+          <div>
+            <h2 id="work-title" data-i18n="workTitle">Case studies arranged like an engineering review.</h2>
+            <p data-i18n="workCopy">Each project states the production constraint, what was built, and the workflow proof. No decorative feature cards, just the evidence needed for a hiring decision.</p>
+          </div>
+        </div>
+        <div class="case-grid">
+          <article class="case-card">
+            <div class="case-visual"><img src="../public/GT-ACT.png" alt="GT-ACT application identity"></div>
+            <div class="case-body">
+              <div class="case-title"><h3>GT-ACT</h3><span>G-code / setup sheet</span></div>
+              <p data-i18n="gtActSummary">Cycle-time analysis and setup-sheet automation for NC handoff.</p>
+              <ul>
+                <li data-i18n="gtActOne">Parses G-code movement by N-block for review.</li>
+                <li data-i18n="gtActTwo">Checks tool length against Z-depth before production.</li>
+                <li data-i18n="gtActThree">Exports standardized Excel and PDF setup sheets.</li>
+              </ul>
+              <div class="tags"><span class="tag">Python</span><span class="tag">pandas</span><span class="tag">openpyxl</span><span class="tag">PDF export</span></div>
+            </div>
+          </article>
+
+          <article class="case-card">
+            <div class="case-visual"><img src="../public/GT-PATH.png" alt="GT-PATH application logo"></div>
+            <div class="case-body">
+              <div class="case-title"><h3>GT-PATH</h3><span>offline viewer</span></div>
+              <p data-i18n="gtPathSummary">Offline NC and G-code path viewer for quick inspection without CAM setup.</p>
+              <ul>
+                <li data-i18n="gtPathOne">Handles G0, G1, G2, G3, canned cycles, units, and offsets.</li>
+                <li data-i18n="gtPathTwo">Shows travel, stock, fixture boxes, and rapid-move risk.</li>
+                <li data-i18n="gtPathThree">Runs fully offline from local HTML, CSS, and JavaScript.</li>
+              </ul>
+              <div class="tags"><span class="tag">PySide6</span><span class="tag">JavaScript</span><span class="tag">HTML/CSS</span><span class="tag">NC parser</span></div>
+            </div>
+          </article>
+
+          <article class="case-card">
+            <div class="case-visual"><img src="../public/GT-FIXSYS.png" alt="GT-FIXSYS application logo"></div>
+            <div class="case-body">
+              <div class="case-title"><h3>GT-FIXSYS</h3><span>fixture workflow</span></div>
+              <p data-i18n="gtFixSummary">Fixture requisition and monitoring system for tool-room visibility.</p>
+              <ul>
+                <li data-i18n="gtFixOne">Covers monitor, requisition, master data, and admin flows.</li>
+                <li data-i18n="gtFixTwo">Uses scan-based borrow and return actions with exact code matching.</li>
+                <li data-i18n="gtFixThree">Tracks available, pending, overdue, missing, obsolete, and deleted states.</li>
+              </ul>
+              <div class="tags"><span class="tag">Python</span><span class="tag">React</span><span class="tag">FastAPI</span><span class="tag">Barcode scan</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="evidence" aria-labelledby="evidence-title">
+        <div class="section-head">
+          <p class="label">03 / evidence map</p>
+          <div>
+            <h2 id="evidence-title" data-i18n="evidenceTitle">The story is built for HR first, then technical review.</h2>
+            <p data-i18n="evidenceCopy">The layout keeps recruiter-critical details above the fold, then gives hiring managers enough specificity to continue into repositories or an interview.</p>
+          </div>
+        </div>
+        <div class="split">
+          <div class="timeline">
+            <div class="panel-head"><span>experience.timeline</span><span>verified context</span></div>
+            <div class="timeline-item">
+              <span class="mono">Feb-May 2026</span>
+              <div><h3 data-i18n="timelineOneTitle">Process Engineering Intern</h3><p data-i18n="timelineOneCopy">Global-Thaixon Precision Industry, Chachoengsao. Built internal tools around CNC setup, NC validation, and fixture handling.</p></div>
+            </div>
+            <div class="timeline-item">
+              <span class="mono">2022-May 2026</span>
+              <div><h3 data-i18n="timelineTwoTitle">Mechanical Engineering</h3><p data-i18n="timelineTwoCopy">Bachelor of Engineering, Suranaree University of Technology. Relevant work includes CAD/CAM, FEA, manufacturing processes, and engineering statistics.</p></div>
+            </div>
+            <div class="timeline-item">
+              <span class="mono">Portfolio</span>
+              <div><h3 data-i18n="timelineThreeTitle">Open-source case studies</h3><p data-i18n="timelineThreeCopy">GT-ACT, GT-PATH, and GT-FIXSYS are presented as inspectable engineering workflows, not coursework demos.</p></div>
+            </div>
+          </div>
+          <div class="skills">
+            <div class="panel-head"><span>capability.matrix</span><span>scan-friendly</span></div>
+            <div class="skill-row"><strong>Software</strong><div><span class="tag">Python</span><span class="tag">PySide6</span><span class="tag">React</span><span class="tag">FastAPI</span><span class="tag">PyInstaller</span></div></div>
+            <div class="skill-row"><strong>Manufacturing</strong><div><span class="tag">CNC</span><span class="tag">G-code</span><span class="tag">Tool room</span><span class="tag">Setup sheets</span><span class="tag">Cycle time</span></div></div>
+            <div class="skill-row"><strong>Engineering</strong><div><span class="tag">SolidWorks</span><span class="tag">CATIA</span><span class="tag">ANSYS</span><span class="tag">MATLAB</span><span class="tag">Arduino</span></div></div>
+            <div class="skill-row"><strong data-i18n="languages">Languages</strong><div><span class="tag" data-i18n="thaiLang">Thai - native</span><span class="tag" data-i18n="engLang">English - working proficiency</span></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact" aria-labelledby="contact-title">
+        <div>
+          <p class="label">04 / next step</p>
+          <h2 id="contact-title" data-i18n="contactTitle">Available for entry-level roles from May 2026.</h2>
+          <p data-i18n="contactCopy">Best fit: process engineering, manufacturing technology, CNC automation, industrial software, or internal tools roles where mechanical context matters.</p>
+        </div>
+        <div class="action-row">
+          <a class="btn primary" href="mailto:anirut.choky46@gmail.com?subject=Job%20Inquiry%20-%20Anirut%20Portfolio">anirut.choky46@gmail.com</a>
+          <a class="btn" href="tel:+66981186694">+66 98-118-6694</a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const copy = {
+      en: {
+        brandSub: "Industrial software portfolio",
+        navWork: "Work", navEvidence: "Evidence", navContact: "Contact",
+        heroMeta: "OPEN TO ENTRY-LEVEL ROLES - MAY 2026",
+        heroTitle: "Mechanical engineer building software for CNC production teams.",
+        heroLead: "A recruiter-ready portfolio for process engineering, manufacturing software, CNC automation, and industrial application roles. The strongest proof is three tools built from real shop-floor constraints during a process engineering internship.",
+        ctaEmail: "Email for interview", ctaResume: "Resume PDF", available: "Available May 2026",
+        briefRole: "Target roles", briefRoleValue: "Process / industrial software", briefTools: "Production tools shipped", briefDegree: "Education", briefBase: "Base", briefBaseValue: "Nakhon Ratchasima",
+        terminalSignal: "Built tools with operators and production handoff in mind.", terminalStatus: "Ready for HR screening and technical conversation.",
+        proofTitle: "Fast scan: why this profile is different.", proofCopy: "The page is positioned around evidence a recruiter can verify quickly: real internship context, specific production problems, shipped repositories, and a clear role target.",
+        proofOne: "production workflow tools from one internship", proofTwo: "Mechanical Engineering graduate, Suranaree University of Technology", proofThree: "bilingual portfolio experience for local and international screening", proofFour: "domain experience in G-code, setup sheets, fixture handling, and toolpath review",
+        workTitle: "Case studies arranged like an engineering review.", workCopy: "Each project states the production constraint, what was built, and the workflow proof. No decorative feature cards, just the evidence needed for a hiring decision.",
+        gtActSummary: "Cycle-time analysis and setup-sheet automation for NC handoff.", gtActOne: "Parses G-code movement by N-block for review.", gtActTwo: "Checks tool length against Z-depth before production.", gtActThree: "Exports standardized Excel and PDF setup sheets.",
+        gtPathSummary: "Offline NC and G-code path viewer for quick inspection without CAM setup.", gtPathOne: "Handles G0, G1, G2, G3, canned cycles, units, and offsets.", gtPathTwo: "Shows travel, stock, fixture boxes, and rapid-move risk.", gtPathThree: "Runs fully offline from local HTML, CSS, and JavaScript.",
+        gtFixSummary: "Fixture requisition and monitoring system for tool-room visibility.", gtFixOne: "Covers monitor, requisition, master data, and admin flows.", gtFixTwo: "Uses scan-based borrow and return actions with exact code matching.", gtFixThree: "Tracks available, pending, overdue, missing, obsolete, and deleted states.",
+        evidenceTitle: "The story is built for HR first, then technical review.", evidenceCopy: "The layout keeps recruiter-critical details above the fold, then gives hiring managers enough specificity to continue into repositories or an interview.",
+        timelineOneTitle: "Process Engineering Intern", timelineOneCopy: "Global-Thaixon Precision Industry, Chachoengsao. Built internal tools around CNC setup, NC validation, and fixture handling.",
+        timelineTwoTitle: "Mechanical Engineering", timelineTwoCopy: "Bachelor of Engineering, Suranaree University of Technology. Relevant work includes CAD/CAM, FEA, manufacturing processes, and engineering statistics.",
+        timelineThreeTitle: "Open-source case studies", timelineThreeCopy: "GT-ACT, GT-PATH, and GT-FIXSYS are presented as inspectable engineering workflows, not coursework demos.",
+        languages: "Languages", thaiLang: "Thai - native", engLang: "English - working proficiency",
+        contactTitle: "Available for entry-level roles from May 2026.", contactCopy: "Best fit: process engineering, manufacturing technology, CNC automation, industrial software, or internal tools roles where mechanical context matters."
+      },
+      th: {
+        brandSub: "พอร์ตโฟลิโอซอฟต์แวร์อุตสาหกรรม",
+        navWork: "ผลงาน", navEvidence: "หลักฐาน", navContact: "ติดต่อ",
+        heroMeta: "พร้อมเริ่มงานระดับเริ่มต้น - พ.ค. 2026",
+        heroTitle: "วิศวกรเครื่องกลที่สร้างซอฟต์แวร์ให้ทีมผลิต CNC ใช้งานจริง",
+        heroLead: "พอร์ตโฟลิโอที่จัดสำหรับ HR/recruiter โดยตรง เหมาะกับสาย process engineering, manufacturing software, CNC automation และ industrial application จุดแข็งคือเครื่องมือ 3 ตัวที่สร้างจากข้อจำกัดหน้างานจริงระหว่างฝึกงาน",
+        ctaEmail: "ติดต่อสัมภาษณ์", ctaResume: "เรซูเม่ PDF", available: "พร้อมเริ่ม พ.ค. 2026",
+        briefRole: "ตำแหน่งเป้าหมาย", briefRoleValue: "Process / industrial software", briefTools: "เครื่องมือที่ส่งมอบ", briefDegree: "การศึกษา", briefBase: "ที่อยู่", briefBaseValue: "นครราชสีมา",
+        terminalSignal: "สร้างเครื่องมือโดยคิดจาก operator และขั้นตอนส่งต่องานผลิตจริง", terminalStatus: "พร้อมสำหรับ HR screening และคุยเชิงเทคนิค",
+        proofTitle: "สแกนเร็ว: โปรไฟล์นี้ต่างตรงไหน", proofCopy: "หน้านี้จัดรอบหลักฐานที่ HR ตรวจได้เร็ว: บริบทฝึกงานจริง ปัญหาการผลิตเฉพาะเจาะจง repository ที่ตรวจต่อได้ และตำแหน่งเป้าหมายที่ชัดเจน",
+        proofOne: "เครื่องมือ workflow จากการฝึกงานครั้งเดียว", proofTwo: "วิศวกรรมเครื่องกล มหาวิทยาลัยเทคโนโลยีสุรนารี", proofThree: "ประสบการณ์สองภาษา สำหรับบริษัทไทยและต่างประเทศ", proofFour: "พื้นฐาน G-code, setup sheet, fixture และ toolpath review",
+        workTitle: "Case study วางเหมือน engineering review", workCopy: "แต่ละโปรเจกต์บอกข้อจำกัดหน้างาน สิ่งที่สร้าง และ workflow proof โดยไม่ใช้การ์ดตกแต่งเกินจำเป็น",
+        gtActSummary: "วิเคราะห์ cycle time และทำ setup sheet อัตโนมัติสำหรับการส่งต่อ NC", gtActOne: "อ่านการเคลื่อนที่ G-code ตาม N-block เพื่อ review", gtActTwo: "ตรวจ tool length เทียบ Z-depth ก่อนส่งผลิต", gtActThree: "ส่งออก setup sheet เป็น Excel และ PDF มาตรฐาน",
+        gtPathSummary: "ตัวดู NC/G-code แบบ offline สำหรับตรวจทางเดิน toolpath โดยไม่ต้องเปิด CAM", gtPathOne: "รองรับ G0, G1, G2, G3, canned cycle, หน่วย และ offset", gtPathTwo: "แสดง travel, stock, fixture box และความเสี่ยง rapid move", gtPathThree: "รัน offline จาก HTML, CSS และ JavaScript ในเครื่อง",
+        gtFixSummary: "ระบบ requisition และ monitoring สำหรับ fixture ใน tool room", gtFixOne: "ครอบคลุม monitor, requisition, master data และ admin flow", gtFixTwo: "ใช้การ scan เพื่อยืม/คืน ด้วยการ match code แบบ exact", gtFixThree: "ติดตามสถานะ available, pending, overdue, missing, obsolete และ deleted",
+        evidenceTitle: "เล่าเรื่องให้ HR อ่านก่อน แล้วค่อยต่อยอดสู่ technical review", evidenceCopy: "รายละเอียดที่ recruiter ต้องใช้ถูกวางไว้ด้านบน จากนั้นค่อยให้ hiring manager เห็นความเฉพาะเจาะจงพอที่จะเปิด repo หรือเรียกสัมภาษณ์",
+        timelineOneTitle: "นักศึกษาฝึกงาน Process Engineering", timelineOneCopy: "Global-Thaixon Precision Industry, ฉะเชิงเทรา สร้าง internal tools สำหรับ CNC setup, NC validation และ fixture handling",
+        timelineTwoTitle: "วิศวกรรมเครื่องกล", timelineTwoCopy: "วิศวกรรมศาสตรบัณฑิต มหาวิทยาลัยเทคโนโลยีสุรนารี รายวิชาที่เกี่ยวข้องรวม CAD/CAM, FEA, manufacturing processes และ engineering statistics",
+        timelineThreeTitle: "Open-source case studies", timelineThreeCopy: "GT-ACT, GT-PATH และ GT-FIXSYS ถูกนำเสนอเป็น workflow ทางวิศวกรรมที่ตรวจสอบได้ ไม่ใช่ demo จากบทเรียน",
+        languages: "ภาษา", thaiLang: "ไทย - เจ้าของภาษา", engLang: "อังกฤษ - ใช้งานในการทำงาน",
+        contactTitle: "พร้อมเริ่มงานระดับ entry-level ตั้งแต่ พ.ค. 2026", contactCopy: "เหมาะกับตำแหน่ง process engineering, manufacturing technology, CNC automation, industrial software หรือ internal tools ที่ต้องใช้ความเข้าใจงานเครื่องกล"
+      }
+    };
+
+    const root = document.querySelector(".shell");
+    const langButton = document.querySelector("[data-lang-toggle]");
+    const themeButton = document.querySelector("[data-theme-toggle]");
+    let lang = localStorage.getItem("industrial-prototype-lang") || "en";
+    let theme = localStorage.getItem("industrial-prototype-theme") || "light";
+
+    function applyLang() {
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-i18n]").forEach((node) => {
+        const key = node.getAttribute("data-i18n");
+        node.textContent = copy[lang][key] || node.textContent;
+      });
+      langButton.textContent = lang === "en" ? "EN / TH" : "TH / EN";
+      localStorage.setItem("industrial-prototype-lang", lang);
+    }
+
+    function applyTheme() {
+      document.documentElement.setAttribute("data-theme", theme);
+      root.setAttribute("data-theme", theme);
+      localStorage.setItem("industrial-prototype-theme", theme);
+    }
+
+    langButton.addEventListener("click", () => {
+      lang = lang === "en" ? "th" : "en";
+      applyLang();
+    });
+
+    themeButton.addEventListener("click", () => {
+      theme = theme === "light" ? "dark" : "light";
+      applyTheme();
+    });
+
+    applyTheme();
+    applyLang();
+  </script>
+</body>
+</html>

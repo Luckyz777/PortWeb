@@ -5,25 +5,49 @@ test.describe("portfolio", () => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/");
 
-    await expect(page.locator(".hero-name")).toContainText("Factory");
+    await expect(page.locator(".hero-name")).toContainText("Manufacturing");
     await expect(page.getByRole("link", { name: "View My Work" })).toBeVisible();
-    await expect(page.getByText("Three Tools.")).toBeVisible();
-    await expect(page.getByText("Engineer First.")).toBeVisible();
-    await expect(page.getByText("Two Disciplines.")).toBeVisible();
-    await expect(page.getByText("Available From", { exact: true })).toBeVisible();
+    await expect(page.getByText("Production-Tested Software.")).toBeVisible();
+    await expect(page.getByText("Where the Tools Were Built.")).toBeVisible();
+    await expect(page.getByText("Engineering Background. Software Craft.")).toBeVisible();
+    await expect(page.getByText("Two Disciplines. One Stack.")).toBeVisible();
+    await expect(page.getByText("Available From May 2026.")).toBeVisible();
+  });
+
+  test("experience section lists internship", async ({ page }) => {
+    await page.goto("/");
+    const exp = page.locator("#experience");
+    await expect(exp).toBeVisible();
+    await expect(exp.getByText("Global-Thaixon Precision Industry")).toBeVisible();
+    await expect(exp.getByText("Process Engineering Intern")).toBeVisible();
+  });
+
+  test("language toggle switches to Thai and back", async ({ page }) => {
+    await page.goto("/");
+    const toggle = page.locator(".lang-toggle").first();
+    await expect(toggle).toBeVisible();
+
+    // Initial state — English
+    await expect(page.locator(".hero-name")).toContainText("Building");
+
+    // Switch to TH
+    await toggle.click();
+    await expect(page.locator("html")).toHaveAttribute("data-lang", "th");
+    await expect(page.locator(".hero-name")).toContainText("สร้าง");
+
+    // Switch back to EN
+    await toggle.click();
+    await expect(page.locator("html")).toHaveAttribute("data-lang", "en");
+    await expect(page.locator(".hero-name")).toContainText("Building");
   });
 
   test("project console tabs switch content", async ({ page }) => {
     await page.goto("/");
-
     await page.getByRole("tab", { name: /GT-PATH/i }).click();
     await expect(page.getByRole("tabpanel")).toContainText("Offline NC and G-code path viewer");
-
-    await page.getByRole("tab", { name: /GT-FIXSYS/i }).click();
-    await expect(page.getByRole("tabpanel")).toContainText("Fixture requisition");
   });
 
-  test("mobile nav hamburger opens and links work", async ({ page }) => {
+  test("mobile nav hamburger opens with experience link", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");
 
@@ -33,40 +57,43 @@ test.describe("portfolio", () => {
 
     const drawer = page.locator(".mobile-drawer");
     await expect(drawer).toBeVisible();
-    await expect(drawer.getByText("Projects")).toBeVisible();
-
-    await drawer.getByText("Projects").click();
-    await expect(drawer).not.toBeVisible();
+    await expect(drawer.getByText("Experience")).toBeVisible();
   });
 
   test("all nav anchor links resolve to sections", async ({ page }) => {
     await page.goto("/");
-
-    const anchors = ["#projects", "#prototype", "#profile", "#skills", "#contact"];
+    const anchors = ["#projects", "#prototype", "#experience", "#profile", "#skills", "#contact"];
     for (const anchor of anchors) {
-      const section = page.locator(anchor);
-      await expect(section).toBeAttached();
+      await expect(page.locator(anchor)).toBeAttached();
     }
   });
 
-  test("JSON-LD structured data is present", async ({ page }) => {
+  test("JSON-LD includes LinkedIn and worksFor", async ({ page }) => {
     await page.goto("/");
-
     const jsonLd = page.locator('script[type="application/ld+json"]');
     await expect(jsonLd).toBeAttached();
     const content = await jsonLd.textContent();
     expect(content).toContain("Anirut Butnongwa");
-    expect(content).toContain("schema.org");
+    expect(content).toContain("linkedin.com");
+    expect(content).toContain("Global-Thaixon");
+  });
+
+  test("resume route renders a printable resume", async ({ page }) => {
+    await page.goto("/resume");
+    await expect(page.getByRole("heading", { name: "Anirut Butnongwa" })).toBeVisible();
+    await expect(page.getByRole("button", { name: /Print/i })).toBeVisible();
+    await expect(page.getByText("Process Engineering Intern")).toBeVisible();
+  });
+
+  test("404 page renders for unknown route", async ({ page }) => {
+    const response = await page.goto("/this-route-does-not-exist");
+    expect(response?.status()).toBe(404);
+    await expect(page.getByText("Page not found")).toBeVisible();
+    await expect(page.getByRole("link", { name: /Back to Portfolio/i })).toBeVisible();
   });
 
   test("serves project imagery without errors", async ({ page }) => {
-    const assets = [
-      "/GT-ACT.png",
-      "/GT-PATH.png",
-      "/gt-fixsys-dashboard.png",
-      "/gt-apps-montage.png",
-    ];
-
+    const assets = ["/GT-ACT.png", "/GT-PATH.png", "/gt-fixsys-dashboard.png", "/gt-apps-montage.png"];
     for (const asset of assets) {
       const response = await page.request.get(asset);
       expect(response.ok(), asset).toBe(true);

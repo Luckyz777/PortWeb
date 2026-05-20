@@ -17,20 +17,233 @@ export type Project = {
   consoleDetail: string;
 };
 
+export type Bilingual = { en: string; th: string };
+
 export const profile = {
   name: "Anirut Butnongwa",
   email: "anirut.choky46@gmail.com",
   phone: "098-118-6694",
+  phoneIntl: "+66 98-118-6694",
   location: "Nakhon Ratchasima, Thailand",
   github: "https://github.com/Luckyz777",
+  linkedin: "https://www.linkedin.com/in/anirut-butnongwa",
   cv: "https://canva.link/u5kqdazwtd3kh6y",
   target: "Mechanical, process, and industrial software roles",
-  tagline: "Mechanical engineering graduate building software for the shop floor.",
-  summary:
-    "I am a Mechanical Engineering student at Suranaree University of Technology (graduating May 2026). During my process engineering internship at Global-Thaixon Precision Industry I built three working tools for CNC review, toolpath verification, and fixture control \u2014 the same applications featured on this page.",
   status: "Open to entry-level roles \u2014 starting May 2026",
-  education: "B.Eng. Mechanical Engineering / SUT / May 2026"
 };
+
+export const education = {
+  degree: "Bachelor of Engineering, Mechanical Engineering",
+  GPA: "2.92",
+  majorGPA: "3.26",
+  university: "Suranaree University of Technology",
+  location: "Nakhon Ratchasima, Thailand",
+  period: "2022 \u2014 May 2026 (Expected)",
+  coursework: [
+    "Mechanics of Materials",
+    "Manufacturing Processes",
+    "CAD/CAM",
+    "Finite Element Analysis",
+    "Engineering Statistics",
+  ],
+};
+
+export const experience = [
+  {
+    role: "Process Engineering Intern",
+    company: "Global-Thaixon Precision Industry",
+    location: "Chachoengsao, Thailand",
+    period: "9 Feb.-29 May 2026",
+    bullets: [
+      "Identified process gaps in CNC tool setup and fixture management through shop-floor observation and operator interviews.",
+      "Designed and delivered 3 internal tools (GT-ACT, GT-FIXSYS, GT-PATH) using AI-assisted development with Python, PySide6, React, and FastAPI.",
+      "Automated NC program validation and standardized setup-sheet generation, reducing manual errors in tool-length verification.",
+      "Validated UI logic and workflows with operators to ensure real-world usability in CNC handoff and tool-room processes.",
+    ],
+  },
+] as const;
+
+/**
+ * Bilingual copy dictionary. Used by section components via useT().
+ * Technical content (project descriptions, code, stack names) stays in `projects`
+ * and remains English-only because it's domain-standard terminology.
+ */
+export const copy = {
+  nav: {
+    projects: { en: "Projects", th: "\u0e1c\u0e25\u0e07\u0e32\u0e19" },
+    prototype: { en: "Prototype", th: "\u0e15\u0e49\u0e19\u0e41\u0e1a\u0e1a" },
+    experience: { en: "Experience", th: "\u0e1b\u0e23\u0e30\u0e2a\u0e1a\u0e01\u0e32\u0e23\u0e13\u0e4c" },
+    about: { en: "About", th: "\u0e40\u0e01\u0e35\u0e48\u0e22\u0e27\u0e01\u0e31\u0e1a" },
+    skills: { en: "Skills", th: "\u0e17\u0e31\u0e01\u0e29\u0e30" },
+    contact: { en: "Get In Touch", th: "\u0e15\u0e34\u0e14\u0e15\u0e48\u0e2d" },
+  },
+  hero: {
+    eyebrow: {
+      en: "Mechanical Engineer \u00b7 Software Developer",
+      th: "\u0e27\u0e34\u0e28\u0e27\u0e01\u0e23\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e01\u0e25 \u00b7 \u0e19\u0e31\u0e01\u0e1e\u0e31\u0e12\u0e19\u0e32\u0e0b\u0e2d\u0e1f\u0e15\u0e4c\u0e41\u0e27\u0e23\u0e4c",
+    },
+    headlineL1: { en: "Building", th: "\u0e2a\u0e23\u0e49\u0e32\u0e07" },
+    headlineL2: { en: "Software for", th: "\u0e0b\u0e2d\u0e1f\u0e15\u0e4c\u0e41\u0e27\u0e23\u0e4c\u0e2a\u0e33\u0e2b\u0e23\u0e31\u0e1a" },
+    headlineAccent: { en: "Manufacturing.", th: "\u0e42\u0e23\u0e07\u0e07\u0e32\u0e19\u0e1c\u0e25\u0e34\u0e15." },
+    subhead: {
+      en: "Tools built from the production floor \u2014 not from a tutorial.",
+      th: "\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d\u0e17\u0e35\u0e48\u0e40\u0e01\u0e34\u0e14\u0e08\u0e32\u0e01\u0e2b\u0e19\u0e49\u0e32\u0e07\u0e32\u0e19\u0e08\u0e23\u0e34\u0e07 \u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48\u0e08\u0e32\u0e01\u0e1a\u0e17\u0e40\u0e23\u0e35\u0e22\u0e19.",
+    },
+    desc: {
+      en: "Mechanical Engineering graduate from Suranaree University of Technology. During my process engineering internship at Global-Thaixon Precision Industry I built three production tools covering G-code review, toolpath verification, and fixture lifecycle management.",
+      th: "\u0e1a\u0e31\u0e13\u0e11\u0e34\u0e15\u0e27\u0e34\u0e28\u0e27\u0e01\u0e23\u0e23\u0e21\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e01\u0e25 \u0e21\u0e2b\u0e32\u0e27\u0e34\u0e17\u0e22\u0e32\u0e25\u0e31\u0e22\u0e40\u0e17\u0e04\u0e42\u0e19\u0e42\u0e25\u0e22\u0e35\u0e2a\u0e38\u0e23\u0e19\u0e32\u0e23\u0e35 \u0e0a\u0e48\u0e27\u0e07\u0e1d\u0e36\u0e01\u0e07\u0e32\u0e19\u0e15\u0e33\u0e41\u0e2b\u0e19\u0e48\u0e07 process engineer \u0e17\u0e35\u0e48 Global-Thaixon Precision Industry \u0e44\u0e14\u0e49\u0e1e\u0e31\u0e12\u0e19\u0e32\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d 3 \u0e15\u0e31\u0e27\u0e2a\u0e33\u0e2b\u0e23\u0e31\u0e1a\u0e15\u0e23\u0e27\u0e08 G-code, \u0e15\u0e23\u0e27\u0e08 toolpath \u0e41\u0e25\u0e30\u0e1a\u0e23\u0e34\u0e2b\u0e32\u0e23 fixture.",
+    },
+    ctaWork: { en: "View My Work", th: "\u0e14\u0e39\u0e1c\u0e25\u0e07\u0e32\u0e19" },
+    ctaResume: { en: "Resume / CV", th: "\u0e40\u0e23\u0e0b\u0e39\u0e40\u0e21\u0e48 / CV" },
+    stat1: { en: "Production Tools", th: "\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d\u0e1b\u0e0f\u0e34\u0e1a\u0e31\u0e15\u0e34\u0e08\u0e23\u0e34\u0e07" },
+    stat2: { en: "B.Eng. Mechanical", th: "\u0e27\u0e28\u0e1a. \u0e27\u0e34\u0e28\u0e27\u0e01\u0e23\u0e23\u0e21\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e01\u0e25" },
+    stat3: { en: "Available May 2026", th: "\u0e1e\u0e23\u0e49\u0e2d\u0e21\u0e40\u0e23\u0e34\u0e48\u0e21\u0e07\u0e32\u0e19 \u0e1e.\u0e04. 2026" },
+  },
+  projects: {
+    tag: { en: "Selected Work", th: "\u0e1c\u0e25\u0e07\u0e32\u0e19\u0e04\u0e31\u0e14\u0e2a\u0e23\u0e23" },
+    heading: { en: "Production-Tested Software.", th: "\u0e0b\u0e2d\u0e1f\u0e15\u0e4c\u0e41\u0e27\u0e23\u0e4c\u0e17\u0e35\u0e48\u0e1c\u0e48\u0e32\u0e19\u0e2b\u0e19\u0e49\u0e32\u0e07\u0e32\u0e19\u0e08\u0e23\u0e34\u0e07." },
+    sub: {
+      en: "Each project started from a real production constraint encountered during my process engineering internship \u2014 not from coursework or tutorials.",
+      th: "\u0e17\u0e38\u0e01\u0e42\u0e1b\u0e23\u0e40\u0e08\u0e01\u0e15\u0e4c\u0e40\u0e01\u0e34\u0e14\u0e08\u0e32\u0e01\u0e02\u0e49\u0e2d\u0e08\u0e33\u0e01\u0e31\u0e14\u0e02\u0e2d\u0e07\u0e02\u0e31\u0e49\u0e19\u0e15\u0e2d\u0e19\u0e01\u0e32\u0e23\u0e1c\u0e25\u0e34\u0e15\u0e08\u0e23\u0e34\u0e07 \u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48\u0e07\u0e32\u0e19\u0e0a\u0e34\u0e49\u0e19\u0e2b\u0e23\u0e37\u0e2d\u0e1a\u0e17\u0e40\u0e23\u0e35\u0e22\u0e19.",
+    },
+    viewRepo: { en: "View Repository", th: "\u0e14\u0e39 Repository" },
+  },
+  prototype: {
+    tag: { en: "Working Prototype", th: "\u0e15\u0e49\u0e19\u0e41\u0e1a\u0e1a\u0e43\u0e0a\u0e49\u0e07\u0e32\u0e19\u0e44\u0e14\u0e49\u0e08\u0e23\u0e34\u0e07" },
+    heading: { en: "How Each Tool Works.", th: "\u0e01\u0e25\u0e44\u0e01\u0e01\u0e32\u0e23\u0e17\u0e33\u0e07\u0e32\u0e19\u0e02\u0e2d\u0e07\u0e41\u0e15\u0e48\u0e25\u0e30\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d." },
+    sub: {
+      en: "Click through to see how each application translates a manufacturing constraint into a verifiable workflow.",
+      th: "\u0e04\u0e25\u0e34\u0e01\u0e40\u0e1e\u0e37\u0e48\u0e2d\u0e14\u0e39\u0e27\u0e34\u0e18\u0e35\u0e17\u0e35\u0e48\u0e41\u0e15\u0e48\u0e25\u0e30\u0e41\u0e2d\u0e1b\u0e1e\u0e25\u0e34\u0e40\u0e04\u0e0a\u0e31\u0e19\u0e41\u0e1b\u0e25\u0e07\u0e02\u0e49\u0e2d\u0e08\u0e33\u0e01\u0e31\u0e14\u0e2d\u0e38\u0e15\u0e2a\u0e32\u0e2b\u0e01\u0e23\u0e23\u0e21\u0e40\u0e1b\u0e47\u0e19 workflow \u0e17\u0e35\u0e48\u0e15\u0e23\u0e27\u0e08\u0e2a\u0e2d\u0e1a\u0e44\u0e14\u0e49.",
+    },
+  },
+  experience: {
+    tag: { en: "Experience", th: "\u0e1b\u0e23\u0e30\u0e2a\u0e1a\u0e01\u0e32\u0e23\u0e13\u0e4c\u0e17\u0e33\u0e07\u0e32\u0e19" },
+    heading: { en: "Where the Tools Were Built.", th: "\u0e17\u0e35\u0e48\u0e21\u0e32\u0e02\u0e2d\u0e07\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d." },
+    sub: {
+      en: "Hands-on experience that informed every line of code in the projects above.",
+      th: "\u0e1b\u0e23\u0e30\u0e2a\u0e1a\u0e01\u0e32\u0e23\u0e13\u0e4c\u0e17\u0e35\u0e48\u0e1d\u0e31\u0e07\u0e2d\u0e22\u0e39\u0e48\u0e43\u0e19\u0e17\u0e38\u0e01\u0e1a\u0e23\u0e23\u0e17\u0e31\u0e14\u0e02\u0e2d\u0e07\u0e42\u0e1b\u0e23\u0e40\u0e08\u0e01\u0e15\u0e4c\u0e02\u0e49\u0e32\u0e07\u0e1a\u0e19.",
+    },
+  },
+  about: {
+    tag: { en: "About", th: "\u0e40\u0e01\u0e35\u0e48\u0e22\u0e27\u0e01\u0e31\u0e1a" },
+    heading: {
+      en: "Engineering Background. Software Craft.",
+      th: "\u0e1e\u0e37\u0e49\u0e19\u0e10\u0e32\u0e19\u0e27\u0e34\u0e28\u0e27\u0e01\u0e23\u0e23\u0e21. \u0e17\u0e31\u0e01\u0e29\u0e30\u0e2a\u0e23\u0e49\u0e32\u0e07\u0e0b\u0e2d\u0e1f\u0e15\u0e4c\u0e41\u0e27\u0e23\u0e4c.",
+    },
+    p1: {
+      en: "I studied Mechanical Engineering at Suranaree University of Technology (graduating May 2026). During my internship at Global-Thaixon Precision Industry I worked with CNC machines, setup sheets, fixture workflows, and cycle-time calculations \u2014 and saw firsthand where the right software could remove friction.",
+      th: "\u0e40\u0e23\u0e35\u0e22\u0e19\u0e27\u0e34\u0e28\u0e27\u0e01\u0e23\u0e23\u0e21\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e01\u0e25 \u0e21\u0e2b\u0e32\u0e27\u0e34\u0e17\u0e22\u0e32\u0e25\u0e31\u0e22\u0e40\u0e17\u0e04\u0e42\u0e19\u0e42\u0e25\u0e22\u0e35\u0e2a\u0e38\u0e23\u0e19\u0e32\u0e23\u0e35 (\u0e2a\u0e33\u0e40\u0e23\u0e47\u0e08\u0e01\u0e32\u0e23\u0e28\u0e36\u0e01\u0e29\u0e32 \u0e1e.\u0e04. 2026). \u0e0a\u0e48\u0e27\u0e07\u0e1d\u0e36\u0e01\u0e07\u0e32\u0e19\u0e17\u0e35\u0e48 Global-Thaixon Precision Industry \u0e44\u0e14\u0e49\u0e17\u0e33\u0e07\u0e32\u0e19\u0e01\u0e31\u0e1a CNC, setup sheet, fixture workflow \u0e41\u0e25\u0e30\u0e01\u0e32\u0e23\u0e04\u0e33\u0e19\u0e27\u0e13 cycle time \u0e08\u0e36\u0e07\u0e40\u0e2b\u0e47\u0e19\u0e0a\u0e31\u0e14\u0e27\u0e48\u0e32\u0e2d\u0e30\u0e44\u0e23\u0e17\u0e35\u0e48\u0e0b\u0e2d\u0e1f\u0e15\u0e4c\u0e41\u0e27\u0e23\u0e4c\u0e2a\u0e32\u0e21\u0e32\u0e23\u0e16\u0e0a\u0e48\u0e27\u0e22\u0e25\u0e14\u0e20\u0e32\u0e23\u0e30\u0e07\u0e32\u0e19\u0e44\u0e14\u0e49.",
+    },
+    pull: {
+      en: "I bridge mechanical domain knowledge with hands-on software engineering.",
+      th: "\u0e40\u0e0a\u0e37\u0e48\u0e2d\u0e21\u0e42\u0e22\u0e07\u0e2d\u0e07\u0e04\u0e4c\u0e04\u0e27\u0e32\u0e21\u0e23\u0e39\u0e49\u0e14\u0e49\u0e32\u0e19\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e01\u0e25 \u0e40\u0e02\u0e49\u0e32\u0e01\u0e31\u0e1a\u0e07\u0e32\u0e19\u0e2a\u0e23\u0e49\u0e32\u0e07\u0e0b\u0e2d\u0e1f\u0e15\u0e4c\u0e41\u0e27\u0e23\u0e4c\u0e08\u0e23\u0e34\u0e07.",
+    },
+    p2: {
+      en: "Self-directed in software: I learned Python, PySide6, React, and FastAPI by building three working applications that solve problems I personally faced on the production floor. The result is software that respects the constraints engineers and operators already work with.",
+      th: "\u0e28\u0e36\u0e01\u0e29\u0e32\u0e14\u0e49\u0e27\u0e22\u0e15\u0e19\u0e40\u0e2d\u0e07\u0e43\u0e19\u0e2a\u0e32\u0e22\u0e0b\u0e2d\u0e1f\u0e15\u0e4c\u0e41\u0e27\u0e23\u0e4c \u2014 \u0e40\u0e23\u0e35\u0e22\u0e19\u0e23\u0e39\u0e49 Python, PySide6, React, \u0e41\u0e25\u0e30 FastAPI \u0e1c\u0e48\u0e32\u0e19\u0e01\u0e32\u0e23\u0e2a\u0e23\u0e49\u0e32\u0e07\u0e41\u0e2d\u0e1b\u0e1e\u0e25\u0e34\u0e40\u0e04\u0e0a\u0e31\u0e19  3 \u0e15\u0e31\u0e27\u0e17\u0e35\u0e48\u0e41\u0e01\u0e49\u0e1b\u0e31\u0e0d\u0e2b\u0e32\u0e08\u0e23\u0e34\u0e07\u0e02\u0e2d\u0e07\u0e2b\u0e19\u0e49\u0e32\u0e07\u0e32\u0e19. \u0e1c\u0e25\u0e25\u0e31\u0e1e\u0e18\u0e4c\u0e04\u0e37\u0e2d\u0e0b\u0e2d\u0e1f\u0e15\u0e4c\u0e41\u0e27\u0e23\u0e4c\u0e17\u0e35\u0e48\u0e40\u0e04\u0e32\u0e23\u0e1e\u0e02\u0e49\u0e2d\u0e08\u0e33\u0e01\u0e31\u0e14\u0e02\u0e2d\u0e07\u0e27\u0e34\u0e28\u0e27\u0e01\u0e23\u0e41\u0e25\u0e30\u0e1c\u0e39\u0e49\u0e1b\u0e0f\u0e34\u0e1a\u0e31\u0e15\u0e34\u0e07\u0e32\u0e19\u0e08\u0e23\u0e34\u0e07.",
+    },
+    callout1Title: { en: "Manufacturing Domain", th: "\u0e23\u0e39\u0e49\u0e2a\u0e32\u0e22\u0e07\u0e32\u0e19\u0e1c\u0e25\u0e34\u0e15" },
+    callout1Desc: {
+      en: "CNC, G-code, jig & fixture, cycle time \u2014 I understand the work because I've done it.",
+      th: "CNC, G-code, jig & fixture, cycle time \u2014 \u0e40\u0e02\u0e49\u0e32\u0e43\u0e08\u0e07\u0e32\u0e19\u0e40\u0e1e\u0e23\u0e32\u0e30\u0e25\u0e07\u0e21\u0e37\u0e2d\u0e17\u0e33\u0e21\u0e32\u0e08\u0e23\u0e34\u0e07.",
+    },
+    callout2Title: { en: "Hands-on Software Builder", th: "\u0e2a\u0e23\u0e49\u0e32\u0e07\u0e0b\u0e2d\u0e1f\u0e15\u0e4c\u0e41\u0e27\u0e23\u0e4c\u0e08\u0e23\u0e34\u0e07" },
+    callout2Desc: {
+      en: "Python, PySide6, React, FastAPI \u2014 learned through shipping real tools, not coursework alone.",
+      th: "Python, PySide6, React, FastAPI \u2014 \u0e40\u0e23\u0e35\u0e22\u0e19\u0e08\u0e32\u0e01\u0e01\u0e32\u0e23\u0e2a\u0e48\u0e07\u0e21\u0e2d\u0e1a\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d\u0e08\u0e23\u0e34\u0e07 \u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48\u0e41\u0e04\u0e48\u0e43\u0e19\u0e2b\u0e49\u0e2d\u0e07\u0e40\u0e23\u0e35\u0e22\u0e19.",
+    },
+    callout3Title: { en: "Ready to Contribute", th: "\u0e1e\u0e23\u0e49\u0e2d\u0e21\u0e23\u0e48\u0e27\u0e21\u0e07\u0e32\u0e19" },
+    callout3Desc: {
+      en: "Available May 2026 for entry-level roles in process engineering, industrial software, or manufacturing technology.",
+      th: "\u0e1e\u0e23\u0e49\u0e2d\u0e21\u0e40\u0e23\u0e34\u0e48\u0e21\u0e07\u0e32\u0e19 \u0e1e.\u0e04. 2026 \u0e2a\u0e32\u0e22 process engineering, industrial software \u0e2b\u0e23\u0e37\u0e2d manufacturing technology.",
+    },
+    timeline1Title: { en: "Industrial software portfolio", th: "Portfolio \u0e0b\u0e2d\u0e1f\u0e15\u0e4c\u0e41\u0e27\u0e23\u0e4c\u0e2d\u0e38\u0e15\u0e2a\u0e32\u0e2b\u0e01\u0e23\u0e23\u0e21" },
+    timeline1Desc: {
+      en: "Published GT-ACT, GT-PATH, and GT-FIXSYS as open-source case studies.",
+      th: "\u0e40\u0e1c\u0e22\u0e41\u0e1e\u0e23\u0e48 GT-ACT, GT-PATH, \u0e41\u0e25\u0e30 GT-FIXSYS \u0e40\u0e1b\u0e47\u0e19 open-source case studies.",
+    },
+    timeline2Title: { en: "Global-Thaixon Precision Industry", th: "Global-Thaixon Precision Industry" },
+    timeline2Desc: {
+      en: "Built manufacturing workflow tools as a process engineering intern.",
+      th: "\u0e2a\u0e23\u0e49\u0e32\u0e07\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d workflow \u0e07\u0e32\u0e19\u0e1c\u0e25\u0e34\u0e15\u0e43\u0e19\u0e10\u0e32\u0e19\u0e30\u0e19\u0e31\u0e01\u0e28\u0e36\u0e01\u0e29\u0e32\u0e1d\u0e36\u0e01\u0e07\u0e32\u0e19 process engineer.",
+    },
+    timeline3Title: { en: "Bachelor of Engineering", th: "\u0e27\u0e34\u0e28\u0e27\u0e01\u0e23\u0e23\u0e21\u0e28\u0e32\u0e2a\u0e15\u0e23\u0e4c\u0e1a\u0e31\u0e13\u0e11\u0e34\u0e15" },
+    timeline3Desc: {
+      en: "Mechanical Engineering, Suranaree University of Technology.",
+      th: "\u0e27\u0e34\u0e28\u0e27\u0e01\u0e23\u0e23\u0e21\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e01\u0e25 \u0e21\u0e2b\u0e32\u0e27\u0e34\u0e17\u0e22\u0e32\u0e25\u0e31\u0e22\u0e40\u0e17\u0e04\u0e42\u0e19\u0e42\u0e25\u0e22\u0e35\u0e2a\u0e38\u0e23\u0e19\u0e32\u0e23\u0e35.",
+    },
+  },
+  skills: {
+    tag: { en: "Skill Set", th: "\u0e17\u0e31\u0e01\u0e29\u0e30" },
+    heading: { en: "Two Disciplines. One Stack.", th: "\u0e2a\u0e2d\u0e07\u0e2a\u0e32\u0e02\u0e32. \u0e2b\u0e19\u0e36\u0e48\u0e07\u0e0a\u0e38\u0e14\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d." },
+    sub: {
+      en: "Mechanical engineering fundamentals combined with practical software development.",
+      th: "\u0e1e\u0e37\u0e49\u0e19\u0e10\u0e32\u0e19\u0e27\u0e34\u0e28\u0e27\u0e01\u0e23\u0e23\u0e21\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e01\u0e25 \u0e1c\u0e2a\u0e21\u0e1c\u0e2a\u0e32\u0e19\u0e01\u0e31\u0e1a\u0e01\u0e32\u0e23\u0e2a\u0e23\u0e49\u0e32\u0e07\u0e0b\u0e2d\u0e1f\u0e15\u0e4c\u0e41\u0e27\u0e23\u0e4c\u0e43\u0e0a\u0e49\u0e07\u0e32\u0e19\u0e08\u0e23\u0e34\u0e07.",
+    },
+    languages: { en: "Languages", th: "\u0e20\u0e32\u0e29\u0e32" },
+    langThai: { en: "Thai", th: "\u0e44\u0e17\u0e22" },
+    langThaiLevel: { en: "Native", th: "\u0e40\u0e08\u0e49\u0e32\u0e02\u0e2d\u0e07\u0e20\u0e32\u0e29\u0e32" },
+    langEng: { en: "English", th: "\u0e2d\u0e31\u0e07\u0e01\u0e24\u0e29" },
+    langEngLevel: { en: "Working proficiency", th: "\u0e23\u0e30\u0e14\u0e31\u0e1a\u0e43\u0e0a\u0e49\u0e07\u0e32\u0e19" },
+  },
+  engineering: {
+    tag: { en: "Engineering Background", th: "\u0e1c\u0e25\u0e07\u0e32\u0e19\u0e27\u0e34\u0e28\u0e27\u0e01\u0e23\u0e23\u0e21" },
+    heading: { en: "The Mechanical Foundation.", th: "\u0e23\u0e32\u0e01\u0e10\u0e32\u0e19\u0e07\u0e32\u0e19\u0e27\u0e34\u0e28\u0e27\u0e01\u0e23\u0e23\u0e21." },
+    sub: {
+      en: "University projects that shaped how I approach constraints, testing, and practical design tradeoffs.",
+      th: "\u0e42\u0e1b\u0e23\u0e40\u0e08\u0e01\u0e15\u0e4c\u0e23\u0e30\u0e14\u0e31\u0e1a\u0e21\u0e2b\u0e32\u0e27\u0e34\u0e17\u0e22\u0e32\u0e25\u0e31\u0e22\u0e17\u0e35\u0e48\u0e2b\u0e25\u0e48\u0e2d\u0e2b\u0e25\u0e2d\u0e21\u0e27\u0e34\u0e18\u0e35\u0e04\u0e34\u0e14\u0e40\u0e23\u0e37\u0e48\u0e2d\u0e07 constraint, testing \u0e41\u0e25\u0e30 design tradeoff \u0e43\u0e19\u0e1b\u0e31\u0e08\u0e08\u0e38\u0e1a\u0e31\u0e19.",
+    },
+  },
+  contact: {
+    tag: { en: "Get In Touch", th: "\u0e15\u0e34\u0e14\u0e15\u0e48\u0e2d" },
+    heading: { en: "Available From May 2026.", th: "\u0e40\u0e23\u0e34\u0e48\u0e21\u0e07\u0e32\u0e19 \u0e1e.\u0e04. 2026." },
+    sub: {
+      en: "Open to entry-level roles in process engineering, manufacturing software, CNC automation, or industrial application development.",
+      th: "\u0e22\u0e34\u0e19\u0e14\u0e35\u0e15\u0e49\u0e2d\u0e19\u0e23\u0e31\u0e1a\u0e15\u0e33\u0e41\u0e2b\u0e19\u0e48\u0e07\u0e23\u0e30\u0e14\u0e31\u0e1a entry-level \u0e2a\u0e32\u0e22 process engineering, manufacturing software, CNC automation \u0e2b\u0e23\u0e37\u0e2d industrial application development.",
+    },
+    directTitle: { en: "Direct Contact", th: "\u0e15\u0e34\u0e14\u0e15\u0e48\u0e2d\u0e42\u0e14\u0e22\u0e15\u0e23\u0e07" },
+    portfolioTitle: { en: "Portfolio Links", th: "\u0e25\u0e34\u0e07\u0e01\u0e4c Portfolio" },
+    labelEmail: { en: "Email", th: "\u0e2d\u0e35\u0e40\u0e21\u0e25" },
+    labelPhone: { en: "Phone", th: "\u0e42\u0e17\u0e23\u0e28\u0e31\u0e1e\u0e17\u0e4c" },
+    labelLocation: { en: "Location", th: "\u0e17\u0e35\u0e48\u0e2d\u0e22\u0e39\u0e48" },
+    labelStatus: { en: "Status", th: "\u0e2a\u0e16\u0e32\u0e19\u0e30" },
+    labelGithub: { en: "GitHub", th: "GitHub" },
+    labelLinkedin: { en: "LinkedIn", th: "LinkedIn" },
+    labelResume: { en: "Resume / CV", th: "\u0e40\u0e23\u0e0b\u0e39\u0e40\u0e21\u0e48 / CV" },
+    labelDownload: { en: "Download PDF", th: "\u0e14\u0e32\u0e27\u0e19\u0e4c\u0e42\u0e2b\u0e25\u0e14 PDF" },
+    labelRepos: { en: "Repositories", th: "Repositories" },
+    references: {
+      en: "References available upon request.",
+      th: "\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e23\u0e2d\u0e07\u0e21\u0e35\u0e43\u0e2b\u0e49\u0e40\u0e21\u0e37\u0e48\u0e2d\u0e23\u0e49\u0e2d\u0e07\u0e02\u0e2d.",
+    },
+    statusValue: {
+      en: "Open to entry-level roles \u2014 starting May 2026",
+      th: "\u0e23\u0e31\u0e1a\u0e07\u0e32\u0e19 entry-level \u2014 \u0e40\u0e23\u0e34\u0e48\u0e21 \u0e1e.\u0e04. 2026",
+    },
+  },
+  education: {
+    label: { en: "Education", th: "\u0e01\u0e32\u0e23\u0e28\u0e36\u0e01\u0e29\u0e32" },
+    coursework: { en: "Relevant Coursework", th: "\u0e27\u0e34\u0e0a\u0e32\u0e17\u0e35\u0e48\u0e40\u0e01\u0e35\u0e48\u0e22\u0e27\u0e02\u0e49\u0e2d\u0e07" },
+  },
+  cta: {
+    mailto: {
+      en: "mailto:" +
+        "anirut.choky46@gmail.com" +
+        "?subject=Job%20Inquiry%20%E2%80%94%20Anirut%20Portfolio&body=Hello%20Anirut%2C%0A%0A",
+      th: "mailto:" +
+        "anirut.choky46@gmail.com" +
+        "?subject=%E0%B8%AA%E0%B8%99%E0%B9%83%E0%B8%88%E0%B8%95%E0%B8%B3%E0%B9%81%E0%B8%AB%E0%B8%99%E0%B9%88%E0%B8%87%20%E2%80%94%20Anirut%20Portfolio&body=%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%AA%E0%B8%94%E0%B8%B5%E0%B8%84%E0%B8%A3%E0%B8%B1%E0%B8%9A%2C%0A%0A",
+    },
+  },
+  footer: {
+    copy: {
+      en: "Industrial Software Portfolio",
+      th: "Portfolio \u0e0b\u0e2d\u0e1f\u0e15\u0e4c\u0e41\u0e27\u0e23\u0e4c\u0e2d\u0e38\u0e15\u0e2a\u0e32\u0e2b\u0e01\u0e23\u0e23\u0e21",
+    },
+    top: { en: "Top", th: "\u0e1a\u0e19\u0e2a\u0e38\u0e14" },
+  },
+  langToggle: { en: "TH", th: "EN" },
+} as const;
 
 export const projects: Project[] = [
   {

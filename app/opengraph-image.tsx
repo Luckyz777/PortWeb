@@ -1,10 +1,16 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const dynamic = "force-static";
-export const alt = "Anirut Butnongwa — Industrial Software Portfolio";
+export const alt = "Anirut Butnongwa — Mechanical Engineer & Software Developer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+
+const PAPER = "#F7F4EF";
+const TEXT = "#1C1A17";
+const ORANGE = "#C85B1A";
+const TEAL = "#007A6E";
+const MUTED = "#7A7268";
+const BORDER = "#D6CFC3";
 
 export default function OgImage() {
   return new ImageResponse(
@@ -14,49 +20,71 @@ export default function OgImage() {
           width: "100%",
           height: "100%",
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          padding: "80px",
-          background: "#F7F4EF",
+          padding: 72,
+          background: PAPER,
           fontFamily: "Georgia, serif",
+          position: "relative",
         }}
       >
-        <div
-          style={{
-            fontSize: 14,
-            letterSpacing: "0.2em",
-            textTransform: "uppercase" as const,
-            color: "#C85B1A",
-            marginBottom: 24,
-            display: "flex",
-            alignItems: "center",
-            gap: 12,
-          }}
-        >
-          <span style={{ width: 32, height: 1, background: "#C85B1A", display: "block" }} />
-          Industrial Software Portfolio
-        </div>
-        <div style={{ fontSize: 64, fontWeight: 400, color: "#1C1A17", lineHeight: 1.05 }}>
-          Building Software
-        </div>
-        <div style={{ fontSize: 64, fontWeight: 400, color: "#1C1A17", lineHeight: 1.05 }}>
-          for the{" "}
-          <span style={{ color: "#C85B1A", fontStyle: "italic" }}>Factory</span> Floor.
-        </div>
-        <div
-          style={{
-            marginTop: 40,
-            fontSize: 20,
-            color: "#7A7268",
-            display: "flex",
-            gap: 32,
-          }}
-        >
-          <span>Anirut Butnongwa</span>
-          <span>·</span>
-          <span>ME Graduate — SUT</span>
-          <span>·</span>
-          <span>3 Apps Built</span>
+        {/* corner brackets */}
+        <div style={{ position: "absolute", top: 48, left: 48, width: 56, height: 56, borderTop: `1.5px solid ${BORDER}`, borderLeft: `1.5px solid ${BORDER}` }} />
+        <div style={{ position: "absolute", bottom: 48, right: 48, width: 56, height: 56, borderBottom: `1.5px solid ${BORDER}`, borderRight: `1.5px solid ${BORDER}` }} />
+
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", flex: 1 }}>
+          {/* Top: eyebrow */}
+          <div
+            style={{
+              fontSize: 16,
+              letterSpacing: "0.2em",
+              textTransform: "uppercase" as const,
+              color: TEAL,
+              display: "flex",
+              alignItems: "center",
+              gap: 14,
+              fontFamily: "monospace",
+            }}
+          >
+            <span style={{ width: 40, height: 1, background: TEAL, display: "block" }} />
+            Mechanical Engineer · Software Developer
+          </div>
+
+          {/* Middle: headline */}
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <div style={{ fontSize: 80, fontWeight: 400, color: TEXT, lineHeight: 1.0, letterSpacing: "-0.01em" }}>
+              Building Software
+            </div>
+            <div style={{ fontSize: 80, fontWeight: 400, color: TEXT, lineHeight: 1.0, letterSpacing: "-0.01em", marginTop: 4 }}>
+              for{" "}
+              <span style={{ color: ORANGE }}>Manufacturing.</span>
+            </div>
+            <div style={{ fontSize: 22, color: MUTED, marginTop: 28, maxWidth: 720, fontFamily: "sans-serif" }}>
+              Tools built from the production floor &mdash; not from a tutorial.
+            </div>
+          </div>
+
+          {/* Bottom: name + meta */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "flex-end",
+              justifyContent: "space-between",
+              borderTop: `1px solid ${BORDER}`,
+              paddingTop: 24,
+              fontFamily: "sans-serif",
+            }}
+          >
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <div style={{ fontSize: 28, color: TEXT, fontFamily: "Georgia, serif" }}>Anirut Butnongwa</div>
+              <div style={{ fontSize: 14, color: MUTED, marginTop: 4, letterSpacing: "0.06em" }}>
+                B.Eng. Mechanical · SUT · Available May 2026
+              </div>
+            </div>
+            <div style={{ display: "flex", gap: 18, fontSize: 13, color: MUTED, letterSpacing: "0.12em", textTransform: "uppercase" as const, fontFamily: "monospace" }}>
+              <span style={{ padding: "6px 12px", border: `1px solid ${BORDER}` }}>Python</span>
+              <span style={{ padding: "6px 12px", border: `1px solid ${BORDER}` }}>React</span>
+              <span style={{ padding: "6px 12px", border: `1px solid ${BORDER}` }}>CNC</span>
+            </div>
+          </div>
         </div>
       </div>
     ),

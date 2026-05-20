@@ -2,6 +2,7 @@ export { Header } from "./header";
 export { Hero } from "./hero";
 export { ProjectsSection } from "./projects";
 export { PrototypeSection } from "./prototype";
+export { ExperienceSection } from "./experience";
 export { AboutSection } from "./about";
 export { SkillsSection } from "./skills";
 export { EngineeringSection } from "./engineering";

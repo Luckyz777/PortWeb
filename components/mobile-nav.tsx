@@ -2,7 +2,13 @@
 
 import { useCallback, useEffect, useState } from "react";
 
+import { LanguageToggle } from "@/components/language-toggle";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { copy } from "@/data/portfolio";
+import { useT } from "@/lib/i18n";
+
 export function MobileNav() {
+  const t = useT();
   const [open, setOpen] = useState(false);
 
   const close = useCallback(() => setOpen(false), []);
@@ -39,11 +45,16 @@ export function MobileNav() {
             onClick={(e) => e.stopPropagation()}
             aria-label="Mobile navigation"
           >
-            <a href="#projects" onClick={close}>Projects</a>
-            <a href="#prototype" onClick={close}>Prototype</a>
-            <a href="#profile" onClick={close}>About</a>
-            <a href="#skills" onClick={close}>Skills</a>
-            <a href="#contact" className="mobile-cta" onClick={close}>Get In Touch</a>
+            <a href="#projects" onClick={close}>{t(copy.nav.projects)}</a>
+            <a href="#prototype" onClick={close}>{t(copy.nav.prototype)}</a>
+            <a href="#experience" onClick={close}>{t(copy.nav.experience)}</a>
+            <a href="#profile" onClick={close}>{t(copy.nav.about)}</a>
+            <a href="#skills" onClick={close}>{t(copy.nav.skills)}</a>
+            <a href="#contact" className="mobile-cta" onClick={close}>{t(copy.nav.contact)}</a>
+            <div style={{ display: "flex", gap: "12px", marginTop: "8px" }}>
+              <ThemeToggle />
+              <LanguageToggle />
+            </div>
           </nav>
         </div>
       )}

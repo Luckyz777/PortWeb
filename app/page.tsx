@@ -4,13 +4,14 @@ import {
   Hero,
   ProjectsSection,
   PrototypeSection,
+  ExperienceSection,
   AboutSection,
   SkillsSection,
   EngineeringSection,
   ContactSection,
   Footer,
 } from "@/components/sections";
-import { profile } from "@/data/portfolio";
+import { education, profile } from "@/data/portfolio";
 
 export const dynamic = "force-static";
 
@@ -20,13 +21,39 @@ const jsonLd = {
   name: profile.name,
   url: "https://luckyz777.github.io",
   email: `mailto:${profile.email}`,
+  telephone: profile.phoneIntl,
+  image: "https://luckyz777.github.io/headshot.jpg",
   jobTitle: "Mechanical Engineering Graduate",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Nakhon Ratchasima",
+    addressCountry: "TH",
+  },
   alumniOf: {
     "@type": "CollegeOrUniversity",
-    name: "Suranaree University of Technology",
+    name: education.university,
   },
-  knowsAbout: ["CNC", "G-code", "Python", "PySide6", "React", "FastAPI", "Fixture Management"],
-  sameAs: [profile.github],
+  worksFor: {
+    "@type": "Organization",
+    name: "Global-Thaixon Precision Industry",
+    description: "Process Engineering Internship (2024)",
+  },
+  knowsAbout: [
+    "CNC",
+    "G-code",
+    "Python",
+    "PySide6",
+    "React",
+    "FastAPI",
+    "Fixture Management",
+    "Setup Sheet Automation",
+    "Mechanical Engineering",
+  ],
+  knowsLanguage: [
+    { "@type": "Language", name: "Thai", alternateName: "th" },
+    { "@type": "Language", name: "English", alternateName: "en" },
+  ],
+  sameAs: [profile.github, profile.linkedin],
 };
 
 export default function Home() {
@@ -43,6 +70,7 @@ export default function Home() {
         <Hero />
         <ProjectsSection />
         <PrototypeSection />
+        <ExperienceSection />
         <AboutSection />
         <SkillsSection />
         <EngineeringSection />

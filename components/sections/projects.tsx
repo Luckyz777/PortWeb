@@ -1,7 +1,11 @@
-import { projects } from "@/data/portfolio";
+"use client";
+
+import { copy, projects } from "@/data/portfolio";
 import type { Project } from "@/data/portfolio";
+import { useT } from "@/lib/i18n";
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const t = useT();
   return (
     <article className="project-card reveal">
       <div>
@@ -17,7 +21,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           ))}
         </div>
         <a className="project-link" href={project.repository} target="_blank" rel="noreferrer">
-          View Repository
+          {t(copy.projects.viewRepo)}
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="13" height="13"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
         </a>
       </div>
@@ -27,17 +31,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 }
 
 export function ProjectsSection() {
+  const t = useT();
   return (
     <section id="projects" aria-labelledby="projects-heading">
       <div className="section-inner">
-        <div className="section-tag">Selected Work</div>
-        <h2 id="projects-heading" className="section-heading">
-          Three Tools.<br />One Internship.
-        </h2>
-        <p className="section-subheading">
-          Each project started from a real production constraint I encountered during my
-          process engineering internship &mdash; not a tutorial or course assignment.
-        </p>
+        <div className="section-tag">{t(copy.projects.tag)}</div>
+        <h2 id="projects-heading" className="section-heading">{t(copy.projects.heading)}</h2>
+        <p className="section-subheading">{t(copy.projects.sub)}</p>
         <div className="projects-grid">
           {projects.map((project, i) => (
             <ProjectCard project={project} index={i} key={project.id} />
