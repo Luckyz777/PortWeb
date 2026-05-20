@@ -9,6 +9,7 @@ test.describe("portfolio", () => {
     await expect(page.getByRole("link", { name: "View My Work" })).toBeVisible();
     await expect(page.getByText("Production-Tested Software.")).toBeVisible();
     await expect(page.getByText("Where the Tools Were Built.")).toBeVisible();
+    await expect(page.getByText("Built From Shop-Floor Constraints.")).toBeVisible();
     await expect(page.getByText("Engineering Background. Software Craft.")).toBeVisible();
     await expect(page.getByText("Two Disciplines. One Stack.")).toBeVisible();
     await expect(page.getByText("Available From May 2026.")).toBeVisible();
@@ -27,15 +28,12 @@ test.describe("portfolio", () => {
     const toggle = page.locator(".lang-toggle").first();
     await expect(toggle).toBeVisible();
 
-    // Initial state — English
     await expect(page.locator(".hero-name")).toContainText("Building");
 
-    // Switch to TH
     await toggle.click();
     await expect(page.locator("html")).toHaveAttribute("data-lang", "th");
-    await expect(page.locator(".hero-name")).toContainText("สร้าง");
+    await expect(page.locator(".hero-name")).toContainText("\u0e2a\u0e23\u0e49\u0e32\u0e07");
 
-    // Switch back to EN
     await toggle.click();
     await expect(page.locator("html")).toHaveAttribute("data-lang", "en");
     await expect(page.locator(".hero-name")).toContainText("Building");
@@ -43,6 +41,7 @@ test.describe("portfolio", () => {
 
   test("project console tabs switch content", async ({ page }) => {
     await page.goto("/");
+    await expect(page.getByRole("tab", { name: /NC Compare/i })).toBeVisible();
     await page.getByRole("tab", { name: /GT-PATH/i }).click();
     await expect(page.getByRole("tabpanel")).toContainText("Offline NC and G-code path viewer");
   });
@@ -58,11 +57,12 @@ test.describe("portfolio", () => {
     const drawer = page.locator(".mobile-drawer");
     await expect(drawer).toBeVisible();
     await expect(drawer.getByText("Experience")).toBeVisible();
+    await expect(drawer.getByText("Method")).toBeVisible();
   });
 
   test("all nav anchor links resolve to sections", async ({ page }) => {
     await page.goto("/");
-    const anchors = ["#projects", "#prototype", "#experience", "#profile", "#skills", "#contact"];
+    const anchors = ["#projects", "#prototype", "#experience", "#methodology", "#profile", "#skills", "#contact"];
     for (const anchor of anchors) {
       await expect(page.locator(anchor)).toBeAttached();
     }
@@ -83,6 +83,14 @@ test.describe("portfolio", () => {
     await expect(page.getByRole("heading", { name: "Anirut Butnongwa" })).toBeVisible();
     await expect(page.getByRole("button", { name: /Print/i })).toBeVisible();
     await expect(page.getByText("Process Engineering Intern")).toBeVisible();
+    await expect(page.locator(".resume__entry-head strong").filter({ hasText: "NC Compare" })).toBeVisible();
+  });
+
+  test("project detail route renders NC Compare case study", async ({ page }) => {
+    await page.goto("/projects/nc-compare");
+    await expect(page.getByRole("heading", { name: "NC Compare" })).toBeVisible();
+    await expect(page.getByLabel("NC Compare case study")).toBeVisible();
+    await expect(page.getByText(/Source code is private under company IP\/NDA/)).toBeVisible();
   });
 
   test("404 page renders for unknown route", async ({ page }) => {
@@ -93,11 +101,30 @@ test.describe("portfolio", () => {
   });
 
   test("serves project imagery without errors", async ({ page }) => {
-    const assets = ["/GT-ACT.png", "/GT-PATH.png", "/GT-FIXSYS.png"];
+    const assets = [
+      "/GT-ACT.png",
+      "/GT-PATH.png",
+      "/GT-FIXSYS.png",
+      "/NC-Compare.svg",
+      "/headshot.jpg",
+      "/screenshots/gt-act/analysis-overview.png",
+      "/screenshots/gt-path/toolpath-viewer.png",
+      "/screenshots/gt-fixsys/usage-overview.png",
+      "/screenshots/nc-compare/overview.svg",
+    ];
     for (const asset of assets) {
       const response = await page.request.get(asset);
       expect(response.ok(), asset).toBe(true);
       expect(response.headers()["content-type"], asset).toContain("image/");
+    }
+  });
+
+  test("serves downloadable resume and presentation assets", async ({ page }) => {
+    const assets = ["/anirut-resume.pdf", "/Internship_Presentation.pdf"];
+    for (const asset of assets) {
+      const response = await page.request.get(asset);
+      expect(response.ok(), asset).toBe(true);
+      expect(response.headers()["content-type"], asset).toContain("application/pdf");
     }
   });
 });

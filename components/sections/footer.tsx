@@ -12,6 +12,7 @@ export function Footer() {
         <ul className="footer-links">
           <li><a href="#top">{t(copy.footer.top)}</a></li>
           <li><a href="#projects">{t(copy.nav.projects)}</a></li>
+          <li><a href="#methodology">{t(copy.nav.methodology)}</a></li>
           <li><a href="#profile">{t(copy.nav.about)}</a></li>
           <li><a href="#contact">{t(copy.nav.contact)}</a></li>
           <li><a href={profile.github} target="_blank" rel="noreferrer">GitHub</a></li>

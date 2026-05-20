@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { MotionReveal, RevealItem } from "@/components/ui/motion-reveal";
 import { MotionSection } from "@/components/ui/motion-section";
 import { SectionTag } from "@/components/ui/section-tag";
-import { copy, education } from "@/data/portfolio";
+import { copy, education, profile } from "@/data/portfolio";
 import { useT } from "@/lib/i18n";
 
 const calloutAccents = ["green", "teal", "amber"] as const;
@@ -30,6 +30,11 @@ export function AboutSection() {
               <div className="education-detail__degree">{education.degree}</div>
               <div className="education-detail__uni">{education.university} &middot; {education.location}</div>
               <div className="education-detail__gpa">GPAX {education.GPA} &middot; Major GPA {education.majorGPA}</div>
+              <div className="profile-facts" aria-label="Application facts">
+                <span>{profile.status}</span>
+                <span>{t(profile.militaryStatus)}</span>
+                <span>Automotive / Precision Manufacturing / Tool Room</span>
+              </div>
               <div className="education-detail__courseLabel">{t(copy.education.coursework)}</div>
               <ul className="education-detail__courseList">
                 {education.coursework.map((c) => (

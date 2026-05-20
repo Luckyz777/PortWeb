@@ -6,25 +6,26 @@ import {
   educationProjects,
   experience,
   profile,
+  projects,
 } from "@/data/portfolio";
 
 export const metadata: Metadata = {
-  title: "Resume | Anirut Butnongwa — Mechanical Engineer",
+  title: "Resume | Anirut Butnongwa - Mechanical Engineer",
   description:
-    "Resume of Anirut Butnongwa: Mechanical Engineering graduate (SUT, May 2026) with internship experience at Global-Thaixon Precision Industry. Process improvement and AI-assisted industrial software development.",
+    "Resume of Anirut Butnongwa: Mechanical Engineering graduate (SUT, May 2026) with internship experience at Global-Thaixon Precision Industry. Process improvement and industrial software development.",
   alternates: { canonical: "/resume" },
   openGraph: {
-    title: "Resume — Anirut Butnongwa",
+    title: "Resume - Anirut Butnongwa",
     description:
-      "Mechanical Engineer · Process Improvement · AI-Assisted Development. Available May 2026.",
+      "Mechanical Engineer / Process Improvement / Industrial Software. Available May 2026.",
     type: "profile",
     url: "/resume",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Resume — Anirut Butnongwa",
+    title: "Resume - Anirut Butnongwa",
     description:
-      "Mechanical Engineer · Process Improvement · AI-Assisted Development.",
+      "Mechanical Engineer / Process Improvement / Industrial Software.",
   },
 };
 
@@ -39,11 +40,12 @@ export default function ResumePage() {
       <article className="resume__page">
         <header className="resume__header">
           <h1>{profile.name}</h1>
-          <p className="resume__tagline">Mechanical Engineer &middot; Process Improvement &middot; AI-Assisted Development</p>
+          <p className="resume__tagline">Mechanical Engineer &middot; Process Improvement &middot; Industrial Software</p>
           <ul className="resume__contact">
             <li>{profile.email}</li>
             <li>{profile.phoneIntl}</li>
             <li>{profile.location}</li>
+            <li>{profile.militaryStatus.en}</li>
             <li><a href={profile.github}>{profile.github.replace("https://", "")}</a></li>
             <li><a href={profile.linkedin}>{profile.linkedin.replace("https://www.", "")}</a></li>
           </ul>
@@ -55,8 +57,9 @@ export default function ResumePage() {
             Mechanical Engineering graduate (SUT, May 2026) with hands-on internship experience
             at Global-Thaixon Precision Industry. Identified process gaps on the shop floor and
             designed four production-tested tools for G-code validation, NC revision comparison,
-            toolpath inspection, and fixture management using AI-assisted development with Python,
-            PySide6, React, and FastAPI. Available for entry-level roles starting May 2026.
+            toolpath inspection, and fixture management using Python, PySide6, React, and FastAPI.
+            Interested in process engineering, automotive, precision manufacturing, CNC automation,
+            and industrial software roles. Available for entry-level roles starting May 2026.
           </p>
         </section>
 
@@ -76,6 +79,19 @@ export default function ResumePage() {
                   <li key={b}>{b}</li>
                 ))}
               </ul>
+            </div>
+          ))}
+        </section>
+
+        <section className="resume__section">
+          <h2>Industrial Software Projects</h2>
+          {projects.map((project) => (
+            <div className="resume__entry" key={project.id}>
+              <div className="resume__entry-head">
+                <strong>{project.name}</strong>
+                <span>{project.strapline}</span>
+              </div>
+              <p>{project.impact}</p>
             </div>
           ))}
         </section>
@@ -120,7 +136,7 @@ export default function ResumePage() {
           </div>
           <div className="resume__skill-row">
             <strong>Process &amp; Design:</strong>{" "}
-            Process improvement, Requirements analysis, Workflow design, UI/UX prototyping, Shop-floor validation
+            Process improvement, Requirements analysis, Workflow design, Lean manufacturing awareness, Shop-floor validation
           </div>
           <div className="resume__skill-row">
             <strong>Tools &amp; Technologies (working knowledge):</strong>{" "}
@@ -131,7 +147,7 @@ export default function ResumePage() {
             SOLIDWORKS, CATIA, ANSYS, MATLAB, Google Colab, AutoCAD, Arduino IDE, Microsoft Office Suites
           </div>
           <div className="resume__skill-row">
-            <strong>Languages:</strong> Thai (Native), English (Communicative)
+            <strong>Languages:</strong> Thai (Native), English (Conversational; TOEIC scheduled)
           </div>
         </section>
 

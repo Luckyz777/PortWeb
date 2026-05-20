@@ -18,6 +18,7 @@ export function Header() {
           <a href="#projects">{t(copy.nav.projects)}</a>
           <a href="#prototype">{t(copy.nav.prototype)}</a>
           <a href="#experience">{t(copy.nav.experience)}</a>
+          <a href="#methodology">{t(copy.nav.methodology)}</a>
           <a href="#profile">{t(copy.nav.about)}</a>
           <a href="#skills">{t(copy.nav.skills)}</a>
         </div>

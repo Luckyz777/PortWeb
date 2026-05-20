@@ -15,7 +15,28 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <RevealItem as="div" style={{ height: "100%" }}>
       <TiltCard className="project-card tilt-card" maxTilt={5} scale={1.012}>
-        <div>
+        <div className="project-card__body">
+          <div className="project-media" aria-label={`${project.name} screenshots`}>
+            <div className="project-media__main">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={project.screenshots[0] ?? project.image} alt={project.imageAlt} loading="lazy" decoding="async" />
+            </div>
+            <div className="project-media__strip" aria-label={t(copy.projects.evidence)}>
+              {project.screenshots.slice(0, 3).map((src, screenshotIndex) => (
+                <span className="project-media__thumb" key={src}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={src}
+                    alt={`${project.name} evidence ${screenshotIndex + 1}`}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="project-copy">
           <div className="project-id">{project.name} &nbsp;/&nbsp; {project.role}</div>
           <h3 className="project-name">
             <span className="accent">{project.name}</span> &mdash; {project.title}
@@ -36,17 +57,25 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             ))}
           </div>
 
-          {isPrivate ? (
+          <div className="project-actions">
+            <a className="project-link" href={`/projects/${project.id}`}>
+              {t(copy.projects.viewCase)}
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="13" height="13" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+            {!isPrivate && (
+              <a className="project-link" href={project.repository} target="_blank" rel="noreferrer">
+                {t(copy.projects.viewRepo)}
+              </a>
+            )}
+          </div>
+
+          {isPrivate && (
             <div className="project-source-note">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="13" height="13" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
               <span>{t(profile.sourcePolicy)}</span>
             </div>
-          ) : (
-            <a className="project-link" href={project.repository} target="_blank" rel="noreferrer">
-              {t(copy.projects.viewRepo)}
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="13" height="13"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-            </a>
           )}
+          </div>
         </div>
         <div className="project-num" aria-hidden="true">{String(index + 1).padStart(2, "0")}</div>
       </TiltCard>

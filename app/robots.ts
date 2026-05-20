@@ -2,9 +2,10 @@ import type { MetadataRoute } from "next";
 
 export const dynamic = "force-static";
 
-const siteUrl = process.env.GITHUB_PAGES === "true"
-  ? "https://luckyz777.github.io/PortWeb"
-  : "https://luckyz777.github.io";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.GITHUB_PAGES === "true"
+    ? "https://luckyz777.github.io/PortWeb"
+    : "https://industrial-portfolio-ten.vercel.app");
 
 export default function robots(): MetadataRoute.Robots {
   return {

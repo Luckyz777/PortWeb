@@ -6,6 +6,8 @@ export type Project = {
   image: string;
   imageAlt: string;
   imageMode: "logo" | "screenshot";
+  screenshots: string[];
+  videoUrl?: string;
   /** Public GitHub URL when available, otherwise empty string for private repos. */
   repository: string;
   /** When true, source is private (company IP). UI shows a private-source notice instead of a repo link. */
@@ -20,6 +22,13 @@ export type Project = {
   consoleDetail: string;
   /** Estimated impact framed conservatively ("Estimated to reduce ..."). */
   impact?: string;
+  caseStudy: {
+    context: string;
+    challenge: string;
+    approach: string;
+    result: string;
+    lessons: string;
+  };
 };
 
 export type Bilingual = { en: string; th: string };
@@ -32,14 +41,14 @@ export const profile = {
   location: "Nakhon Ratchasima, Thailand",
   github: "https://github.com/Luckyz777",
   linkedin: "https://www.linkedin.com/in/anirut-butnongwa",
-  cv: "https://canva.link/u5kqdazwtd3kh6y",
+  cv: "/resume",
   target: "Mechanical, process, and industrial software roles",
   status: "Open to entry-level roles \u2014 starting May 2026",
   /** Thai military service status \u2014 important on Thai job applications. */
   militaryStatus: { en: "Completed (Reserve Officer Training Corps)", th: "\u0e1c\u0e48\u0e32\u0e19\u0e01\u0e32\u0e23\u0e40\u0e01\u0e13\u0e11\u0e4c\u0e17\u0e2b\u0e32\u0e23 (\u0e23\u0e14.)" },
   /** Source-code policy shown wherever a private repo would have a public link. */
   sourcePolicy: {
-    en: "Source code is private (company IP). Architecture, design rationale, and demo available on request.",
+    en: "Source code is private under company IP/NDA. Architecture, design rationale, and demo are available on request.",
     th: "Source code \u0e40\u0e1b\u0e47\u0e19\u0e02\u0e2d\u0e07\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17 \u0e22\u0e34\u0e19\u0e14\u0e35\u0e2a\u0e48\u0e07 architecture, design rationale \u0e2b\u0e23\u0e37\u0e2d demo \u0e15\u0e32\u0e21\u0e04\u0e33\u0e02\u0e2d",
   },
 };
@@ -85,6 +94,7 @@ export const copy = {
     projects: { en: "Projects", th: "\u0e1c\u0e25\u0e07\u0e32\u0e19" },
     prototype: { en: "Prototype", th: "\u0e15\u0e49\u0e19\u0e41\u0e1a\u0e1a" },
     experience: { en: "Experience", th: "\u0e1b\u0e23\u0e30\u0e2a\u0e1a\u0e01\u0e32\u0e23\u0e13\u0e4c" },
+    methodology: { en: "Method", th: "\u0e27\u0e34\u0e18\u0e35\u0e17\u0e33\u0e07\u0e32\u0e19" },
     about: { en: "About", th: "\u0e40\u0e01\u0e35\u0e48\u0e22\u0e27\u0e01\u0e31\u0e1a" },
     skills: { en: "Skills", th: "\u0e17\u0e31\u0e01\u0e29\u0e30" },
     contact: { en: "Get In Touch", th: "\u0e15\u0e34\u0e14\u0e15\u0e48\u0e2d" },
@@ -119,6 +129,16 @@ export const copy = {
       th: "\u0e17\u0e38\u0e01\u0e42\u0e1b\u0e23\u0e40\u0e08\u0e01\u0e15\u0e4c\u0e40\u0e01\u0e34\u0e14\u0e08\u0e32\u0e01\u0e02\u0e49\u0e2d\u0e08\u0e33\u0e01\u0e31\u0e14\u0e02\u0e2d\u0e07\u0e02\u0e31\u0e49\u0e19\u0e15\u0e2d\u0e19\u0e01\u0e32\u0e23\u0e1c\u0e25\u0e34\u0e15\u0e08\u0e23\u0e34\u0e07 \u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48\u0e07\u0e32\u0e19\u0e0a\u0e34\u0e49\u0e19\u0e2b\u0e23\u0e37\u0e2d\u0e1a\u0e17\u0e40\u0e23\u0e35\u0e22\u0e19.",
     },
     viewRepo: { en: "View Repository", th: "\u0e14\u0e39 Repository" },
+    viewCase: { en: "Open Case Study", th: "\u0e14\u0e39 Case Study" },
+    evidence: { en: "Evidence", th: "\u0e2b\u0e25\u0e31\u0e01\u0e10\u0e32\u0e19" },
+  },
+  methodology: {
+    tag: { en: "Engineering Method", th: "\u0e27\u0e34\u0e18\u0e35\u0e04\u0e34\u0e14\u0e41\u0e1a\u0e1a\u0e27\u0e34\u0e28\u0e27\u0e01\u0e23" },
+    heading: { en: "Built From Shop-Floor Constraints.", th: "\u0e2a\u0e23\u0e49\u0e32\u0e07\u0e08\u0e32\u0e01\u0e02\u0e49\u0e2d\u0e08\u0e33\u0e01\u0e31\u0e14\u0e2b\u0e19\u0e49\u0e32\u0e07\u0e32\u0e19\u0e08\u0e23\u0e34\u0e07." },
+    sub: {
+      en: "My work starts with operators and process engineers, then turns repeated manual checks into verifiable software workflows.",
+      th: "\u0e40\u0e23\u0e34\u0e48\u0e21\u0e08\u0e32\u0e01\u0e1c\u0e39\u0e49\u0e43\u0e0a\u0e49\u0e2b\u0e19\u0e49\u0e32\u0e07\u0e32\u0e19\u0e41\u0e25\u0e30\u0e27\u0e34\u0e28\u0e27\u0e01\u0e23\u0e01\u0e23\u0e30\u0e1a\u0e27\u0e19\u0e01\u0e32\u0e23 \u0e01\u0e48\u0e2d\u0e19\u0e41\u0e1b\u0e25\u0e07\u0e07\u0e32\u0e19\u0e0b\u0e49\u0e33\u0e46 \u0e43\u0e2b\u0e49\u0e40\u0e1b\u0e47\u0e19 workflow \u0e17\u0e35\u0e48\u0e15\u0e23\u0e27\u0e08\u0e2a\u0e2d\u0e1a\u0e44\u0e14\u0e49.",
+    },
   },
   prototype: {
     tag: { en: "Working Prototype", th: "\u0e15\u0e49\u0e19\u0e41\u0e1a\u0e1a\u0e43\u0e0a\u0e49\u0e07\u0e32\u0e19\u0e44\u0e14\u0e49\u0e08\u0e23\u0e34\u0e07" },
@@ -171,8 +191,8 @@ export const copy = {
     },
     timeline1Title: { en: "Industrial software portfolio", th: "Portfolio \u0e0b\u0e2d\u0e1f\u0e15\u0e4c\u0e41\u0e27\u0e23\u0e4c\u0e2d\u0e38\u0e15\u0e2a\u0e32\u0e2b\u0e01\u0e23\u0e23\u0e21" },
     timeline1Desc: {
-      en: "Published GT-ACT, GT-PATH, and GT-FIXSYS as open-source case studies.",
-      th: "\u0e40\u0e1c\u0e22\u0e41\u0e1e\u0e23\u0e48 GT-ACT, GT-PATH, \u0e41\u0e25\u0e30 GT-FIXSYS \u0e40\u0e1b\u0e47\u0e19 open-source case studies.",
+      en: "Documented GT-ACT, GT-PATH, GT-FIXSYS, and NC Compare as private-source industrial case studies.",
+      th: "\u0e08\u0e31\u0e14\u0e17\u0e33 GT-ACT, GT-PATH, GT-FIXSYS \u0e41\u0e25\u0e30 NC Compare \u0e40\u0e1b\u0e47\u0e19 private-source industrial case studies.",
     },
     timeline2Title: { en: "Global-Thaixon Precision Industry", th: "Global-Thaixon Precision Industry" },
     timeline2Desc: {
@@ -230,6 +250,7 @@ export const copy = {
     },
     labelPresentation: { en: "Internship Presentation", th: "Presentation \u0e1d\u0e36\u0e01\u0e07\u0e32\u0e19" },
     presentationCta: { en: "Download (.pptx)", th: "\u0e14\u0e32\u0e27\u0e19\u0e4c\u0e42\u0e2b\u0e25\u0e14 (.pptx)" },
+    presentationPdfCta: { en: "Download PDF", th: "\u0e14\u0e32\u0e27\u0e19\u0e4c\u0e42\u0e2b\u0e25\u0e14 PDF" },
     labelMilitary: { en: "Military Status", th: "\u0e2a\u0e16\u0e32\u0e19\u0e30\u0e17\u0e32\u0e07\u0e17\u0e2b\u0e32\u0e23" },
     labelSource: { en: "Source Code", th: "Source Code" },
     sourcePrivateShort: { en: "Private \u2014 request via email", th: "\u0e40\u0e1b\u0e47\u0e19\u0e02\u0e2d\u0e07\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17 \u2014 \u0e02\u0e2d\u0e1c\u0e48\u0e32\u0e19\u0e2d\u0e35\u0e40\u0e21\u0e25" },
@@ -271,6 +292,11 @@ export const projects: Project[] = [
     image: "/GT-ACT.png",
     imageAlt: "GT-ACT application identity artwork",
     imageMode: "logo",
+    screenshots: [
+      "/screenshots/gt-act/analysis-overview.png",
+      "/screenshots/gt-act/cycle-summary.png",
+      "/screenshots/gt-act/setup-sheet.png"
+    ],
     repository: "https://github.com/Luckyz777/GT-ACT",
     strapline: "G-code analysis / setup documentation",
     problem:
@@ -289,7 +315,14 @@ export const projects: Project[] = [
     consoleDetail:
       "The value is not a dashboard. The value is catching setup risk before a program reaches the machine.",
     repositoryPrivate: true,
-    impact: "Estimated to cut NC review time by ~50% and surface tool-length collisions before the program reaches the machine."
+    impact: "Estimated to cut NC review time by ~50% and surface tool-length collisions before the program reaches the machine.",
+    caseStudy: {
+      context: "CNC handoff required setup sheets, tool lists, and program review before work reached the machine.",
+      challenge: "Review data was spread across NC files and spreadsheets, making manual checking slow and inconsistent.",
+      approach: "Parse G-code into reviewable blocks, connect the result with tooling data, then export a standardized setup sheet.",
+      result: "Manual review became a repeatable workflow with cycle-time summary, safety checks, and export-ready documentation.",
+      lessons: "Manufacturing software works best when it mirrors the handoff language operators and process engineers already use."
+    }
   },
   {
     id: "gt-path",
@@ -299,6 +332,11 @@ export const projects: Project[] = [
     image: "/GT-PATH.png",
     imageAlt: "GT-PATH application logo",
     imageMode: "logo",
+    screenshots: [
+      "/screenshots/gt-path/toolpath-viewer.png",
+      "/screenshots/gt-path/gcode-step.png",
+      "/screenshots/gt-path/tool-table.png"
+    ],
     repository: "https://github.com/Luckyz777/GT-PATH",
     strapline: "Offline CNC toolpath verification",
     problem:
@@ -317,7 +355,14 @@ export const projects: Project[] = [
     consoleDetail:
       "The app gives an engineer a fast check before opening a heavier CAM workflow.",
     repositoryPrivate: true,
-    impact: "Designed to replace a paid CAM seat for first-pass NC verification — runs fully offline on shop-floor laptops."
+    impact: "Designed to reduce dependence on a paid CAM seat for first-pass NC verification and run fully offline on shop-floor laptops.",
+    caseStudy: {
+      context: "Engineers needed a quick offline way to inspect CNC motion before opening a heavier CAM workflow.",
+      challenge: "NC files contain motion modes, offsets, arcs, peck drilling, and rapid moves that are hard to validate from text alone.",
+      approach: "Pair a desktop shell with an offline viewer that parses NC motion and presents the resulting path with warnings.",
+      result: "Toolpath review moved closer to the shop floor and became easier to explain during handoff.",
+      lessons: "A lightweight verifier does not need to replace CAM. It needs to make first-pass risk visible."
+    }
   },
   {
     id: "gt-fixsys",
@@ -328,6 +373,11 @@ export const projects: Project[] = [
     imageAlt:
       "GT-FIXSYS monitoring dashboard with fixture inventory, borrowed items, overdue items, and maintenance counts",
     imageMode: "screenshot",
+    screenshots: [
+      "/screenshots/gt-fixsys/usage-overview.png",
+      "/screenshots/gt-fixsys/monitor-cards.png",
+      "/screenshots/gt-fixsys/requisition-flow.png"
+    ],
     repository: "https://github.com/Luckyz777/GT-FIXSYS",
     strapline: "Fixture management / barcode workflow",
     problem:
@@ -346,16 +396,28 @@ export const projects: Project[] = [
     consoleDetail:
       "The workflow is built around the tool-room reality: scan the item, confirm the state, record the action.",
     repositoryPrivate: true,
-    impact: "Estimated to remove minutes of spreadsheet hunting per fixture transaction across a 100+ item tool room."
+    impact: "Estimated to remove minutes of spreadsheet hunting per fixture transaction across a 100+ item tool room.",
+    caseStudy: {
+      context: "Fixture borrowing, returning, master data, and images were difficult to audit when workflows depended on spreadsheet edits.",
+      challenge: "Tool-room users needed status visibility without risking accidental changes to master workbooks.",
+      approach: "Create scan-first borrow/return flows, visible item states, admin-controlled master data, and transaction history.",
+      result: "Fixture availability and transaction history became visible from the application instead of the workbook.",
+      lessons: "For tool-room software, the fastest workflow is scan, confirm, record, and return to work."
+    }
   },
   {
     id: "nc-compare",
     name: "NC Compare",
     title: "NC file revision comparison and change tracking",
     role: "Tool Developer",
-    image: "/NC-Compare.png",
-    imageAlt: "NC File Comparison application logo",
-    imageMode: "logo",
+    image: "/NC-Compare.svg",
+    imageAlt: "NC Compare side-by-side revision comparison interface",
+    imageMode: "screenshot",
+    screenshots: [
+      "/screenshots/nc-compare/overview.svg",
+      "/screenshots/nc-compare/detail.svg",
+      "/screenshots/nc-compare/report.svg"
+    ],
     repository: "",
     repositoryPrivate: true,
     strapline: "G-code diff / revision change tracking",
@@ -375,9 +437,39 @@ export const projects: Project[] = [
     consoleMetric: "ECN review became a structured token diff instead of eyeballing text.",
     consoleDetail:
       "The value is making revision change verifiable so it can be attached to ECN paperwork.",
-    impact: "Estimated to cut NC revision review from minutes of manual comparison to a single token-level diff per ECN."
+    impact: "Estimated to cut NC revision review from minutes of manual comparison to a single token-level diff per ECN.",
+    caseStudy: {
+      context: "ECN revisions can change Feed, Speed, Tool, or Z-depth values while keeping the surrounding program visually similar.",
+      challenge: "Plain text diff is noisy and can miss structured G-code intent, especially across files with Thai or Japanese comments.",
+      approach: "Decode common encodings, parse token groups, compare line-level changes, and export a report for ECN paperwork.",
+      result: "Revision review becomes a focused token diff with export-ready evidence.",
+      lessons: "In production review, the important question is not only what text changed, but what machining intent changed."
+    }
   }
 ];
+
+export const methodologySteps = [
+  {
+    label: "01",
+    title: "Observe the real constraint",
+    body: "Start from shop-floor review, operator handoff, spreadsheet pain, and tool-room status gaps before deciding what to build."
+  },
+  {
+    label: "02",
+    title: "Co-design with users",
+    body: "Translate process engineer and operator language into screens, checks, and reports that fit existing work habits."
+  },
+  {
+    label: "03",
+    title: "Build verifiable workflows",
+    body: "Use parsers, scan flows, exports, and audit-friendly data paths so each action leaves evidence."
+  },
+  {
+    label: "04",
+    title: "Validate and simplify",
+    body: "Test the workflow against real NC files, fixture data, and setup sheets, then remove steps that slow the handoff."
+  }
+] as const;
 
 export const skillGroups = [
   {

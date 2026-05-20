@@ -62,7 +62,7 @@ export function ContactSection() {
               <div>
                 <span>{t(copy.contact.labelResume)}</span>
                 <Magnetic as="a" href={profile.cv} target="_blank" rel="noreferrer" strength={0.25} radius={70}>
-                  View on Canva
+                  Print View
                 </Magnetic>
               </div>
               <div>
@@ -75,6 +75,7 @@ export function ContactSection() {
                 <Magnetic as="a" href="/Internship_Presentation.pptx" download strength={0.25} radius={70}>
                   {t(copy.contact.presentationCta)}
                 </Magnetic>
+                <a href="/Internship_Presentation.pdf" download>{t(copy.contact.presentationPdfCta)}</a>
               </div>
               <div>
                 <span>{t(copy.contact.labelSource)}</span>

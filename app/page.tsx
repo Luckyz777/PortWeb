@@ -5,6 +5,7 @@ import {
   ProjectsSection,
   PrototypeSection,
   ExperienceSection,
+  MethodologySection,
   AboutSection,
   SkillsSection,
   EngineeringSection,
@@ -15,14 +16,19 @@ import { education, profile } from "@/data/portfolio";
 
 export const dynamic = "force-static";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.GITHUB_PAGES === "true"
+    ? "https://luckyz777.github.io/PortWeb"
+    : "https://industrial-portfolio-ten.vercel.app");
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: profile.name,
-  url: "https://luckyz777.github.io",
+  url: siteUrl,
   email: `mailto:${profile.email}`,
   telephone: profile.phoneIntl,
-  image: "https://luckyz777.github.io/headshot.jpg",
+  image: `${siteUrl}/headshot.jpg`,
   jobTitle: "Mechanical Engineering Graduate",
   address: {
     "@type": "PostalAddress",
@@ -45,6 +51,9 @@ const jsonLd = {
     "PySide6",
     "React",
     "FastAPI",
+    "NC revision comparison",
+    "Automotive",
+    "Precision Manufacturing",
     "Fixture Management",
     "Setup Sheet Automation",
     "Mechanical Engineering",
@@ -71,6 +80,7 @@ export default function Home() {
         <ProjectsSection />
         <PrototypeSection />
         <ExperienceSection />
+        <MethodologySection />
         <AboutSection />
         <SkillsSection />
         <EngineeringSection />

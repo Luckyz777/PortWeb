@@ -3,6 +3,7 @@ export { Hero } from "./hero";
 export { ProjectsSection } from "./projects";
 export { PrototypeSection } from "./prototype";
 export { ExperienceSection } from "./experience";
+export { MethodologySection } from "./methodology";
 export { AboutSection } from "./about";
 export { SkillsSection } from "./skills";
 export { EngineeringSection } from "./engineering";
