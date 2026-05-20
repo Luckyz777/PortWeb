@@ -324,7 +324,7 @@ export const projects: Project[] = [
     name: "GT-FIXSYS",
     title: "Fixture requisition and monitoring system",
     role: "Full Workflow Builder",
-    image: "/gt-fixsys-dashboard.png",
+    image: "/GT-FIXSYS.png",
     imageAlt:
       "GT-FIXSYS monitoring dashboard with fixture inventory, borrowed items, overdue items, and maintenance counts",
     imageMode: "screenshot",

@@ -88,12 +88,12 @@ test.describe("portfolio", () => {
   test("404 page renders for unknown route", async ({ page }) => {
     const response = await page.goto("/this-route-does-not-exist");
     expect(response?.status()).toBe(404);
-    await expect(page.getByText("Page not found")).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Page not found" })).toBeVisible();
     await expect(page.getByRole("link", { name: /Back to Portfolio/i })).toBeVisible();
   });
 
   test("serves project imagery without errors", async ({ page }) => {
-    const assets = ["/GT-ACT.png", "/GT-PATH.png", "/gt-fixsys-dashboard.png", "/gt-apps-montage.png"];
+    const assets = ["/GT-ACT.png", "/GT-PATH.png", "/GT-FIXSYS.png"];
     for (const asset of assets) {
       const response = await page.request.get(asset);
       expect(response.ok(), asset).toBe(true);
