@@ -54,9 +54,9 @@ export default function ResumePage() {
           <p>
             Mechanical Engineering graduate (SUT, May 2026) with hands-on internship experience
             at Global-Thaixon Precision Industry. Identified process gaps on the shop floor and
-            designed three production-tested tools for G-code validation, toolpath inspection,
-            and fixture management using AI-assisted development with Python, PySide6, React,
-            and FastAPI. Available for entry-level roles starting May 2026.
+            designed four production-tested tools for G-code validation, NC revision comparison,
+            toolpath inspection, and fixture management using AI-assisted development with Python,
+            PySide6, React, and FastAPI. Available for entry-level roles starting May 2026.
           </p>
         </section>
 

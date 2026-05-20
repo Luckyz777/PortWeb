@@ -1,14 +1,23 @@
 "use client";
 
+import { motion, useReducedMotion } from "framer-motion";
+
+import { MotionReveal, RevealItem } from "@/components/ui/motion-reveal";
+import { MotionSection } from "@/components/ui/motion-section";
+import { SectionTag } from "@/components/ui/section-tag";
 import { copy, education } from "@/data/portfolio";
 import { useT } from "@/lib/i18n";
 
+const calloutAccents = ["green", "teal", "amber"] as const;
+
 export function AboutSection() {
   const t = useT();
+  const reduce = useReducedMotion();
+
   return (
-    <section id="profile" aria-labelledby="profile-heading">
+    <MotionSection id="profile" aria-labelledby="profile-heading">
       <div className="section-inner">
-        <div className="section-tag">{t(copy.about.tag)}</div>
+        <SectionTag>{t(copy.about.tag)}</SectionTag>
         <h2 id="profile-heading" className="section-heading">{t(copy.about.heading)}</h2>
         <div className="about-grid">
           <div className="about-text">
@@ -49,38 +58,49 @@ export function AboutSection() {
               </div>
             </div>
 
-            <div className="about-callouts" style={{ marginTop: "20px" }}>
-              <div className="callout-card">
-                <div className="callout-icon" aria-hidden="true">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="20" height="20"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-                </div>
-                <div>
-                  <div className="callout-title">{t(copy.about.callout1Title)}</div>
-                  <div className="callout-desc">{t(copy.about.callout1Desc)}</div>
-                </div>
-              </div>
-              <div className="callout-card">
-                <div className="callout-icon" aria-hidden="true">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="20" height="20"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                </div>
-                <div>
-                  <div className="callout-title">{t(copy.about.callout2Title)}</div>
-                  <div className="callout-desc">{t(copy.about.callout2Desc)}</div>
-                </div>
-              </div>
-              <div className="callout-card">
-                <div className="callout-icon" aria-hidden="true">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="20" height="20"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                </div>
-                <div>
-                  <div className="callout-title">{t(copy.about.callout3Title)}</div>
-                  <div className="callout-desc">{t(copy.about.callout3Desc)}</div>
-                </div>
-              </div>
-            </div>
+            <MotionReveal className="about-callouts" style={{ marginTop: "20px" }} stagger={0.12}>
+              {[
+                {
+                  title: t(copy.about.callout1Title),
+                  desc: t(copy.about.callout1Desc),
+                  icon: (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="20" height="20"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+                  ),
+                },
+                {
+                  title: t(copy.about.callout2Title),
+                  desc: t(copy.about.callout2Desc),
+                  icon: (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="20" height="20"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                  ),
+                },
+                {
+                  title: t(copy.about.callout3Title),
+                  desc: t(copy.about.callout3Desc),
+                  icon: (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="20" height="20"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                  ),
+                },
+              ].map((c, i) => (
+                <RevealItem key={c.title} as="div">
+                  <motion.div
+                    className="callout-card"
+                    data-accent={calloutAccents[i]}
+                    whileHover={reduce ? undefined : { y: -3 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <div className="callout-icon" aria-hidden="true">{c.icon}</div>
+                    <div>
+                      <div className="callout-title">{c.title}</div>
+                      <div className="callout-desc">{c.desc}</div>
+                    </div>
+                  </motion.div>
+                </RevealItem>
+              ))}
+            </MotionReveal>
           </div>
         </div>
       </div>
-    </section>
+    </MotionSection>
   );
 }

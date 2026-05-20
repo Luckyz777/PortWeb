@@ -17,6 +17,17 @@
   --accent-2: #153969;
   --accent-2-dim: #0F2A50;
   --accent-2-pale: #D8E3F2;
+  --glow-green: 0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent),
+                0 14px 38px -10px color-mix(in srgb, var(--accent) 55%, transparent),
+                0 4px 18px color-mix(in srgb, var(--accent) 22%, transparent);
+  --glow-teal: 0 0 0 1px color-mix(in srgb, var(--accent-2) 35%, transparent),
+               0 14px 38px -10px color-mix(in srgb, var(--accent-2) 55%, transparent),
+               0 4px 18px color-mix(in srgb, var(--accent-2) 22%, transparent);
+  --glow-amber: 0 0 0 1px color-mix(in srgb, #d97706 30%, transparent),
+                0 14px 38px -10px color-mix(in srgb, #d97706 50%, transparent),
+                0 4px 18px color-mix(in srgb, #d97706 22%, transparent);
+  --card-lift-shadow: 0 22px 50px -22px color-mix(in srgb, var(--accent-2) 35%, transparent),
+                      0 6px 18px color-mix(in srgb, var(--accent) 14%, transparent);
   --text: #1A1A1A;
   --text-2: #3A3A3A;
   --muted: #6B6B6B;
@@ -51,6 +62,17 @@
   --accent-2: #4A7ABF;
   --accent-2-dim: #3A6AAE;
   --accent-2-pale: #152540;
+  --glow-green: 0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent),
+                0 14px 38px -10px color-mix(in srgb, var(--accent) 65%, transparent),
+                0 4px 18px color-mix(in srgb, var(--accent) 30%, transparent);
+  --glow-teal: 0 0 0 1px color-mix(in srgb, var(--accent-2) 45%, transparent),
+               0 14px 38px -10px color-mix(in srgb, var(--accent-2) 65%, transparent),
+               0 4px 18px color-mix(in srgb, var(--accent-2) 30%, transparent);
+  --glow-amber: 0 0 0 1px color-mix(in srgb, #f59e0b 40%, transparent),
+                0 14px 38px -10px color-mix(in srgb, #f59e0b 55%, transparent),
+                0 4px 18px color-mix(in srgb, #f59e0b 28%, transparent);
+  --card-lift-shadow: 0 22px 50px -22px color-mix(in srgb, #000 80%, transparent),
+                      0 6px 18px color-mix(in srgb, var(--accent) 20%, transparent);
   --text: #EAEAE2;
   --text-2: #C0C0B8;
   --muted: #8A8A80;
@@ -268,6 +290,16 @@ section { position: relative; z-index: 1; }
   color: var(--orange); margin-bottom: 14px;
 }
 .section-tag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--orange); }
+.section-tag.section-tag--motion::before { display: none; }
+.section-tag.section-tag--motion { gap: 12px; }
+.section-tag__bar {
+  display: block;
+  width: 28px;
+  height: 1.5px;
+  background: var(--orange);
+  border-radius: 1px;
+  flex: 0 0 28px;
+}
 
 .section-heading {
   font-family: var(--f-head);
@@ -615,17 +647,113 @@ footer {
 .reveal-d2 { transition-delay: 0.2s; }
 .reveal-d3 { transition-delay: 0.3s; }
 
-/* ── HERO LOAD ANIMATIONS ── */
+/* ── HERO LOAD ANIMATIONS (Framer Motion handles entrance now; keep keyframe
+   as graceful fallback when JS hasn't hydrated) ── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(18px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-.hero-eyebrow { animation: fadeUp 0.7s 0.1s both; }
-.hero-name    { animation: fadeUp 0.7s 0.2s both; }
-.hero-title   { animation: fadeUp 0.7s 0.32s both; }
-.hero-desc    { animation: fadeUp 0.7s 0.42s both; }
-.hero-ctas    { animation: fadeUp 0.7s 0.52s both; }
-.hero-stats   { animation: fadeUp 0.7s 0.62s both; }
+
+/* ── TIMELINE (Experience Section) ── */
+.exp-timeline {
+  position: relative;
+  padding-left: 32px;
+}
+.exp-timeline__rail {
+  position: absolute;
+  left: 9px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--border);
+  border-radius: 1px;
+  overflow: hidden;
+}
+.exp-timeline__progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-2) 100%);
+  transform-origin: top;
+}
+.exp-card { position: relative; }
+.exp-timeline__dot {
+  position: absolute;
+  left: -30px;
+  top: 18px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg-0);
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 12%, transparent);
+  z-index: 2;
+}
+.exp-timeline__dot::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.exp-timeline__dot--lit::after { opacity: 1; }
+
+/* ── CALLOUT GLOW (About section) ── */
+.callout-card[data-accent="green"]:hover { box-shadow: var(--glow-green); border-color: var(--accent); }
+.callout-card[data-accent="teal"]:hover { box-shadow: var(--glow-teal); border-color: var(--accent-2); }
+.callout-card[data-accent="amber"]:hover { box-shadow: var(--glow-amber); border-color: #d97706; }
+.callout-card { transition: box-shadow 0.35s ease, border-color 0.35s ease, transform 0.3s ease; }
+.callout-card:hover { transform: translateY(-2px); }
+
+/* ── 3D Tilt perspective container ── */
+.projects-grid { perspective: 1200px; }
+.project-card.tilt-card { will-change: transform; }
+
+/* ── PROJECT IMPACT CALLOUT ── */
+.project-impact {
+  margin: 14px 0 18px;
+  padding: 12px 14px;
+  background: color-mix(in srgb, var(--accent) 6%, var(--bg-1));
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.project-impact__label {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
+.project-impact__text {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text);
+}
+
+/* ── PRIVATE SOURCE NOTE (replaces repo link) ── */
+.project-source-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 8px 12px;
+  border: 1px dashed var(--border-bright);
+  border-radius: 3px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--muted);
+  background: color-mix(in srgb, var(--bg-1) 60%, transparent);
+  max-width: 100%;
+}
+.project-source-note svg { flex: 0 0 13px; color: var(--accent); }
+.project-source-note span { line-height: 1.45; }
 
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar { width: 6px; }

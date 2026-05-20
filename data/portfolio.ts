@@ -1,12 +1,15 @@
 export type Project = {
-  id: "gt-act" | "gt-path" | "gt-fixsys";
+  id: "gt-act" | "gt-path" | "gt-fixsys" | "nc-compare";
   name: string;
   title: string;
   role: string;
   image: string;
   imageAlt: string;
   imageMode: "logo" | "screenshot";
+  /** Public GitHub URL when available, otherwise empty string for private repos. */
   repository: string;
+  /** When true, source is private (company IP). UI shows a private-source notice instead of a repo link. */
+  repositoryPrivate?: boolean;
   strapline: string;
   problem: string;
   built: string;
@@ -15,6 +18,8 @@ export type Project = {
   workflow: string[];
   consoleMetric: string;
   consoleDetail: string;
+  /** Estimated impact framed conservatively ("Estimated to reduce ..."). */
+  impact?: string;
 };
 
 export type Bilingual = { en: string; th: string };
@@ -30,6 +35,13 @@ export const profile = {
   cv: "https://canva.link/u5kqdazwtd3kh6y",
   target: "Mechanical, process, and industrial software roles",
   status: "Open to entry-level roles \u2014 starting May 2026",
+  /** Thai military service status \u2014 important on Thai job applications. */
+  militaryStatus: { en: "Completed (Reserve Officer Training Corps)", th: "\u0e1c\u0e48\u0e32\u0e19\u0e01\u0e32\u0e23\u0e40\u0e01\u0e13\u0e11\u0e4c\u0e17\u0e2b\u0e32\u0e23 (\u0e23\u0e14.)" },
+  /** Source-code policy shown wherever a private repo would have a public link. */
+  sourcePolicy: {
+    en: "Source code is private (company IP). Architecture, design rationale, and demo available on request.",
+    th: "Source code \u0e40\u0e1b\u0e47\u0e19\u0e02\u0e2d\u0e07\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17 \u0e22\u0e34\u0e19\u0e14\u0e35\u0e2a\u0e48\u0e07 architecture, design rationale \u0e2b\u0e23\u0e37\u0e2d demo \u0e15\u0e32\u0e21\u0e04\u0e33\u0e02\u0e2d",
+  },
 };
 
 export const education = {
@@ -56,7 +68,7 @@ export const experience = [
     period: "9 Feb.-29 May 2026",
     bullets: [
       "Identified process gaps in CNC tool setup and fixture management through shop-floor observation and operator interviews.",
-      "Designed and delivered 3 internal tools (GT-ACT, GT-FIXSYS, GT-PATH) using AI-assisted development with Python, PySide6, React, and FastAPI.",
+      "Designed and delivered 4 internal tools (GT-ACT, GT-FIXSYS, GT-PATH, NC Compare) using AI-assisted development with Python, PySide6, React, and FastAPI.",
       "Automated NC program validation and standardized setup-sheet generation, reducing manual errors in tool-length verification.",
       "Validated UI logic and workflows with operators to ensure real-world usability in CNC handoff and tool-room processes.",
     ],
@@ -90,8 +102,8 @@ export const copy = {
       th: "\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d\u0e17\u0e35\u0e48\u0e40\u0e01\u0e34\u0e14\u0e08\u0e32\u0e01\u0e2b\u0e19\u0e49\u0e32\u0e07\u0e32\u0e19\u0e08\u0e23\u0e34\u0e07 \u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48\u0e08\u0e32\u0e01\u0e1a\u0e17\u0e40\u0e23\u0e35\u0e22\u0e19.",
     },
     desc: {
-      en: "Mechanical Engineering graduate from Suranaree University of Technology. During my process engineering internship at Global-Thaixon Precision Industry I built three production tools covering G-code review, toolpath verification, and fixture lifecycle management.",
-      th: "\u0e1a\u0e31\u0e13\u0e11\u0e34\u0e15\u0e27\u0e34\u0e28\u0e27\u0e01\u0e23\u0e23\u0e21\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e01\u0e25 \u0e21\u0e2b\u0e32\u0e27\u0e34\u0e17\u0e22\u0e32\u0e25\u0e31\u0e22\u0e40\u0e17\u0e04\u0e42\u0e19\u0e42\u0e25\u0e22\u0e35\u0e2a\u0e38\u0e23\u0e19\u0e32\u0e23\u0e35 \u0e0a\u0e48\u0e27\u0e07\u0e1d\u0e36\u0e01\u0e07\u0e32\u0e19\u0e15\u0e33\u0e41\u0e2b\u0e19\u0e48\u0e07 process engineer \u0e17\u0e35\u0e48 Global-Thaixon Precision Industry \u0e44\u0e14\u0e49\u0e1e\u0e31\u0e12\u0e19\u0e32\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d 3 \u0e15\u0e31\u0e27\u0e2a\u0e33\u0e2b\u0e23\u0e31\u0e1a\u0e15\u0e23\u0e27\u0e08 G-code, \u0e15\u0e23\u0e27\u0e08 toolpath \u0e41\u0e25\u0e30\u0e1a\u0e23\u0e34\u0e2b\u0e32\u0e23 fixture.",
+      en: "Mechanical Engineering graduate from Suranaree University of Technology. During my process engineering internship at Global-Thaixon Precision Industry I built four production tools covering G-code review, NC revision comparison, toolpath verification, and fixture lifecycle management.",
+      th: "\u0e1a\u0e31\u0e13\u0e11\u0e34\u0e15\u0e27\u0e34\u0e28\u0e27\u0e01\u0e23\u0e23\u0e21\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e01\u0e25 \u0e21\u0e2b\u0e32\u0e27\u0e34\u0e17\u0e22\u0e32\u0e25\u0e31\u0e22\u0e40\u0e17\u0e04\u0e42\u0e19\u0e42\u0e25\u0e22\u0e35\u0e2a\u0e38\u0e23\u0e19\u0e32\u0e23\u0e35 \u0e0a\u0e48\u0e27\u0e07\u0e1d\u0e36\u0e01\u0e07\u0e32\u0e19\u0e15\u0e33\u0e41\u0e2b\u0e19\u0e48\u0e07 process engineer \u0e17\u0e35\u0e48 Global-Thaixon Precision Industry \u0e44\u0e14\u0e49\u0e1e\u0e31\u0e12\u0e19\u0e32\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d 4 \u0e15\u0e31\u0e27\u0e2a\u0e33\u0e2b\u0e23\u0e31\u0e1a\u0e15\u0e23\u0e27\u0e08 G-code, \u0e40\u0e1b\u0e23\u0e35\u0e22\u0e1a\u0e40\u0e17\u0e35\u0e22\u0e1a NC \u0e15\u0e48\u0e32\u0e07 revision, \u0e15\u0e23\u0e27\u0e08 toolpath \u0e41\u0e25\u0e30\u0e1a\u0e23\u0e34\u0e2b\u0e32\u0e23 fixture.",
     },
     ctaWork: { en: "View My Work", th: "\u0e14\u0e39\u0e1c\u0e25\u0e07\u0e32\u0e19" },
     ctaResume: { en: "Resume / CV", th: "\u0e40\u0e23\u0e0b\u0e39\u0e40\u0e21\u0e48 / CV" },
@@ -139,8 +151,8 @@ export const copy = {
       th: "\u0e40\u0e0a\u0e37\u0e48\u0e2d\u0e21\u0e42\u0e22\u0e07\u0e2d\u0e07\u0e04\u0e4c\u0e04\u0e27\u0e32\u0e21\u0e23\u0e39\u0e49\u0e14\u0e49\u0e32\u0e19\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e01\u0e25 \u0e40\u0e02\u0e49\u0e32\u0e01\u0e31\u0e1a\u0e07\u0e32\u0e19\u0e2a\u0e23\u0e49\u0e32\u0e07\u0e0b\u0e2d\u0e1f\u0e15\u0e4c\u0e41\u0e27\u0e23\u0e4c\u0e08\u0e23\u0e34\u0e07.",
     },
     p2: {
-      en: "Self-directed in software: I learned Python, PySide6, React, and FastAPI by building three working applications that solve problems I personally faced on the production floor. The result is software that respects the constraints engineers and operators already work with.",
-      th: "\u0e28\u0e36\u0e01\u0e29\u0e32\u0e14\u0e49\u0e27\u0e22\u0e15\u0e19\u0e40\u0e2d\u0e07\u0e43\u0e19\u0e2a\u0e32\u0e22\u0e0b\u0e2d\u0e1f\u0e15\u0e4c\u0e41\u0e27\u0e23\u0e4c \u2014 \u0e40\u0e23\u0e35\u0e22\u0e19\u0e23\u0e39\u0e49 Python, PySide6, React, \u0e41\u0e25\u0e30 FastAPI \u0e1c\u0e48\u0e32\u0e19\u0e01\u0e32\u0e23\u0e2a\u0e23\u0e49\u0e32\u0e07\u0e41\u0e2d\u0e1b\u0e1e\u0e25\u0e34\u0e40\u0e04\u0e0a\u0e31\u0e19  3 \u0e15\u0e31\u0e27\u0e17\u0e35\u0e48\u0e41\u0e01\u0e49\u0e1b\u0e31\u0e0d\u0e2b\u0e32\u0e08\u0e23\u0e34\u0e07\u0e02\u0e2d\u0e07\u0e2b\u0e19\u0e49\u0e32\u0e07\u0e32\u0e19. \u0e1c\u0e25\u0e25\u0e31\u0e1e\u0e18\u0e4c\u0e04\u0e37\u0e2d\u0e0b\u0e2d\u0e1f\u0e15\u0e4c\u0e41\u0e27\u0e23\u0e4c\u0e17\u0e35\u0e48\u0e40\u0e04\u0e32\u0e23\u0e1e\u0e02\u0e49\u0e2d\u0e08\u0e33\u0e01\u0e31\u0e14\u0e02\u0e2d\u0e07\u0e27\u0e34\u0e28\u0e27\u0e01\u0e23\u0e41\u0e25\u0e30\u0e1c\u0e39\u0e49\u0e1b\u0e0f\u0e34\u0e1a\u0e31\u0e15\u0e34\u0e07\u0e32\u0e19\u0e08\u0e23\u0e34\u0e07.",
+      en: "Self-directed in software: I learned Python, PySide6, React, and FastAPI by building four working applications that solve problems I personally faced on the production floor. The result is software that respects the constraints engineers and operators already work with.",
+      th: "\u0e28\u0e36\u0e01\u0e29\u0e32\u0e14\u0e49\u0e27\u0e22\u0e15\u0e19\u0e40\u0e2d\u0e07\u0e43\u0e19\u0e2a\u0e32\u0e22\u0e0b\u0e2d\u0e1f\u0e15\u0e4c\u0e41\u0e27\u0e23\u0e4c \u2014 \u0e40\u0e23\u0e35\u0e22\u0e19\u0e23\u0e39\u0e49 Python, PySide6, React, \u0e41\u0e25\u0e30 FastAPI \u0e1c\u0e48\u0e32\u0e19\u0e01\u0e32\u0e23\u0e2a\u0e23\u0e49\u0e32\u0e07\u0e41\u0e2d\u0e1b\u0e1e\u0e25\u0e34\u0e40\u0e04\u0e0a\u0e31\u0e19  4 \u0e15\u0e31\u0e27\u0e17\u0e35\u0e48\u0e41\u0e01\u0e49\u0e1b\u0e31\u0e0d\u0e2b\u0e32\u0e08\u0e23\u0e34\u0e07\u0e02\u0e2d\u0e07\u0e2b\u0e19\u0e49\u0e32\u0e07\u0e32\u0e19. \u0e1c\u0e25\u0e25\u0e31\u0e1e\u0e18\u0e4c\u0e04\u0e37\u0e2d\u0e0b\u0e2d\u0e1f\u0e15\u0e4c\u0e41\u0e27\u0e23\u0e4c\u0e17\u0e35\u0e48\u0e40\u0e04\u0e32\u0e23\u0e1e\u0e02\u0e49\u0e2d\u0e08\u0e33\u0e01\u0e31\u0e14\u0e02\u0e2d\u0e07\u0e27\u0e34\u0e28\u0e27\u0e01\u0e23\u0e41\u0e25\u0e30\u0e1c\u0e39\u0e49\u0e1b\u0e0f\u0e34\u0e1a\u0e31\u0e15\u0e34\u0e07\u0e32\u0e19\u0e08\u0e23\u0e34\u0e07.",
     },
     callout1Title: { en: "Manufacturing Domain", th: "\u0e23\u0e39\u0e49\u0e2a\u0e32\u0e22\u0e07\u0e32\u0e19\u0e1c\u0e25\u0e34\u0e15" },
     callout1Desc: {
@@ -184,7 +196,7 @@ export const copy = {
     langThai: { en: "Thai", th: "\u0e44\u0e17\u0e22" },
     langThaiLevel: { en: "Native", th: "\u0e40\u0e08\u0e49\u0e32\u0e02\u0e2d\u0e07\u0e20\u0e32\u0e29\u0e32" },
     langEng: { en: "English", th: "\u0e2d\u0e31\u0e07\u0e01\u0e24\u0e29" },
-    langEngLevel: { en: "Working proficiency", th: "\u0e23\u0e30\u0e14\u0e31\u0e1a\u0e43\u0e0a\u0e49\u0e07\u0e32\u0e19" },
+    langEngLevel: { en: "Conversational (TOEIC scheduled)", th: "\u0e2a\u0e37\u0e48\u0e2d\u0e2a\u0e32\u0e23\u0e44\u0e14\u0e49 (TOEIC \u0e23\u0e2d\u0e2a\u0e2d\u0e1a)" },
   },
   engineering: {
     tag: { en: "Engineering Background", th: "\u0e1c\u0e25\u0e07\u0e32\u0e19\u0e27\u0e34\u0e28\u0e27\u0e01\u0e23\u0e23\u0e21" },
@@ -216,6 +228,11 @@ export const copy = {
       en: "References available upon request.",
       th: "\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e23\u0e2d\u0e07\u0e21\u0e35\u0e43\u0e2b\u0e49\u0e40\u0e21\u0e37\u0e48\u0e2d\u0e23\u0e49\u0e2d\u0e07\u0e02\u0e2d.",
     },
+    labelPresentation: { en: "Internship Presentation", th: "Presentation \u0e1d\u0e36\u0e01\u0e07\u0e32\u0e19" },
+    presentationCta: { en: "Download (.pptx)", th: "\u0e14\u0e32\u0e27\u0e19\u0e4c\u0e42\u0e2b\u0e25\u0e14 (.pptx)" },
+    labelMilitary: { en: "Military Status", th: "\u0e2a\u0e16\u0e32\u0e19\u0e30\u0e17\u0e32\u0e07\u0e17\u0e2b\u0e32\u0e23" },
+    labelSource: { en: "Source Code", th: "Source Code" },
+    sourcePrivateShort: { en: "Private \u2014 request via email", th: "\u0e40\u0e1b\u0e47\u0e19\u0e02\u0e2d\u0e07\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17 \u2014 \u0e02\u0e2d\u0e1c\u0e48\u0e32\u0e19\u0e2d\u0e35\u0e40\u0e21\u0e25" },
     statusValue: {
       en: "Open to entry-level roles \u2014 starting May 2026",
       th: "\u0e23\u0e31\u0e1a\u0e07\u0e32\u0e19 entry-level \u2014 \u0e40\u0e23\u0e34\u0e48\u0e21 \u0e1e.\u0e04. 2026",
@@ -270,7 +287,9 @@ export const projects: Project[] = [
     workflow: ["NC input", "Parser", "Safety checks", "Setup sheet"],
     consoleMetric: "Manual NC review became a structured check path.",
     consoleDetail:
-      "The value is not a dashboard. The value is catching setup risk before a program reaches the machine."
+      "The value is not a dashboard. The value is catching setup risk before a program reaches the machine.",
+    repositoryPrivate: true,
+    impact: "Estimated to cut NC review time by ~50% and surface tool-length collisions before the program reaches the machine."
   },
   {
     id: "gt-path",
@@ -296,7 +315,9 @@ export const projects: Project[] = [
     workflow: ["Program load", "Motion parse", "Path view", "Warnings"],
     consoleMetric: "Toolpath review moved closer to the shop floor.",
     consoleDetail:
-      "The app gives an engineer a fast check before opening a heavier CAM workflow."
+      "The app gives an engineer a fast check before opening a heavier CAM workflow.",
+    repositoryPrivate: true,
+    impact: "Designed to replace a paid CAM seat for first-pass NC verification — runs fully offline on shop-floor laptops."
   },
   {
     id: "gt-fixsys",
@@ -323,7 +344,38 @@ export const projects: Project[] = [
     workflow: ["Scan code", "Check status", "Borrow/return", "History"],
     consoleMetric: "Fixture status became visible without opening the master workbook.",
     consoleDetail:
-      "The workflow is built around the tool-room reality: scan the item, confirm the state, record the action."
+      "The workflow is built around the tool-room reality: scan the item, confirm the state, record the action.",
+    repositoryPrivate: true,
+    impact: "Estimated to remove minutes of spreadsheet hunting per fixture transaction across a 100+ item tool room."
+  },
+  {
+    id: "nc-compare",
+    name: "NC Compare",
+    title: "NC file revision comparison and change tracking",
+    role: "Tool Developer",
+    image: "/NC-Compare.png",
+    imageAlt: "NC File Comparison application logo",
+    imageMode: "logo",
+    repository: "",
+    repositoryPrivate: true,
+    strapline: "G-code diff / revision change tracking",
+    problem:
+      "When NC files changed across ECN revisions, engineers had no fast way to see which Feed, Speed, or Tool values actually moved — plain text diff missed the structured G-code intent and often broke on Thai or Japanese encodings.",
+    built:
+      "A Python desktop app that loads two NC files, parses tokens (G/T/M/X/Y/Z/F/S), shows a side-by-side colored diff, and exports a change report as PDF or Word ready to attach to ECN paperwork.",
+    proof: [
+      "Token-level analysis surfaces Feed, Speed, and Tool changes that plain text diff hides.",
+      "Side-by-side colored diff with line-level highlighting.",
+      "Drag-and-drop file loading.",
+      "Exports change reports as PDF and Word documents.",
+      "Handles UTF-8, CP874, CP932, and Shift-JIS encodings without mojibake."
+    ],
+    stack: ["Python", "tkinter", "ReportLab", "python-docx", "difflib"],
+    workflow: ["Load 2 files", "Token parse", "Diff view", "Export report"],
+    consoleMetric: "ECN review became a structured token diff instead of eyeballing text.",
+    consoleDetail:
+      "The value is making revision change verifiable so it can be attached to ECN paperwork.",
+    impact: "Estimated to cut NC revision review from minutes of manual comparison to a single token-level diff per ECN."
   }
 ];
 
