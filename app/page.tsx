@@ -3,7 +3,7 @@ import {
   Header,
   Hero,
   SlidingStrip,
-  ProjectsList,
+  ProjectsSection,
   PrototypeSection,
   ExperienceSection,
   MethodologySection,
@@ -80,7 +80,7 @@ export default function Home() {
       <main id="main">
         <Hero />
         <SlidingStrip />
-        <ProjectsList />
+        <ProjectsSection />
         <PrototypeSection />
         <ExperienceSection />
         <MethodologySection />
