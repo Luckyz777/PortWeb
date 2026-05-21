@@ -29,8 +29,8 @@ function detectInitialLang(): Lang {
   if (typeof window === "undefined") return "en";
   const stored = window.localStorage.getItem(STORAGE_KEY);
   if (stored === "en" || stored === "th") return stored;
-  const browser = window.navigator.language?.toLowerCase() ?? "";
-  return browser.startsWith("th") ? "th" : "en";
+  // Default to English. The user must explicitly toggle to Thai.
+  return "en";
 }
 
 export function I18nProvider({ children }: { children: ReactNode }) {

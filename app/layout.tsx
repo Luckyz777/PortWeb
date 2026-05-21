@@ -1,5 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, DM_Serif_Display, JetBrains_Mono } from "next/font/google";
+import {
+  DM_Sans,
+  DM_Serif_Display,
+  IBM_Plex_Sans_Thai,
+  JetBrains_Mono,
+  Trirong,
+} from "next/font/google";
 import { I18nProvider } from "@/lib/i18n";
 import { ThemeProvider, themeBootScript } from "@/lib/theme";
 import "./globals.css";
@@ -29,6 +35,23 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
   variable: "--font-mono",
+  display: "swap",
+});
+
+// Thai font pairings — used as fallbacks in the font stacks so the browser
+// reaches for them only when a Thai glyph isn't covered by the Latin fonts.
+const trirong = Trirong({
+  subsets: ["thai"],
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
+  variable: "--font-head-th",
+  display: "swap",
+});
+
+const plexThai = IBM_Plex_Sans_Thai({
+  subsets: ["thai"],
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-body-th",
   display: "swap",
 });
 
@@ -86,8 +109,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   colorScheme: "light dark",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F8FAFC" },
-    { media: "(prefers-color-scheme: dark)", color: "#0B1120" },
+    { media: "(prefers-color-scheme: light)", color: "#FBFAF1" },
+    { media: "(prefers-color-scheme: dark)", color: "#1A1814" },
   ],
 };
 
@@ -101,7 +124,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${dmSerif.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}
+      className={`${dmSerif.variable} ${dmSans.variable} ${jetbrainsMono.variable} ${trirong.variable} ${plexThai.variable}`}
       suppressHydrationWarning
     >
       <head>

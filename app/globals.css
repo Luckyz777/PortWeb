@@ -48,9 +48,13 @@
   --radius-md:  7px;
   --container:  min(1180px, calc(100vw - 2.5rem));
   --nav-height: 64px;
-  --f-head: var(--font-head), Georgia, serif;
-  --f-body: var(--font-body), system-ui, sans-serif;
-  --f-mono: var(--font-mono), 'Cascadia Code', monospace;
+  /* Font stacks: Latin fonts first, Thai fonts as glyph fallbacks. The
+     browser reaches the Thai variants only for characters the Latin fonts
+     don't cover, keeping the English aesthetic intact while giving Thai
+     glyphs a properly designed face. */
+  --f-head: var(--font-head), var(--font-head-th), Georgia, serif;
+  --f-body: var(--font-body), var(--font-body-th), system-ui, sans-serif;
+  --f-mono: var(--font-mono), var(--font-body-th), 'Cascadia Code', monospace;
 }
 
 [data-theme="dark"] {
