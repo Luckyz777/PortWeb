@@ -27,14 +27,6 @@ export function AboutSection() {
           <div className="about-text">
             <p><WordReveal text={t(copy.about.p1)} stagger={0.012} delay={0.1} /></p>
             <div className="about-highlight">&ldquo;{t(copy.about.pull)}&rdquo;</div>
-            <div className="about-cta-row">
-              <Magnetic as="a" href="/resume" className="big-circle-cta" strength={0.5} radius={140}>
-                <span className="big-circle-cta__label">{t(copy.hero.ctaResume)}</span>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20" aria-hidden="true">
-                  <path d="M7 7l10 10M17 17V7M17 17H7"/>
-                </svg>
-              </Magnetic>
-            </div>
             <p>{t(copy.about.p2)}</p>
 
             <div className="education-detail">
@@ -116,6 +108,15 @@ export function AboutSection() {
               ))}
             </MotionReveal>
           </div>
+        </div>
+
+        <div className="about-cta-row">
+          <Magnetic as="a" href="/resume" className="big-circle-cta" strength={0.5} radius={140}>
+            <span className="big-circle-cta__label">{t(copy.hero.ctaResume)}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20" aria-hidden="true">
+              <path d="M7 7l10 10M17 17V7M17 17H7"/>
+            </svg>
+          </Magnetic>
         </div>
       </div>
     </MotionSection>
