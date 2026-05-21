@@ -123,9 +123,6 @@ export function Hero() {
             <Magnetic as="a" className="btn-secondary" href={profile.linkedin} target="_blank" rel="noreferrer">
               LinkedIn
             </Magnetic>
-            <Magnetic as="a" className="btn-secondary" href={profile.cv} target="_blank" rel="noreferrer">
-              {t(copy.hero.ctaResume)}
-            </Magnetic>
           </motion.div>
 
           <div className="hero-stats">
