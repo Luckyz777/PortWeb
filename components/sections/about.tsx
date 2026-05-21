@@ -2,9 +2,11 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 
+import { Magnetic } from "@/components/ui/magnetic-button";
 import { MotionReveal, RevealItem } from "@/components/ui/motion-reveal";
 import { MotionSection } from "@/components/ui/motion-section";
 import { SectionTag } from "@/components/ui/section-tag";
+import { WordReveal } from "@/components/ui/word-reveal";
 import { copy, education, profile } from "@/data/portfolio";
 import { useT } from "@/lib/i18n";
 
@@ -18,11 +20,21 @@ export function AboutSection() {
     <MotionSection id="profile" aria-labelledby="profile-heading">
       <div className="section-inner">
         <SectionTag>{t(copy.about.tag)}</SectionTag>
-        <h2 id="profile-heading" className="section-heading">{t(copy.about.heading)}</h2>
+        <h2 id="profile-heading" className="section-heading">
+          <WordReveal text={t(copy.about.heading)} />
+        </h2>
         <div className="about-grid">
           <div className="about-text">
-            <p>{t(copy.about.p1)}</p>
+            <p><WordReveal text={t(copy.about.p1)} stagger={0.012} delay={0.1} /></p>
             <div className="about-highlight">&ldquo;{t(copy.about.pull)}&rdquo;</div>
+            <div className="about-cta-row">
+              <Magnetic as="a" href="/resume" className="big-circle-cta" strength={0.5} radius={140}>
+                <span className="big-circle-cta__label">{t(copy.hero.ctaResume)}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20" aria-hidden="true">
+                  <path d="M7 7l10 10M17 17V7M17 17H7"/>
+                </svg>
+              </Magnetic>
+            </div>
             <p>{t(copy.about.p2)}</p>
 
             <div className="education-detail">
