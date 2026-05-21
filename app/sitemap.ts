@@ -1,10 +1,13 @@
 import type { MetadataRoute } from "next";
 
+import { projects } from "@/data/portfolio";
+
 export const dynamic = "force-static";
 
-const siteUrl = process.env.GITHUB_PAGES === "true"
-  ? "https://luckyz777.github.io/PortWeb"
-  : "https://luckyz777.github.io";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.GITHUB_PAGES === "true"
+    ? "https://luckyz777.github.io/PortWeb"
+    : "https://industrial-portfolio-ten.vercel.app");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -21,5 +24,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    ...projects.map((project) => ({
+      url: `${siteUrl}/projects/${project.id}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
+    })),
   ];
 }

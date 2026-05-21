@@ -1,8 +1,11 @@
 export { Header } from "./header";
 export { Hero } from "./hero";
+export { SlidingStrip } from "./sliding-strip";
 export { ProjectsSection } from "./projects";
+export { ProjectsList } from "./projects-list";
 export { PrototypeSection } from "./prototype";
 export { ExperienceSection } from "./experience";
+export { MethodologySection } from "./methodology";
 export { AboutSection } from "./about";
 export { SkillsSection } from "./skills";
 export { EngineeringSection } from "./engineering";
