@@ -314,7 +314,7 @@ export const projects: Project[] = [
     consoleMetric: "Manual NC review became a structured check path.",
     consoleDetail:
       "The value is not a dashboard. The value is catching setup risk before a program reaches the machine.",
-    repositoryPrivate: false,
+    repositoryPrivate: true,
     impact: "Estimated to cut NC review time by ~50% and surface tool-length collisions before the program reaches the machine.",
     caseStudy: {
       context: "CNC handoff required setup sheets, tool lists, and program review before work reached the machine.",
@@ -354,7 +354,7 @@ export const projects: Project[] = [
     consoleMetric: "Toolpath review moved closer to the shop floor.",
     consoleDetail:
       "The app gives an engineer a fast check before opening a heavier CAM workflow.",
-    repositoryPrivate: false,
+    repositoryPrivate: true,
     impact: "Designed to reduce dependence on a paid CAM seat for first-pass NC verification and run fully offline on shop-floor laptops.",
     caseStudy: {
       context: "Engineers needed a quick offline way to inspect CNC motion before opening a heavier CAM workflow.",
@@ -395,7 +395,7 @@ export const projects: Project[] = [
     consoleMetric: "Fixture status became visible without opening the master workbook.",
     consoleDetail:
       "The workflow is built around the tool-room reality: scan the item, confirm the state, record the action.",
-    repositoryPrivate: false,
+    repositoryPrivate: true,
     impact: "Estimated to remove minutes of spreadsheet hunting per fixture transaction across a 100+ item tool room.",
     caseStudy: {
       context: "Fixture borrowing, returning, master data, and images were difficult to audit when workflows depended on spreadsheet edits.",
@@ -419,7 +419,7 @@ export const projects: Project[] = [
       "/screenshots/nc-compare/report.svg"
     ],
     repository: "https://github.com/Luckyz777/NC-Compare",
-    repositoryPrivate: false,
+    repositoryPrivate: true,
     strapline: "G-code diff / revision change tracking",
     problem:
       "When NC files changed across ECN revisions, engineers had no fast way to see which Feed, Speed, or Tool values actually moved — plain text diff missed the structured G-code intent and often broke on Thai or Japanese encodings.",
