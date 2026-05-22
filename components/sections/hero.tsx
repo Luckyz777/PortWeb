@@ -1,12 +1,16 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import { useState } from "react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import { useRef, useState } from "react";
 
-import { CountUp } from "@/components/ui/count-up";
 import { Magnetic } from "@/components/ui/magnetic-button";
 import { WordReveal } from "@/components/ui/word-reveal";
-import { copy, profile } from "@/data/portfolio";
+import { copy, education, profile } from "@/data/portfolio";
 import { useT } from "@/lib/i18n";
 
 const HEADSHOT_SRC = "/headshot.jpg";
@@ -45,26 +49,8 @@ function Portrait() {
   );
 }
 
-function StatBlock({ value, label, delay }: { value: React.ReactNode; label: string; delay: number }) {
-  const reduce = useReducedMotion();
-  const Wrapper = reduce ? "div" : motion.div;
-  const motionProps = reduce
-    ? {}
-    : {
-        initial: { opacity: 0, y: 20 },
-        animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.55, delay, ease: [0.16, 1, 0.3, 1] as const },
-      };
-  return (
-    <Wrapper {...motionProps}>
-      <span className="stat-num">{value}</span>
-      <span className="stat-label">{label}</span>
-    </Wrapper>
-  );
-}
-
 const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 18 },
   show: (delay: number) => ({
     opacity: 1,
     y: 0,
@@ -75,6 +61,17 @@ const fadeUp = {
 export function Hero() {
   const t = useT();
   const reduce = useReducedMotion();
+  const heroRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const bgY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    reduce ? ["0%", "0%"] : ["0%", "-28%"],
+  );
 
   const m = (delay: number) =>
     reduce
@@ -89,11 +86,28 @@ export function Hero() {
   const headlineText = `${t(copy.hero.headlineL1)} ${t(copy.hero.headlineL2)} ${t(copy.hero.headlineAccent)}`;
 
   return (
-    <section id="top" className="hero" aria-labelledby="hero-title">
-      <div className="hero-bg-text" aria-hidden="true">ENGINEER</div>
+    <section id="top" className="hero" aria-labelledby="hero-title" ref={heroRef}>
+      <motion.div
+        className="hero-bg-text"
+        aria-hidden="true"
+        style={{ y: bgY }}
+      >
+        ENGINEER
+      </motion.div>
+
+      <aside className="hero-masthead" aria-hidden="true">
+        <span>VOL. I</span>
+        <span>•</span>
+        <span>WINTER 2026</span>
+        <span>•</span>
+        <span>TH</span>
+      </aside>
+
       <div className="hero-frame">
         <div className="hero-text">
-          <motion.div className="hero-eyebrow" {...m(0.05)}>{t(copy.hero.eyebrow)}</motion.div>
+          <motion.div className="hero-eyebrow" {...m(0.05)}>
+            {t(copy.hero.eyebrow)}
+          </motion.div>
 
           <h1 id="hero-title" className="hero-name">
             <WordReveal
@@ -115,37 +129,81 @@ export function Hero() {
           <motion.div className="hero-ctas" {...m(1.15)}>
             <Magnetic as="a" className="btn-primary" href="#projects">
               {t(copy.hero.ctaWork)}
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                width="14"
+                height="14"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
             </Magnetic>
-            <Magnetic as="a" className="btn-secondary" href={profile.github} target="_blank" rel="noreferrer">
+            <Magnetic
+              as="a"
+              className="btn-secondary"
+              href={profile.github}
+              target="_blank"
+              rel="noreferrer"
+            >
               GitHub
             </Magnetic>
-            <Magnetic as="a" className="btn-secondary" href={profile.linkedin} target="_blank" rel="noreferrer">
+            <Magnetic
+              as="a"
+              className="btn-secondary"
+              href={profile.linkedin}
+              target="_blank"
+              rel="noreferrer"
+            >
               LinkedIn
             </Magnetic>
           </motion.div>
-
-          <div className="hero-stats">
-            <StatBlock
-              delay={1.3}
-              label={t(copy.hero.stat1)}
-              value={<CountUp to={4} duration={1.4} />}
-            />
-            <StatBlock
-              delay={1.45}
-              label={t(copy.hero.stat2)}
-              value={<CountUp to={2026} from={2020} duration={1.6} format={(n) => Math.round(n).toString()} />}
-            />
-            <StatBlock
-              delay={1.6}
-              label={t(copy.hero.stat3)}
-              value="May"
-            />
-          </div>
         </div>
 
-        <Portrait />
+        <motion.figure
+          className="hero-specimen"
+          initial={reduce ? false : { opacity: 0, y: 16 }}
+          animate={reduce ? undefined : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <Portrait />
+          <figcaption className="hero-specimen__caption">
+            <div className="hero-specimen__serial">N° 004</div>
+            <dl className="hero-specimen__meta">
+              <dt>Name</dt>
+              <dd>ANIRUT.B</dd>
+              <dt>Program</dt>
+              <dd>B.Eng Mechanical</dd>
+              <dt>Cohort</dt>
+              <dd>SUT &apos;26</dd>
+              <dt>Available</dt>
+              <dd>May 2026</dd>
+            </dl>
+          </figcaption>
+        </motion.figure>
       </div>
+
+      <motion.div
+        className="hero-ticker"
+        initial={reduce ? false : { opacity: 0, y: 14 }}
+        animate={reduce ? undefined : { opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 1.3, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <blockquote className="hero-quote">
+          &ldquo;{t(copy.about.pull)}&rdquo;
+        </blockquote>
+        <ul className="hero-stats-ticker" aria-label="Career highlights">
+          <li className="hero-stats-ticker__metric">~50% NC review saved</li>
+          <li className="hero-stats-ticker__sep" aria-hidden="true">·</li>
+          <li className="hero-stats-ticker__metric">4 production tools</li>
+          <li className="hero-stats-ticker__sep" aria-hidden="true">·</li>
+          <li className="hero-stats-ticker__metric">3 daily users</li>
+          <li className="hero-stats-ticker__sep" aria-hidden="true">·</li>
+          <li>B.Eng SUT &middot; Major GPA {education.majorGPA}</li>
+        </ul>
+      </motion.div>
     </section>
   );
 }
