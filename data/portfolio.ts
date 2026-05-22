@@ -71,7 +71,7 @@ export const education = {
 
 export const experience = [
   {
-    role: "Process Engineering Intern",
+    role: "Cooperative Education · Process Engineering Intern",
     company: "Global-Thaixon Precision Industry",
     location: "Chachoengsao, Thailand",
     period: "9 Feb.-29 May 2026",
@@ -518,9 +518,9 @@ export const educationProjects = [
       "Designed and built a mechanism prototype for stair climbing, then tuned drive behavior for stability and test performance."
   },
   {
-    meta: "Nov 2025 / FEA",
+    meta: "Nov 2025 · Senior Capstone Project · FEA",
     title: "EV frontal impact structure",
     copy:
-      "Used SolidWorks and ANSYS to study deformation, stress behavior, material choice, and energy absorption for passenger safety."
+      "Senior Capstone Project. Used SolidWorks and ANSYS to study deformation, stress behavior, material choice, and energy absorption for passenger safety in an electric vehicle frontal collision scenario."
   }
 ];
