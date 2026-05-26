@@ -10,7 +10,7 @@ export type Project = {
   videoUrl?: string;
   /** Public GitHub URL when available, otherwise empty string for private repos. */
   repository: string;
-  /** When true, source is private (company IP). UI shows a private-source notice instead of a repo link. */
+  /** When true, UI shows a portfolio-safe source notice instead of a repo link. */
   repositoryPrivate?: boolean;
   strapline: string;
   problem: string;
@@ -46,10 +46,10 @@ export const profile = {
   status: "Open to entry-level roles \u2014 starting May 2026",
   /** Thai military service status \u2014 important on Thai job applications. */
   militaryStatus: { en: "Completed (Reserve Officer Training Corps)", th: "\u0e1c\u0e48\u0e32\u0e19\u0e01\u0e32\u0e23\u0e40\u0e01\u0e13\u0e11\u0e4c\u0e17\u0e2b\u0e32\u0e23 (\u0e23\u0e14.)" },
-  /** Source-code policy shown wherever a private repo would have a public link. */
+  /** Source-code policy shown wherever a repo link is not available. */
   sourcePolicy: {
-    en: "Source code is private under company IP/NDA. Architecture, design rationale, and demo are available on request.",
-    th: "Source code \u0e40\u0e1b\u0e47\u0e19\u0e02\u0e2d\u0e07\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17 \u0e22\u0e34\u0e19\u0e14\u0e35\u0e2a\u0e48\u0e07 architecture, design rationale \u0e2b\u0e23\u0e37\u0e2d demo \u0e15\u0e32\u0e21\u0e04\u0e33\u0e02\u0e2d",
+    en: "Public-safe source and architecture notes are available. Internal datasets and company-specific paths are excluded.",
+    th: "\u0e21\u0e35 source \u0e41\u0e25\u0e30 architecture notes \u0e41\u0e1a\u0e1a public-safe \u0e42\u0e14\u0e22\u0e15\u0e31\u0e14 datasets \u0e20\u0e32\u0e22\u0e43\u0e19\u0e41\u0e25\u0e30 path \u0e40\u0e09\u0e1e\u0e32\u0e30\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17\u0e2d\u0e2d\u0e01",
   },
 };
 
@@ -72,8 +72,8 @@ export const education = {
 export const experience = [
   {
     role: "Process Engineering Intern",
-    company: "Global-Thaixon Precision Industry",
-    location: "Chachoengsao, Thailand",
+    company: "Precision Manufacturing Internship Host",
+    location: "Thailand",
     period: "9 Feb.-29 May 2026",
     bullets: [
       "Identified process gaps in CNC tool setup and fixture management through shop-floor observation and operator interviews.",
@@ -112,8 +112,8 @@ export const copy = {
       th: "\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d\u0e17\u0e35\u0e48\u0e40\u0e01\u0e34\u0e14\u0e08\u0e32\u0e01\u0e2b\u0e19\u0e49\u0e32\u0e07\u0e32\u0e19\u0e08\u0e23\u0e34\u0e07 \u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48\u0e08\u0e32\u0e01\u0e1a\u0e17\u0e40\u0e23\u0e35\u0e22\u0e19.",
     },
     desc: {
-      en: "Mechanical Engineering graduate from Suranaree University of Technology. During my process engineering internship at Global-Thaixon Precision Industry I built four production tools covering G-code review, NC revision comparison, toolpath verification, and fixture lifecycle management.",
-      th: "\u0e1a\u0e31\u0e13\u0e11\u0e34\u0e15\u0e27\u0e34\u0e28\u0e27\u0e01\u0e23\u0e23\u0e21\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e01\u0e25 \u0e21\u0e2b\u0e32\u0e27\u0e34\u0e17\u0e22\u0e32\u0e25\u0e31\u0e22\u0e40\u0e17\u0e04\u0e42\u0e19\u0e42\u0e25\u0e22\u0e35\u0e2a\u0e38\u0e23\u0e19\u0e32\u0e23\u0e35 \u0e0a\u0e48\u0e27\u0e07\u0e1d\u0e36\u0e01\u0e07\u0e32\u0e19\u0e15\u0e33\u0e41\u0e2b\u0e19\u0e48\u0e07 process engineer \u0e17\u0e35\u0e48 Global-Thaixon Precision Industry \u0e44\u0e14\u0e49\u0e1e\u0e31\u0e12\u0e19\u0e32\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d 4 \u0e15\u0e31\u0e27\u0e2a\u0e33\u0e2b\u0e23\u0e31\u0e1a\u0e15\u0e23\u0e27\u0e08 G-code, \u0e40\u0e1b\u0e23\u0e35\u0e22\u0e1a\u0e40\u0e17\u0e35\u0e22\u0e1a NC \u0e15\u0e48\u0e32\u0e07 revision, \u0e15\u0e23\u0e27\u0e08 toolpath \u0e41\u0e25\u0e30\u0e1a\u0e23\u0e34\u0e2b\u0e32\u0e23 fixture.",
+      en: "Mechanical Engineering graduate from Suranaree University of Technology. During my process engineering internship at a precision manufacturing company I built four production tools covering G-code review, NC revision comparison, toolpath verification, and fixture lifecycle management.",
+      th: "\u0e1a\u0e31\u0e13\u0e11\u0e34\u0e15\u0e27\u0e34\u0e28\u0e27\u0e01\u0e23\u0e23\u0e21\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e01\u0e25 \u0e21\u0e2b\u0e32\u0e27\u0e34\u0e17\u0e22\u0e32\u0e25\u0e31\u0e22\u0e40\u0e17\u0e04\u0e42\u0e19\u0e42\u0e25\u0e22\u0e35\u0e2a\u0e38\u0e23\u0e19\u0e32\u0e23\u0e35 \u0e0a\u0e48\u0e27\u0e07\u0e1d\u0e36\u0e01\u0e07\u0e32\u0e19\u0e15\u0e33\u0e41\u0e2b\u0e19\u0e48\u0e07 process engineer \u0e43\u0e19\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17\u0e1c\u0e25\u0e34\u0e15\u0e0a\u0e34\u0e49\u0e19\u0e2a\u0e48\u0e27\u0e19\u0e04\u0e27\u0e32\u0e21\u0e41\u0e21\u0e48\u0e19\u0e22\u0e33 \u0e44\u0e14\u0e49\u0e1e\u0e31\u0e12\u0e19\u0e32\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d 4 \u0e15\u0e31\u0e27\u0e2a\u0e33\u0e2b\u0e23\u0e31\u0e1a\u0e15\u0e23\u0e27\u0e08 G-code, \u0e40\u0e1b\u0e23\u0e35\u0e22\u0e1a\u0e40\u0e17\u0e35\u0e22\u0e1a NC \u0e15\u0e48\u0e32\u0e07 revision, \u0e15\u0e23\u0e27\u0e08 toolpath \u0e41\u0e25\u0e30\u0e1a\u0e23\u0e34\u0e2b\u0e32\u0e23 fixture.",
     },
     ctaWork: { en: "View My Work", th: "\u0e14\u0e39\u0e1c\u0e25\u0e07\u0e32\u0e19" },
     ctaResume: { en: "Resume / CV", th: "\u0e40\u0e23\u0e0b\u0e39\u0e40\u0e21\u0e48 / CV" },
@@ -163,8 +163,8 @@ export const copy = {
       th: "\u0e1e\u0e37\u0e49\u0e19\u0e10\u0e32\u0e19\u0e27\u0e34\u0e28\u0e27\u0e01\u0e23\u0e23\u0e21. \u0e17\u0e31\u0e01\u0e29\u0e30\u0e2a\u0e23\u0e49\u0e32\u0e07\u0e0b\u0e2d\u0e1f\u0e15\u0e4c\u0e41\u0e27\u0e23\u0e4c.",
     },
     p1: {
-      en: "I studied Mechanical Engineering at Suranaree University of Technology (graduating May 2026). During my internship at Global-Thaixon Precision Industry I worked with CNC machines, setup sheets, fixture workflows, and cycle-time calculations \u2014 and saw firsthand where the right software could remove friction.",
-      th: "\u0e40\u0e23\u0e35\u0e22\u0e19\u0e27\u0e34\u0e28\u0e27\u0e01\u0e23\u0e23\u0e21\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e01\u0e25 \u0e21\u0e2b\u0e32\u0e27\u0e34\u0e17\u0e22\u0e32\u0e25\u0e31\u0e22\u0e40\u0e17\u0e04\u0e42\u0e19\u0e42\u0e25\u0e22\u0e35\u0e2a\u0e38\u0e23\u0e19\u0e32\u0e23\u0e35 (\u0e2a\u0e33\u0e40\u0e23\u0e47\u0e08\u0e01\u0e32\u0e23\u0e28\u0e36\u0e01\u0e29\u0e32 \u0e1e.\u0e04. 2026). \u0e0a\u0e48\u0e27\u0e07\u0e1d\u0e36\u0e01\u0e07\u0e32\u0e19\u0e17\u0e35\u0e48 Global-Thaixon Precision Industry \u0e44\u0e14\u0e49\u0e17\u0e33\u0e07\u0e32\u0e19\u0e01\u0e31\u0e1a CNC, setup sheet, fixture workflow \u0e41\u0e25\u0e30\u0e01\u0e32\u0e23\u0e04\u0e33\u0e19\u0e27\u0e13 cycle time \u0e08\u0e36\u0e07\u0e40\u0e2b\u0e47\u0e19\u0e0a\u0e31\u0e14\u0e27\u0e48\u0e32\u0e2d\u0e30\u0e44\u0e23\u0e17\u0e35\u0e48\u0e0b\u0e2d\u0e1f\u0e15\u0e4c\u0e41\u0e27\u0e23\u0e4c\u0e2a\u0e32\u0e21\u0e32\u0e23\u0e16\u0e0a\u0e48\u0e27\u0e22\u0e25\u0e14\u0e20\u0e32\u0e23\u0e30\u0e07\u0e32\u0e19\u0e44\u0e14\u0e49.",
+      en: "I studied Mechanical Engineering at Suranaree University of Technology (graduating May 2026). During my internship at a precision manufacturing company I worked with CNC machines, setup sheets, fixture workflows, and cycle-time calculations - and saw firsthand where the right software could remove friction.",
+      th: "\u0e40\u0e23\u0e35\u0e22\u0e19\u0e27\u0e34\u0e28\u0e27\u0e01\u0e23\u0e23\u0e21\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e01\u0e25 \u0e21\u0e2b\u0e32\u0e27\u0e34\u0e17\u0e22\u0e32\u0e25\u0e31\u0e22\u0e40\u0e17\u0e04\u0e42\u0e19\u0e42\u0e25\u0e22\u0e35\u0e2a\u0e38\u0e23\u0e19\u0e32\u0e23\u0e35 (\u0e2a\u0e33\u0e40\u0e23\u0e47\u0e08\u0e01\u0e32\u0e23\u0e28\u0e36\u0e01\u0e29\u0e32 \u0e1e.\u0e04. 2026). \u0e0a\u0e48\u0e27\u0e07\u0e1d\u0e36\u0e01\u0e07\u0e32\u0e19\u0e43\u0e19\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17\u0e1c\u0e25\u0e34\u0e15\u0e0a\u0e34\u0e49\u0e19\u0e2a\u0e48\u0e27\u0e19\u0e04\u0e27\u0e32\u0e21\u0e41\u0e21\u0e48\u0e19\u0e22\u0e33 \u0e44\u0e14\u0e49\u0e17\u0e33\u0e07\u0e32\u0e19\u0e01\u0e31\u0e1a CNC, setup sheet, fixture workflow \u0e41\u0e25\u0e30\u0e01\u0e32\u0e23\u0e04\u0e33\u0e19\u0e27\u0e13 cycle time \u0e08\u0e36\u0e07\u0e40\u0e2b\u0e47\u0e19\u0e0a\u0e31\u0e14\u0e27\u0e48\u0e32\u0e2d\u0e30\u0e44\u0e23\u0e17\u0e35\u0e48\u0e0b\u0e2d\u0e1f\u0e15\u0e4c\u0e41\u0e27\u0e23\u0e4c\u0e2a\u0e32\u0e21\u0e32\u0e23\u0e16\u0e0a\u0e48\u0e27\u0e22\u0e25\u0e14\u0e20\u0e32\u0e23\u0e30\u0e07\u0e32\u0e19\u0e44\u0e14\u0e49.",
     },
     pull: {
       en: "I bridge mechanical domain knowledge with hands-on software engineering.",
@@ -194,7 +194,7 @@ export const copy = {
       en: "Documented GT-ACT, GT-PATH, GT-FIXSYS, and NC Compare as private-source industrial case studies.",
       th: "\u0e08\u0e31\u0e14\u0e17\u0e33 GT-ACT, GT-PATH, GT-FIXSYS \u0e41\u0e25\u0e30 NC Compare \u0e40\u0e1b\u0e47\u0e19 private-source industrial case studies.",
     },
-    timeline2Title: { en: "Global-Thaixon Precision Industry", th: "Global-Thaixon Precision Industry" },
+    timeline2Title: { en: "Precision manufacturing internship", th: "\u0e1d\u0e36\u0e01\u0e07\u0e32\u0e19\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17\u0e1c\u0e25\u0e34\u0e15\u0e0a\u0e34\u0e49\u0e19\u0e2a\u0e48\u0e27\u0e19\u0e04\u0e27\u0e32\u0e21\u0e41\u0e21\u0e48\u0e19\u0e22\u0e33" },
     timeline2Desc: {
       en: "Built manufacturing workflow tools as a process engineering intern.",
       th: "\u0e2a\u0e23\u0e49\u0e32\u0e07\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d workflow \u0e07\u0e32\u0e19\u0e1c\u0e25\u0e34\u0e15\u0e43\u0e19\u0e10\u0e32\u0e19\u0e30\u0e19\u0e31\u0e01\u0e28\u0e36\u0e01\u0e29\u0e32\u0e1d\u0e36\u0e01\u0e07\u0e32\u0e19 process engineer.",
@@ -242,18 +242,18 @@ export const copy = {
     labelGithub: { en: "GitHub", th: "GitHub" },
     labelLinkedin: { en: "LinkedIn", th: "LinkedIn" },
     labelResume: { en: "Resume / CV", th: "\u0e40\u0e23\u0e0b\u0e39\u0e40\u0e21\u0e48 / CV" },
-    labelDownload: { en: "Download PDF", th: "\u0e14\u0e32\u0e27\u0e19\u0e4c\u0e42\u0e2b\u0e25\u0e14 PDF" },
+    labelDownload: { en: "Printable Resume", th: "\u0e40\u0e23\u0e0b\u0e39\u0e40\u0e21\u0e48\u0e2a\u0e33\u0e2b\u0e23\u0e31\u0e1a\u0e1e\u0e34\u0e21\u0e1e\u0e4c" },
     labelRepos: { en: "Repositories", th: "Repositories" },
     references: {
       en: "References available upon request.",
       th: "\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e23\u0e2d\u0e07\u0e21\u0e35\u0e43\u0e2b\u0e49\u0e40\u0e21\u0e37\u0e48\u0e2d\u0e23\u0e49\u0e2d\u0e07\u0e02\u0e2d.",
     },
-    labelPresentation: { en: "Internship Presentation", th: "Presentation \u0e1d\u0e36\u0e01\u0e07\u0e32\u0e19" },
-    presentationCta: { en: "Download (.pptx)", th: "\u0e14\u0e32\u0e27\u0e19\u0e4c\u0e42\u0e2b\u0e25\u0e14 (.pptx)" },
-    presentationPdfCta: { en: "Download PDF", th: "\u0e14\u0e32\u0e27\u0e19\u0e4c\u0e42\u0e2b\u0e25\u0e14 PDF" },
+    labelPresentation: { en: "Case Studies", th: "Case Studies" },
+    presentationCta: { en: "View Projects", th: "\u0e14\u0e39\u0e1c\u0e25\u0e07\u0e32\u0e19" },
+    presentationPdfCta: { en: "Open Resume", th: "\u0e40\u0e1b\u0e34\u0e14 Resume" },
     labelMilitary: { en: "Military Status", th: "\u0e2a\u0e16\u0e32\u0e19\u0e30\u0e17\u0e32\u0e07\u0e17\u0e2b\u0e32\u0e23" },
     labelSource: { en: "Source Code", th: "Source Code" },
-    sourcePrivateShort: { en: "Private \u2014 request via email", th: "\u0e40\u0e1b\u0e47\u0e19\u0e02\u0e2d\u0e07\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17 \u2014 \u0e02\u0e2d\u0e1c\u0e48\u0e32\u0e19\u0e2d\u0e35\u0e40\u0e21\u0e25" },
+    sourcePrivateShort: { en: "Public-safe source excludes internal datasets", th: "Public-safe source \u0e15\u0e31\u0e14 datasets \u0e20\u0e32\u0e22\u0e43\u0e19\u0e2d\u0e2d\u0e01\u0e41\u0e25\u0e49\u0e27" },
     statusValue: {
       en: "Open to entry-level roles \u2014 starting May 2026",
       th: "\u0e23\u0e31\u0e1a\u0e07\u0e32\u0e19 entry-level \u2014 \u0e40\u0e23\u0e34\u0e48\u0e21 \u0e1e.\u0e04. 2026",

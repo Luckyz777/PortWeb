@@ -12,7 +12,7 @@ import {
 export const metadata: Metadata = {
   title: "Resume | Anirut Butnongwa - Mechanical Engineer",
   description:
-    "Resume of Anirut Butnongwa: Mechanical Engineering graduate (SUT, May 2026) with internship experience at Global-Thaixon Precision Industry. Process improvement and industrial software development.",
+    "Resume of Anirut Butnongwa: Mechanical Engineering graduate (SUT, May 2026) with precision manufacturing internship experience. Process improvement and industrial software development.",
   alternates: { canonical: "/resume" },
   openGraph: {
     title: "Resume - Anirut Butnongwa",
@@ -55,7 +55,7 @@ export default function ResumePage() {
           <h2>Summary</h2>
           <p>
             Mechanical Engineering graduate (SUT, May 2026) with hands-on internship experience
-            at Global-Thaixon Precision Industry. Identified process gaps on the shop floor and
+            at a precision manufacturing company. Identified process gaps on the shop floor and
             designed four production-tested tools for G-code validation, NC revision comparison,
             toolpath inspection, and fixture management using Python, PySide6, React, and FastAPI.
             Interested in process engineering, automotive, precision manufacturing, CNC automation,

@@ -19,7 +19,7 @@ test.describe("portfolio", () => {
     await page.goto("/");
     const exp = page.locator("#experience");
     await expect(exp).toBeVisible();
-    await expect(exp.getByText("Global-Thaixon Precision Industry")).toBeVisible();
+    await expect(exp.getByText("Precision Manufacturing Internship Host")).toBeVisible();
     await expect(exp.getByText("Process Engineering Intern")).toBeVisible();
   });
 
@@ -75,7 +75,7 @@ test.describe("portfolio", () => {
     const content = await jsonLd.textContent();
     expect(content).toContain("Anirut Butnongwa");
     expect(content).toContain("linkedin.com");
-    expect(content).toContain("Global-Thaixon");
+    expect(content).toContain("Precision Manufacturing Internship Host");
   });
 
   test("resume route renders a printable resume", async ({ page }) => {
@@ -90,7 +90,7 @@ test.describe("portfolio", () => {
     await page.goto("/projects/nc-compare");
     await expect(page.getByRole("heading", { name: "NC Compare" })).toBeVisible();
     await expect(page.getByLabel("NC Compare case study")).toBeVisible();
-    await expect(page.getByText(/Source code is private under company IP\/NDA/)).toBeVisible();
+    await expect(page.getByText(/Internal datasets and company-specific paths are excluded/)).toBeVisible();
   });
 
   test("404 page renders for unknown route", async ({ page }) => {
@@ -119,12 +119,8 @@ test.describe("portfolio", () => {
     }
   });
 
-  test("serves downloadable resume and presentation assets", async ({ page }) => {
-    const assets = ["/anirut-resume.pdf", "/Internship_Presentation.pdf"];
-    for (const asset of assets) {
-      const response = await page.request.get(asset);
-      expect(response.ok(), asset).toBe(true);
-      expect(response.headers()["content-type"], asset).toContain("application/pdf");
-    }
+  test("resume route replaces downloadable internal presentation files", async ({ page }) => {
+    await page.goto("/resume");
+    await expect(page.getByRole("heading", { name: "Anirut Butnongwa" })).toBeVisible();
   });
 });

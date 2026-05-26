@@ -67,15 +67,14 @@ export function ContactSection() {
               </div>
               <div>
                 <span>{t(copy.contact.labelDownload)}</span>
-                <a href="/anirut-resume.pdf" download>Resume PDF</a>
                 <a href="/resume">Print View</a>
               </div>
               <div>
                 <span>{t(copy.contact.labelPresentation)}</span>
-                <Magnetic as="a" href="/Internship_Presentation.pptx" download strength={0.25} radius={70}>
+                <Magnetic as="a" href="/#projects" strength={0.25} radius={70}>
                   {t(copy.contact.presentationCta)}
                 </Magnetic>
-                <a href="/Internship_Presentation.pdf" download>{t(copy.contact.presentationPdfCta)}</a>
+                <a href="/resume">{t(copy.contact.presentationPdfCta)}</a>
               </div>
               <div>
                 <span>{t(copy.contact.labelSource)}</span>

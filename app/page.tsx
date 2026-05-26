@@ -43,8 +43,8 @@ const jsonLd = {
   },
   worksFor: {
     "@type": "Organization",
-    name: "Global-Thaixon Precision Industry",
-    description: "Process Engineering Internship (2024)",
+    name: "Precision Manufacturing Internship Host",
+    description: "Process Engineering Internship",
   },
   knowsAbout: [
     "CNC",
