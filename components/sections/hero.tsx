@@ -191,9 +191,9 @@ export function Hero() {
               <dt>Program</dt>
               <dd>B.Eng Mechanical</dd>
               <dt>Cohort</dt>
-              <dd>SUT &apos;26</dd>
+              <dd>SUT &apos;30</dd>
               <dt>Available</dt>
-              <dd>May 2026</dd>
+              <dd>July 2026</dd>
             </dl>
           </figcaption>
         </motion.figure>
