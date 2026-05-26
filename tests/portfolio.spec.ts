@@ -90,7 +90,10 @@ test.describe("portfolio", () => {
     await page.goto("/projects/nc-compare");
     await expect(page.getByRole("heading", { name: "NC Compare" })).toBeVisible();
     await expect(page.getByLabel("NC Compare case study")).toBeVisible();
-    await expect(page.getByText(/Source code is private under company IP\/NDA/)).toBeVisible();
+    await expect(page.getByRole("link", { name: "View source code on GitHub" })).toHaveAttribute(
+      "href",
+      "https://github.com/Luckyz777/NC-Compare"
+    );
   });
 
   test("404 page renders for unknown route", async ({ page }) => {

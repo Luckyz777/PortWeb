@@ -1,17 +1,16 @@
-# Deploy แบบ public link และเก็บ source code เป็น private
+# Deploy public portfolio with public source code
 
-วิธีที่แนะนำสำหรับ portfolio นี้:
+Recommended setup for this portfolio:
 
-1. สร้าง GitHub repository ใหม่เป็น **Private**
-2. Push โฟลเดอร์ `industrial-portfolio` นี้ขึ้น repo นั้นเท่านั้น
-3. เข้า Vercel แล้วเลือก **Add New Project**
-4. Import private GitHub repo ที่สร้างไว้
-5. ใช้ค่า default ของ Vercel สำหรับ Next.js แล้วกด Deploy
+1. Keep this project in the GitHub repository `Luckyz777/PortWeb`.
+2. The repository can be public so recruiters can inspect the source code.
+3. Deploy the project through Vercel using the linked GitHub repository or Vercel CLI.
+4. Use the public Vercel URL as the portfolio link.
 
-ผลลัพธ์:
+Result:
 
-- คนทั่วไปเปิดดูเว็บผ่าน Vercel public link ได้
-- คนทั่วไปจะไม่เห็น source code ใน GitHub เพราะ repo เป็น private
-- แต่ frontend ที่ browser โหลดไปแล้ว เช่น HTML/CSS/JS บางส่วน ยังดูหรือ copy ได้ผ่าน DevTools ตามธรรมชาติของเว็บทุกเว็บ
+- Visitors can open the portfolio through a public Vercel link.
+- Visitors can also open the GitHub repositories linked from each project.
+- Frontend assets loaded by the browser, such as HTML, CSS, JS, and images, are always inspectable in normal web apps.
 
-ห้าม push ทั้งโฟลเดอร์ `Downloads` ขึ้น GitHub เพราะมีไฟล์ส่วนตัวจำนวนมากอยู่ด้านนอกโปรเจกต์นี้
+Do not push the entire `Downloads` folder to GitHub. Push only this `industrial-portfolio` project folder.

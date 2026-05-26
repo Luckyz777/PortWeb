@@ -2,7 +2,6 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useMemo, useState } from "react";
-import { profile } from "@/data/portfolio";
 import type { Project } from "@/data/portfolio";
 
 type ProjectConsoleProps = {
@@ -60,12 +59,16 @@ export function ProjectConsole({ projects }: ProjectConsoleProps) {
               <h3>{active.title}</h3>
               <p>{active.problem}</p>
               <p>{active.built}</p>
-              <a className="text-link" style={{ marginTop: "1.2rem" }} href={`/projects/${active.id}`}>
-                Open case study
-              </a>
-              {(active.repositoryPrivate || !active.repository) && (
-                <p className="console-source-note">{profile.sourcePolicy.en}</p>
-              )}
+              <div className="console-actions">
+                <a className="text-link" href={`/projects/${active.id}`}>
+                  Open case study
+                </a>
+                {active.repository && !active.repositoryPrivate && (
+                  <a className="text-link" href={active.repository} target="_blank" rel="noreferrer">
+                    View source code
+                  </a>
+                )}
+              </div>
             </div>
 
             <div className="console-stack">

@@ -610,6 +610,15 @@ section { position: relative; z-index: 1; }
 }
 .text-link:hover { border-color: var(--brand-dim); color: var(--brand-dim); }
 
+.console-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.1rem;
+  margin-top: 1.2rem;
+}
+
+.console-actions .text-link { margin-top: 0; }
+
 .console-stack { display: grid; gap: 1rem; }
 
 .console-metric {
@@ -774,6 +783,12 @@ section { position: relative; z-index: 1; }
 }
 .contact-list a:hover { color: var(--brand-dim); text-decoration: underline; }
 .contact-list p { color: var(--ink-2); font-size: 14px; margin: 0; }
+.contact-source-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.8rem;
+  padding-top: 0.3rem;
+}
 
 /* ── FOOTER ── */
 footer {
@@ -898,7 +913,7 @@ footer {
   color: var(--ink);
 }
 
-/* ── PRIVATE SOURCE NOTE (replaces repo link) ── */
+/* ── SOURCE NOTE / REPOSITORY LINK ── */
 .project-source-note {
   display: inline-flex;
   align-items: center;
@@ -1845,6 +1860,13 @@ main > section + section {
   color: var(--muted);
   max-width: 60ch;
 }
+.case-panel__source a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+}
+.case-panel__source a:hover { color: var(--brand); }
 .case-panel__cta {
   font-family: var(--f-mono);
   font-size: 12px; font-weight: 500;

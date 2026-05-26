@@ -272,10 +272,16 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                   height="14"
                   aria-hidden="true"
                 >
-                  <rect x="3" y="11" width="18" height="11" rx="2" />
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" />
                 </svg>
-                <span>{profile.sourcePolicy.en}</span>
+                {project.repository && !project.repositoryPrivate ? (
+                  <a href={project.repository} target="_blank" rel="noreferrer">
+                    View source code on GitHub
+                  </a>
+                ) : (
+                  <span>{profile.sourcePolicy.en}</span>
+                )}
               </div>
               <Link href="/#projects" className="case-panel__cta">
                 View all projects →

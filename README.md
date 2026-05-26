@@ -1,6 +1,6 @@
 # Anirut Butnongwa Industrial Portfolio
 
-Next.js 15 portfolio built from `portfolio-text.txt` and the GT-ACT, GT-PATH, and GT-FIXSYS project assets.
+Next.js 15 portfolio for Anirut Butnongwa's industrial software and mechanical engineering work, including GT-ACT, GT-PATH, GT-FIXSYS, and NC Compare.
 
 ## Stack
 
@@ -23,4 +23,4 @@ The local dev server runs at `http://127.0.0.1:3000`.
 
 ## Deploy
 
-Use a private GitHub repository with Vercel for a public portfolio link while keeping the repository source private. See `DEPLOY.md`.
+Deploy with Vercel and link the public GitHub source repositories from each project. See `DEPLOY.md`.

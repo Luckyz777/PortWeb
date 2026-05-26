@@ -8,9 +8,9 @@ export type Project = {
   imageMode: "logo" | "screenshot";
   screenshots: string[];
   videoUrl?: string;
-  /** Public GitHub URL when available, otherwise empty string for private repos. */
+  /** Public GitHub URL when available. */
   repository: string;
-  /** When true, source is private (company IP). UI shows a private-source notice instead of a repo link. */
+  /** Backward-compatible flag for legacy private projects. Public projects leave this unset. */
   repositoryPrivate?: boolean;
   strapline: string;
   problem: string;
@@ -46,10 +46,10 @@ export const profile = {
   status: "Open to entry-level roles \u2014 starting May 2026",
   /** Thai military service status \u2014 important on Thai job applications. */
   militaryStatus: { en: "Completed (Reserve Officer Training Corps)", th: "\u0e1c\u0e48\u0e32\u0e19\u0e01\u0e32\u0e23\u0e40\u0e01\u0e13\u0e11\u0e4c\u0e17\u0e2b\u0e32\u0e23 (\u0e23\u0e14.)" },
-  /** Source-code policy shown wherever a private repo would have a public link. */
+  /** Source-code policy shown near repository links. */
   sourcePolicy: {
-    en: "Source code is private under company IP/NDA. Architecture, design rationale, and demo are available on request.",
-    th: "Source code \u0e40\u0e1b\u0e47\u0e19\u0e02\u0e2d\u0e07\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17 \u0e22\u0e34\u0e19\u0e14\u0e35\u0e2a\u0e48\u0e07 architecture, design rationale \u0e2b\u0e23\u0e37\u0e2d demo \u0e15\u0e32\u0e21\u0e04\u0e33\u0e02\u0e2d",
+    en: "Source code is public on GitHub. Case-study notes, screenshots, and design rationale are available on this portfolio.",
+    th: "Source code \u0e40\u0e1b\u0e34\u0e14\u0e40\u0e1b\u0e47\u0e19 public \u0e1a\u0e19 GitHub \u0e1e\u0e23\u0e49\u0e2d\u0e21 case study, screenshot \u0e41\u0e25\u0e30 design rationale \u0e43\u0e19 portfolio \u0e19\u0e35\u0e49",
   },
 };
 
@@ -191,8 +191,8 @@ export const copy = {
     },
     timeline1Title: { en: "Industrial software portfolio", th: "Portfolio \u0e0b\u0e2d\u0e1f\u0e15\u0e4c\u0e41\u0e27\u0e23\u0e4c\u0e2d\u0e38\u0e15\u0e2a\u0e32\u0e2b\u0e01\u0e23\u0e23\u0e21" },
     timeline1Desc: {
-      en: "Documented GT-ACT, GT-PATH, GT-FIXSYS, and NC Compare as private-source industrial case studies.",
-      th: "\u0e08\u0e31\u0e14\u0e17\u0e33 GT-ACT, GT-PATH, GT-FIXSYS \u0e41\u0e25\u0e30 NC Compare \u0e40\u0e1b\u0e47\u0e19 private-source industrial case studies.",
+      en: "Published GT-ACT, GT-PATH, GT-FIXSYS, and NC Compare as public GitHub project case studies.",
+      th: "\u0e40\u0e1c\u0e22\u0e41\u0e1e\u0e23\u0e48 GT-ACT, GT-PATH, GT-FIXSYS \u0e41\u0e25\u0e30 NC Compare \u0e40\u0e1b\u0e47\u0e19 public GitHub project case studies.",
     },
     timeline2Title: { en: "Global-Thaixon Precision Industry", th: "Global-Thaixon Precision Industry" },
     timeline2Desc: {
@@ -253,7 +253,7 @@ export const copy = {
     presentationPdfCta: { en: "Download PDF", th: "\u0e14\u0e32\u0e27\u0e19\u0e4c\u0e42\u0e2b\u0e25\u0e14 PDF" },
     labelMilitary: { en: "Military Status", th: "\u0e2a\u0e16\u0e32\u0e19\u0e30\u0e17\u0e32\u0e07\u0e17\u0e2b\u0e32\u0e23" },
     labelSource: { en: "Source Code", th: "Source Code" },
-    sourcePrivateShort: { en: "Private \u2014 request via email", th: "\u0e40\u0e1b\u0e47\u0e19\u0e02\u0e2d\u0e07\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17 \u2014 \u0e02\u0e2d\u0e1c\u0e48\u0e32\u0e19\u0e2d\u0e35\u0e40\u0e21\u0e25" },
+    sourcePrivateShort: { en: "Public repositories available on GitHub", th: "Repository \u0e40\u0e1b\u0e34\u0e14\u0e40\u0e1b\u0e47\u0e19 public \u0e1a\u0e19 GitHub" },
     statusValue: {
       en: "Open to entry-level roles \u2014 starting May 2026",
       th: "\u0e23\u0e31\u0e1a\u0e07\u0e32\u0e19 entry-level \u2014 \u0e40\u0e23\u0e34\u0e48\u0e21 \u0e1e.\u0e04. 2026",
@@ -315,7 +315,6 @@ export const projects: Project[] = [
     consoleMetric: "Manual NC review became a structured check path.",
     consoleDetail:
       "The value is not a dashboard. The value is catching setup risk before a program reaches the machine.",
-    repositoryPrivate: true,
     impact: "Estimated to cut NC review time by ~50% and surface tool-length collisions before the program reaches the machine.",
     caseStudy: {
       context: "CNC handoff required setup sheets, tool lists, and program review before work reached the machine.",
@@ -356,7 +355,6 @@ export const projects: Project[] = [
     consoleMetric: "Toolpath review moved closer to the shop floor.",
     consoleDetail:
       "The app gives an engineer a fast check before opening a heavier CAM workflow.",
-    repositoryPrivate: true,
     impact: "Designed to reduce dependence on a paid CAM seat for first-pass NC verification and run fully offline on shop-floor laptops.",
     caseStudy: {
       context: "Engineers needed a quick offline way to inspect CNC motion before opening a heavier CAM workflow.",
@@ -398,7 +396,6 @@ export const projects: Project[] = [
     consoleMetric: "Fixture status became visible without opening the master workbook.",
     consoleDetail:
       "The workflow is built around the tool-room reality: scan the item, confirm the state, record the action.",
-    repositoryPrivate: true,
     impact: "Estimated to remove minutes of spreadsheet hunting per fixture transaction across a 100+ item tool room.",
     caseStudy: {
       context: "Fixture borrowing, returning, master data, and images were difficult to audit when workflows depended on spreadsheet edits.",
@@ -422,7 +419,6 @@ export const projects: Project[] = [
       "/screenshots/nc-compare/pdf export.png"
     ],
     repository: "https://github.com/Luckyz777/NC-Compare",
-    repositoryPrivate: true,
     strapline: "G-code diff / revision change tracking",
     problem:
       "When NC files changed across ECN revisions, engineers had no fast way to see which Feed, Speed, or Tool values actually moved — plain text diff missed the structured G-code intent and often broke on Thai or Japanese encodings.",

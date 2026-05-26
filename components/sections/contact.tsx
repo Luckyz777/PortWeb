@@ -3,7 +3,7 @@
 import { Magnetic } from "@/components/ui/magnetic-button";
 import { MotionSection } from "@/components/ui/motion-section";
 import { SectionTag } from "@/components/ui/section-tag";
-import { copy, profile } from "@/data/portfolio";
+import { copy, profile, projects } from "@/data/portfolio";
 import { useT } from "@/lib/i18n";
 
 export function ContactSection() {
@@ -80,6 +80,21 @@ export function ContactSection() {
               <div>
                 <span>{t(copy.contact.labelSource)}</span>
                 <p>{t(copy.contact.sourcePrivateShort)}</p>
+                <div className="contact-source-links">
+                  {projects.map((project) => (
+                    <Magnetic
+                      as="a"
+                      href={project.repository}
+                      target="_blank"
+                      rel="noreferrer"
+                      strength={0.2}
+                      radius={60}
+                      key={project.id}
+                    >
+                      {project.name}
+                    </Magnetic>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
