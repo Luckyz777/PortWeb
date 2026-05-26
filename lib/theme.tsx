@@ -21,18 +21,12 @@ const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 const STORAGE_KEY = "portfolio-theme";
 
-function getSystemTheme(): Theme {
-  if (typeof window === "undefined") return "light";
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
-}
-
 function getInitialTheme(): Theme {
   if (typeof window === "undefined") return "light";
   const stored = window.localStorage.getItem(STORAGE_KEY);
   if (stored === "light" || stored === "dark") return stored;
-  return getSystemTheme();
+  // Default to light. The user must explicitly toggle to dark.
+  return "light";
 }
 
 function applyTheme(theme: Theme) {
@@ -52,20 +46,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     applyTheme(theme);
   }, [theme]);
-
-  // Listen for system theme changes (when no stored preference)
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    const handler = (e: MediaQueryListEvent) => {
-      const stored = window.localStorage.getItem(STORAGE_KEY);
-      if (!stored) {
-        const next = e.matches ? "dark" : "light";
-        setThemeState(next);
-      }
-    };
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
 
   const toggle = useCallback(() => {
     setThemeState((prev) => {
@@ -102,9 +82,7 @@ export const themeBootScript = `
 (function(){
   try {
     var s = localStorage.getItem("portfolio-theme");
-    var t = s === "light" || s === "dark"
-      ? s
-      : (window.matchMedia("(prefers-color-scheme:dark)").matches ? "dark" : "light");
+    var t = (s === "light" || s === "dark") ? s : "light";
     document.documentElement.dataset.theme = t;
   } catch(e){}
 })();

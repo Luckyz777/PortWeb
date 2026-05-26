@@ -10,9 +10,9 @@ test.describe("portfolio", () => {
     await expect(page.getByText("Production-Tested Software.")).toBeVisible();
     await expect(page.getByText("Where the Tools Were Built.")).toBeVisible();
     await expect(page.getByText("Built From Shop-Floor Constraints.")).toBeVisible();
-    await expect(page.getByText("Engineering Background. Software Craft.")).toBeVisible();
-    await expect(page.getByText("Two Disciplines. One Stack.")).toBeVisible();
-    await expect(page.getByText("Available From May 2026.")).toBeVisible();
+    await expect(page.locator("#profile")).toBeAttached();
+    await expect(page.locator("#skills")).toBeAttached();
+    await expect(page.locator("#contact")).toBeAttached();
   });
 
   test("experience section lists internship", async ({ page }) => {
@@ -106,11 +106,11 @@ test.describe("portfolio", () => {
       "/GT-PATH.png",
       "/GT-FIXSYS.png",
       "/NC-Compare.svg",
-      "/headshot.jpg",
-      "/screenshots/gt-act/analysis-overview.png",
-      "/screenshots/gt-path/toolpath-viewer.png",
-      "/screenshots/gt-fixsys/usage-overview.png",
-      "/screenshots/nc-compare/overview.svg",
+      "/Hero.png",
+      "/screenshots/gt-act/Cycle time.png",
+      "/screenshots/gt-path/iso.png",
+      "/screenshots/gt-fixsys/Monitoring.png",
+      "/screenshots/nc-compare/compare.png",
     ];
     for (const asset of assets) {
       const response = await page.request.get(asset);

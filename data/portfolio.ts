@@ -71,7 +71,7 @@ export const education = {
 
 export const experience = [
   {
-    role: "Process Engineering Intern",
+    role: "Cooperative Education · Process Engineering Intern",
     company: "Global-Thaixon Precision Industry",
     location: "Chachoengsao, Thailand",
     period: "9 Feb.-29 May 2026",
@@ -293,9 +293,10 @@ export const projects: Project[] = [
     imageAlt: "GT-ACT application identity artwork",
     imageMode: "logo",
     screenshots: [
-      "/screenshots/gt-act/analysis-overview.png",
-      "/screenshots/gt-act/cycle-summary.png",
-      "/screenshots/gt-act/setup-sheet.png"
+      "/screenshots/gt-act/Cycle time.png",
+      "/screenshots/gt-act/D check.png",
+      "/screenshots/gt-act/Setup sheet.png",
+      "/screenshots/gt-act/Tool list.png"
     ],
     repository: "https://github.com/Luckyz777/GT-ACT",
     strapline: "G-code analysis / setup documentation",
@@ -333,10 +334,11 @@ export const projects: Project[] = [
     imageAlt: "GT-PATH application logo",
     imageMode: "logo",
     screenshots: [
-      "/screenshots/gt-path/toolpath-viewer.png",
-      "/screenshots/gt-path/gcode-step.png",
-      "/screenshots/gt-path/tool-table.png"
+      "/screenshots/gt-path/iso.png",
+      "/screenshots/gt-path/top.png",
+      "/screenshots/gt-path/default.png"
     ],
+    videoUrl: "/screenshots/gt-path/run.mp4",
     repository: "https://github.com/Luckyz777/GT-PATH",
     strapline: "Offline CNC toolpath verification",
     problem:
@@ -374,9 +376,10 @@ export const projects: Project[] = [
       "GT-FIXSYS monitoring dashboard with fixture inventory, borrowed items, overdue items, and maintenance counts",
     imageMode: "screenshot",
     screenshots: [
-      "/screenshots/gt-fixsys/usage-overview.png",
-      "/screenshots/gt-fixsys/monitor-cards.png",
-      "/screenshots/gt-fixsys/requisition-flow.png"
+      "/screenshots/gt-fixsys/Monitoring.png",
+      "/screenshots/gt-fixsys/requisition.png",
+      "/screenshots/gt-fixsys/usage.png",
+      "/screenshots/gt-fixsys/Checklist SPL.png"
     ],
     repository: "https://github.com/Luckyz777/GT-FIXSYS",
     strapline: "Fixture management / barcode workflow",
@@ -414,11 +417,11 @@ export const projects: Project[] = [
     imageAlt: "NC Compare side-by-side revision comparison interface",
     imageMode: "screenshot",
     screenshots: [
-      "/screenshots/nc-compare/overview.svg",
-      "/screenshots/nc-compare/detail.svg",
-      "/screenshots/nc-compare/report.svg"
+      "/screenshots/nc-compare/compare.png",
+      "/screenshots/nc-compare/summary.png",
+      "/screenshots/nc-compare/pdf export.png"
     ],
-    repository: "",
+    repository: "https://github.com/Luckyz777/NC-Compare",
     repositoryPrivate: true,
     strapline: "G-code diff / revision change tracking",
     problem:
@@ -518,9 +521,9 @@ export const educationProjects = [
       "Designed and built a mechanism prototype for stair climbing, then tuned drive behavior for stability and test performance."
   },
   {
-    meta: "Nov 2025 / FEA",
+    meta: "Nov 2025 · Senior Capstone Project · FEA",
     title: "EV frontal impact structure",
     copy:
-      "Used SolidWorks and ANSYS to study deformation, stress behavior, material choice, and energy absorption for passenger safety."
+      "Senior Capstone Project. Used SolidWorks and ANSYS to study deformation, stress behavior, material choice, and energy absorption for passenger safety in an electric vehicle frontal collision scenario."
   }
 ];

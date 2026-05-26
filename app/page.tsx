@@ -2,6 +2,7 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 import {
   Header,
   Hero,
+  SlidingStrip,
   ProjectsSection,
   PrototypeSection,
   ExperienceSection,
@@ -12,6 +13,7 @@ import {
   ContactSection,
   Footer,
 } from "@/components/sections";
+import { ScrollIndicator } from "@/components/ui/scroll-indicator";
 import { education, profile } from "@/data/portfolio";
 
 export const dynamic = "force-static";
@@ -77,6 +79,7 @@ export default function Home() {
 
       <main id="main">
         <Hero />
+        <SlidingStrip />
         <ProjectsSection />
         <PrototypeSection />
         <ExperienceSection />
@@ -89,6 +92,7 @@ export default function Home() {
 
       <Footer />
       <ScrollReveal />
+      <ScrollIndicator target="#projects" label="Scroll" />
     </div>
   );
 }
