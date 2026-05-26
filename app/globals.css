@@ -264,6 +264,24 @@ img { display: block; }
 }
 .hero-desc strong { color: var(--brand); font-weight: 500; }
 
+.hero-issue {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: -12px 0 28px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.hero-issue span {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 7px 11px;
+  background: color-mix(in srgb, var(--bg-surface) 80%, transparent);
+}
+
 .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
 
 .btn-primary {
@@ -295,8 +313,15 @@ img { display: block; }
   max-width: 380px; width: 100%;
   margin: 0;
 }
+.hero-specimen__media {
+  position: relative;
+  display: grid;
+  align-items: end;
+}
 .hero-specimen .hero-portrait {
+  position: relative;
   max-width: 100%;
+  z-index: 1;
 }
 .hero-specimen__caption {
   display: grid; gap: 8px;
@@ -1135,7 +1160,7 @@ main > section + section {
   .edu-card:nth-child(2) { transform: none; }
   .hero-frame { grid-template-columns: 1fr; }
   .hero-specimen { order: -1; justify-self: center; max-width: 320px; }
-  .hero-specimen .hero-portrait { max-width: 280px; margin: 0 auto; }
+  .hero-specimen .hero-portrait { max-width: 320px; margin: 0 auto; }
   .hero-masthead { display: none; }
   .hero-bg-text { font-size: clamp(140px, 26vw, 240px); top: 12%; }
   .hero-ticker { margin-top: 36px; }
@@ -1188,6 +1213,17 @@ main > section + section {
 }
 .hero-portrait img {
   width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.hero-portrait--wide {
+  aspect-ratio: 16 / 10;
+  max-width: 460px;
+  background:
+    radial-gradient(circle at 50% 42%, color-mix(in srgb, var(--gold) 16%, transparent), transparent 38%),
+    var(--bg-surface);
+}
+.hero-portrait--wide img {
+  object-fit: contain;
+  padding: clamp(10px, 2vw, 18px);
 }
 .hero-portrait__initials {
   font-family: var(--f-head);
@@ -1587,6 +1623,8 @@ main > section + section {
   .scroll-indicator__link { padding: 10px 14px; font-size: 10px; letter-spacing: 0.14em; }
   .big-circle-cta { width: 140px; height: 140px; }
   .about-cta-row { justify-content: center; margin: 20px 0; }
+  .hero-issue { gap: 8px; margin-bottom: 22px; }
+  .hero-issue span { padding: 6px 9px; font-size: 9px; }
   .hero-specimen__caption { padding: 12px 14px 14px; }
   .hero-specimen__serial { font-size: 20px; }
   .hero-quote { font-size: 15px; }

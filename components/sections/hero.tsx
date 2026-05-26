@@ -13,7 +13,7 @@ import { WordReveal } from "@/components/ui/word-reveal";
 import { copy, education, profile } from "@/data/portfolio";
 import { useT } from "@/lib/i18n";
 
-const HEADSHOT_SRC = "/headshot.jpg";
+const HERO_IMAGE_SRC = "/Hero.png";
 
 function Portrait() {
   const [errored, setErrored] = useState(false);
@@ -24,11 +24,11 @@ function Portrait() {
       <span className="hero-portrait__initials">AB</span>
     </div>
   ) : (
-    <div className="hero-portrait">
+    <div className="hero-portrait hero-portrait--wide">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={HEADSHOT_SRC}
-        alt={`${profile.name} portrait`}
+        src={HERO_IMAGE_SRC}
+        alt={`${profile.name} hero portrait`}
         onError={() => setErrored(true)}
         loading="eager"
         decoding="async"
@@ -87,19 +87,15 @@ export function Hero() {
 
   return (
     <section id="top" className="hero" aria-labelledby="hero-title" ref={heroRef}>
-      <motion.div
-        className="hero-bg-text"
-        aria-hidden="true"
-        style={{ y: bgY }}
-      >
+      <motion.div className="hero-bg-text" aria-hidden="true" style={{ y: bgY }}>
         ENGINEER
       </motion.div>
 
       <aside className="hero-masthead" aria-hidden="true">
         <span>VOL. I</span>
-        <span>•</span>
-        <span>WINTER 2026</span>
-        <span>•</span>
+        <span>/</span>
+        <span>MANUFACTURING SOFTWARE</span>
+        <span>/</span>
         <span>TH</span>
       </aside>
 
@@ -126,6 +122,12 @@ export function Hero() {
             <WordReveal text={t(copy.hero.desc)} stagger={0.012} delay={0.85} />
           </p>
 
+          <motion.div className="hero-issue" {...m(1.04)} aria-label="Portfolio issue metadata">
+            <span>Process Engineering</span>
+            <span>CNC / Tool Room / Automation</span>
+            <span>Nakhon Ratchasima, TH</span>
+          </motion.div>
+
           <motion.div className="hero-ctas" {...m(1.15)}>
             <Magnetic as="a" className="btn-primary" href="#projects">
               {t(copy.hero.ctaWork)}
@@ -137,6 +139,7 @@ export function Hero() {
                 strokeWidth="2"
                 width="14"
                 height="14"
+                aria-hidden="true"
               >
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
@@ -159,6 +162,15 @@ export function Hero() {
             >
               LinkedIn
             </Magnetic>
+            <Magnetic
+              as="a"
+              className="btn-secondary"
+              href={profile.cv}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {t(copy.hero.ctaResume)}
+            </Magnetic>
           </motion.div>
         </div>
 
@@ -168,9 +180,11 @@ export function Hero() {
           animate={reduce ? undefined : { opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
         >
-          <Portrait />
+          <div className="hero-specimen__media">
+            <Portrait />
+          </div>
           <figcaption className="hero-specimen__caption">
-            <div className="hero-specimen__serial">N° 004</div>
+            <div className="hero-specimen__serial">No. 004</div>
             <dl className="hero-specimen__meta">
               <dt>Name</dt>
               <dd>ANIRUT.B</dd>
@@ -196,11 +210,11 @@ export function Hero() {
         </blockquote>
         <ul className="hero-stats-ticker" aria-label="Career highlights">
           <li className="hero-stats-ticker__metric">~50% NC review saved</li>
-          <li className="hero-stats-ticker__sep" aria-hidden="true">·</li>
+          <li className="hero-stats-ticker__sep" aria-hidden="true">/</li>
           <li className="hero-stats-ticker__metric">4 production tools</li>
-          <li className="hero-stats-ticker__sep" aria-hidden="true">·</li>
+          <li className="hero-stats-ticker__sep" aria-hidden="true">/</li>
           <li className="hero-stats-ticker__metric">3 daily users</li>
-          <li className="hero-stats-ticker__sep" aria-hidden="true">·</li>
+          <li className="hero-stats-ticker__sep" aria-hidden="true">/</li>
           <li>B.Eng SUT &middot; Major GPA {education.majorGPA}</li>
         </ul>
       </motion.div>
