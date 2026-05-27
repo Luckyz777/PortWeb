@@ -56,7 +56,7 @@ export function AboutSection() {
                 <p>{t(copy.about.timeline1Desc)}</p>
               </div>
               <div className="timeline-item">
-                <div className="time">2024</div>
+                <div className="time">2026</div>
                 <h3>{t(copy.about.timeline2Title)}</h3>
                 <p>{t(copy.about.timeline2Desc)}</p>
               </div>

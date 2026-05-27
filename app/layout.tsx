@@ -13,7 +13,7 @@ import "./globals.css";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ??
   (process.env.GITHUB_PAGES === "true"
     ? "https://luckyz777.github.io/PortWeb"
-    : "https://industrial-portfolio-ten.vercel.app");
+    : "https://anirut-portfolio.vercel.app");
 
 const dmSerif = DM_Serif_Display({
   subsets: ["latin"],
@@ -57,7 +57,7 @@ const plexThai = IBM_Plex_Sans_Thai({
 
 const siteTitle = "Anirut Butnongwa | Mechanical Engineer & Software Developer";
 const siteDescription =
-  "Mechanical Engineering graduate from Suranaree University of Technology. Builds production-tested Python and web tools for CNC, NC comparison, toolpath verification, and fixture workflows.";
+  "Mechanical Engineering graduate from Suranaree University of Technology. Builds Python and web workflow tools for CNC, NC comparison, toolpath verification, and fixture management.";
 
 export const metadata: Metadata = {
   title: siteTitle,

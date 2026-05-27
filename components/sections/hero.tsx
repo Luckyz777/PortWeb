@@ -209,7 +209,7 @@ export function Hero() {
           &ldquo;{t(copy.about.pull)}&rdquo;
         </blockquote>
         <ul className="hero-stats-ticker" aria-label="Career highlights">
-          <li className="hero-stats-ticker__metric">~50% NC review saved</li>
+          <li className="hero-stats-ticker__metric">Structured NC review</li>
           <li className="hero-stats-ticker__sep" aria-hidden="true">/</li>
           <li className="hero-stats-ticker__metric">4 production tools</li>
           <li className="hero-stats-ticker__sep" aria-hidden="true">/</li>

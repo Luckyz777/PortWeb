@@ -20,7 +20,7 @@ export type Project = {
   workflow: string[];
   consoleMetric: string;
   consoleDetail: string;
-  /** Estimated impact framed conservatively ("Estimated to reduce ..."). */
+  /** Conservative impact statement framed without unsupported measured claims. */
   impact?: string;
   caseStudy: {
     context: string;
@@ -77,7 +77,7 @@ export const experience = [
     period: "9 Feb.-29 May 2026",
     bullets: [
       "Identified process gaps in CNC tool setup and fixture management through shop-floor observation and operator interviews.",
-      "Designed and delivered 4 internal tools (GT-ACT, GT-FIXSYS, GT-PATH, NC Compare) using AI-assisted development with Python, PySide6, React, and FastAPI.",
+      "Designed and delivered 4 internal tools (GT-ACT, GT-FIXSYS, GT-PATH, NC Compare) using Python, PySide6, React, and FastAPI.",
       "Automated NC program validation and standardized setup-sheet generation, reducing manual errors in tool-length verification.",
       "Validated UI logic and workflows with operators to ensure real-world usability in CNC handoff and tool-room processes.",
     ],
@@ -108,8 +108,8 @@ export const copy = {
     headlineL2: { en: "Software for", th: "\u0e0b\u0e2d\u0e1f\u0e15\u0e4c\u0e41\u0e27\u0e23\u0e4c\u0e2a\u0e33\u0e2b\u0e23\u0e31\u0e1a" },
     headlineAccent: { en: "Manufacturing.", th: "\u0e42\u0e23\u0e07\u0e07\u0e32\u0e19\u0e1c\u0e25\u0e34\u0e15." },
     subhead: {
-      en: "Tools built from the production floor \u2014 not from a tutorial.",
-      th: "\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d\u0e17\u0e35\u0e48\u0e40\u0e01\u0e34\u0e14\u0e08\u0e32\u0e01\u0e2b\u0e19\u0e49\u0e32\u0e07\u0e32\u0e19\u0e08\u0e23\u0e34\u0e07 \u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48\u0e08\u0e32\u0e01\u0e1a\u0e17\u0e40\u0e23\u0e35\u0e22\u0e19.",
+      en: "Production tools shaped by real shop-floor handoffs.",
+      th: "\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d workflow \u0e17\u0e35\u0e48\u0e2d\u0e2d\u0e01\u0e41\u0e1a\u0e1a\u0e08\u0e32\u0e01\u0e01\u0e32\u0e23\u0e2a\u0e48\u0e07\u0e15\u0e48\u0e2d\u0e07\u0e32\u0e19\u0e08\u0e23\u0e34\u0e07\u0e43\u0e19\u0e2b\u0e19\u0e49\u0e32\u0e07\u0e32\u0e19.",
     },
     desc: {
       en: "Mechanical Engineering graduate from Suranaree University of Technology. During my process engineering internship at Global-Thaixon Precision Industry I built four production tools covering G-code review, NC revision comparison, toolpath verification, and fixture lifecycle management.",
@@ -123,10 +123,10 @@ export const copy = {
   },
   projects: {
     tag: { en: "Selected Work", th: "\u0e1c\u0e25\u0e07\u0e32\u0e19\u0e04\u0e31\u0e14\u0e2a\u0e23\u0e23" },
-    heading: { en: "Production-Tested Software.", th: "\u0e0b\u0e2d\u0e1f\u0e15\u0e4c\u0e41\u0e27\u0e23\u0e4c\u0e17\u0e35\u0e48\u0e1c\u0e48\u0e32\u0e19\u0e2b\u0e19\u0e49\u0e32\u0e07\u0e32\u0e19\u0e08\u0e23\u0e34\u0e07." },
+    heading: { en: "Manufacturing Workflow Tools.", th: "\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d workflow \u0e2a\u0e33\u0e2b\u0e23\u0e31\u0e1a\u0e07\u0e32\u0e19\u0e1c\u0e25\u0e34\u0e15." },
     sub: {
-      en: "Each project started from a real production constraint encountered during my process engineering internship \u2014 not from coursework or tutorials.",
-      th: "\u0e17\u0e38\u0e01\u0e42\u0e1b\u0e23\u0e40\u0e08\u0e01\u0e15\u0e4c\u0e40\u0e01\u0e34\u0e14\u0e08\u0e32\u0e01\u0e02\u0e49\u0e2d\u0e08\u0e33\u0e01\u0e31\u0e14\u0e02\u0e2d\u0e07\u0e02\u0e31\u0e49\u0e19\u0e15\u0e2d\u0e19\u0e01\u0e32\u0e23\u0e1c\u0e25\u0e34\u0e15\u0e08\u0e23\u0e34\u0e07 \u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48\u0e07\u0e32\u0e19\u0e0a\u0e34\u0e49\u0e19\u0e2b\u0e23\u0e37\u0e2d\u0e1a\u0e17\u0e40\u0e23\u0e35\u0e22\u0e19.",
+      en: "Each project started from a production constraint I saw during my process engineering internship.",
+      th: "\u0e17\u0e38\u0e01\u0e42\u0e1b\u0e23\u0e40\u0e08\u0e01\u0e15\u0e4c\u0e40\u0e23\u0e34\u0e48\u0e21\u0e08\u0e32\u0e01\u0e02\u0e49\u0e2d\u0e08\u0e33\u0e01\u0e31\u0e14\u0e2b\u0e19\u0e49\u0e32\u0e07\u0e32\u0e19\u0e17\u0e35\u0e48\u0e1e\u0e1a\u0e23\u0e30\u0e2b\u0e27\u0e48\u0e32\u0e07\u0e1d\u0e36\u0e01\u0e07\u0e32\u0e19 process engineer.",
     },
     viewRepo: { en: "View Repository", th: "\u0e14\u0e39 Repository" },
     viewCase: { en: "Open Case Study", th: "\u0e14\u0e39 Case Study" },
@@ -181,8 +181,8 @@ export const copy = {
     },
     callout2Title: { en: "Hands-on Software Builder", th: "\u0e2a\u0e23\u0e49\u0e32\u0e07\u0e0b\u0e2d\u0e1f\u0e15\u0e4c\u0e41\u0e27\u0e23\u0e4c\u0e08\u0e23\u0e34\u0e07" },
     callout2Desc: {
-      en: "Python, PySide6, React, FastAPI \u2014 learned through shipping real tools, not coursework alone.",
-      th: "Python, PySide6, React, FastAPI \u2014 \u0e40\u0e23\u0e35\u0e22\u0e19\u0e08\u0e32\u0e01\u0e01\u0e32\u0e23\u0e2a\u0e48\u0e07\u0e21\u0e2d\u0e1a\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d\u0e08\u0e23\u0e34\u0e07 \u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48\u0e41\u0e04\u0e48\u0e43\u0e19\u0e2b\u0e49\u0e2d\u0e07\u0e40\u0e23\u0e35\u0e22\u0e19.",
+      en: "Python, PySide6, React, and FastAPI applied through internal tools and production-facing workflows.",
+      th: "\u0e43\u0e0a\u0e49 Python, PySide6, React \u0e41\u0e25\u0e30 FastAPI \u0e01\u0e31\u0e1a\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d internal \u0e41\u0e25\u0e30 workflow \u0e17\u0e35\u0e48\u0e2d\u0e34\u0e07\u0e01\u0e31\u0e1a\u0e07\u0e32\u0e19\u0e1c\u0e25\u0e34\u0e15.",
     },
     callout3Title: { en: "Ready to Contribute", th: "\u0e1e\u0e23\u0e49\u0e2d\u0e21\u0e23\u0e48\u0e27\u0e21\u0e07\u0e32\u0e19" },
     callout3Desc: {
@@ -196,8 +196,8 @@ export const copy = {
     },
     timeline2Title: { en: "Global-Thaixon Precision Industry", th: "Global-Thaixon Precision Industry" },
     timeline2Desc: {
-      en: "Built manufacturing workflow tools as a process engineering intern.",
-      th: "\u0e2a\u0e23\u0e49\u0e32\u0e07\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d workflow \u0e07\u0e32\u0e19\u0e1c\u0e25\u0e34\u0e15\u0e43\u0e19\u0e10\u0e32\u0e19\u0e30\u0e19\u0e31\u0e01\u0e28\u0e36\u0e01\u0e29\u0e32\u0e1d\u0e36\u0e01\u0e07\u0e32\u0e19 process engineer.",
+      en: "Built manufacturing workflow tools during a 2026 process engineering internship.",
+      th: "\u0e2a\u0e23\u0e49\u0e32\u0e07\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d workflow \u0e07\u0e32\u0e19\u0e1c\u0e25\u0e34\u0e15\u0e23\u0e30\u0e2b\u0e27\u0e48\u0e32\u0e07\u0e1d\u0e36\u0e01\u0e07\u0e32\u0e19 process engineering \u0e1b\u0e35 2026.",
     },
     timeline3Title: { en: "Bachelor of Engineering", th: "\u0e27\u0e34\u0e28\u0e27\u0e01\u0e23\u0e23\u0e21\u0e28\u0e32\u0e2a\u0e15\u0e23\u0e4c\u0e1a\u0e31\u0e13\u0e11\u0e34\u0e15" },
     timeline3Desc: {
@@ -314,8 +314,8 @@ export const projects: Project[] = [
     workflow: ["NC input", "Parser", "Safety checks", "Setup sheet"],
     consoleMetric: "Manual NC review became a structured check path.",
     consoleDetail:
-      "The value is not a dashboard. The value is catching setup risk before a program reaches the machine.",
-    impact: "Estimated to cut NC review time by ~50% and surface tool-length collisions before the program reaches the machine.",
+      "The core value is catching setup risk before a program reaches the machine.",
+    impact: "Designed to reduce manual NC review time and surface tool-length risks before the program reaches the machine.",
     caseStudy: {
       context: "CNC handoff required setup sheets, tool lists, and program review before work reached the machine.",
       challenge: "Review data was spread across NC files and spreadsheets, making manual checking slow and inconsistent.",
@@ -396,7 +396,7 @@ export const projects: Project[] = [
     consoleMetric: "Fixture status became visible without opening the master workbook.",
     consoleDetail:
       "The workflow is built around the tool-room reality: scan the item, confirm the state, record the action.",
-    impact: "Estimated to remove minutes of spreadsheet hunting per fixture transaction across a 100+ item tool room.",
+    impact: "Designed to reduce spreadsheet lookup time for fixture transactions across a 100+ item tool room.",
     caseStudy: {
       context: "Fixture borrowing, returning, master data, and images were difficult to audit when workflows depended on spreadsheet edits.",
       challenge: "Tool-room users needed status visibility without risking accidental changes to master workbooks.",
@@ -421,9 +421,9 @@ export const projects: Project[] = [
     repository: "https://github.com/Luckyz777/NC-Compare",
     strapline: "G-code diff / revision change tracking",
     problem:
-      "When NC files changed across ECN revisions, engineers had no fast way to see which Feed, Speed, or Tool values actually moved — plain text diff missed the structured G-code intent and often broke on Thai or Japanese encodings.",
+      "When NC files changed across ECN revisions, engineers had no fast way to see which Feed, Speed, or Tool values actually moved. Plain text diff missed the structured G-code intent and often broke on Thai or Japanese encodings.",
     built:
-      "A Python desktop app that loads two NC files, parses tokens (G/T/M/X/Y/Z/F/S), shows a side-by-side colored diff, and exports a change report as PDF or Word ready to attach to ECN paperwork.",
+      "A Python desktop app that loads two NC files, parses tokens (G/T/M/X/Y/Z/F/S), shows a side-by-side colored diff, and exports a change report as PDF or Word for ECN paperwork.",
     proof: [
       "Token-level analysis surfaces Feed, Speed, and Tool changes that plain text diff hides.",
       "Side-by-side colored diff with line-level highlighting.",
@@ -435,8 +435,8 @@ export const projects: Project[] = [
     workflow: ["Load 2 files", "Token parse", "Diff view", "Export report"],
     consoleMetric: "ECN review became a structured token diff instead of eyeballing text.",
     consoleDetail:
-      "The value is making revision change verifiable so it can be attached to ECN paperwork.",
-    impact: "Estimated to cut NC revision review from minutes of manual comparison to a single token-level diff per ECN.",
+      "The core value is making NC revision changes clear enough to support ECN review.",
+    impact: "Designed to turn manual NC revision review into a focused token-level diff for ECN checks.",
     caseStudy: {
       context: "ECN revisions can change Feed, Speed, Tool, or Z-depth values while keeping the surrounding program visually similar.",
       challenge: "Plain text diff is noisy and can miss structured G-code intent, especially across files with Thai or Japanese comments.",

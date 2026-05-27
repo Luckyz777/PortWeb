@@ -7,7 +7,7 @@ test.describe("portfolio", () => {
 
     await expect(page.locator(".hero-name")).toContainText("Manufacturing");
     await expect(page.getByRole("link", { name: "View My Work" })).toBeVisible();
-    await expect(page.getByText("Production-Tested Software.")).toBeVisible();
+    await expect(page.getByText("Manufacturing Workflow Tools.")).toBeVisible();
     await expect(page.getByText("Where the Tools Were Built.")).toBeVisible();
     await expect(page.getByText("Built From Shop-Floor Constraints.")).toBeVisible();
     await expect(page.locator("#profile")).toBeAttached();

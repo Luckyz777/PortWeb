@@ -21,7 +21,7 @@ export const dynamic = "force-static";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ??
   (process.env.GITHUB_PAGES === "true"
     ? "https://luckyz777.github.io/PortWeb"
-    : "https://industrial-portfolio-ten.vercel.app");
+    : "https://anirut-portfolio.vercel.app");
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -44,7 +44,7 @@ const jsonLd = {
   worksFor: {
     "@type": "Organization",
     name: "Global-Thaixon Precision Industry",
-    description: "Process Engineering Internship (2024)",
+    description: "Process Engineering Internship (2026)",
   },
   knowsAbout: [
     "CNC",

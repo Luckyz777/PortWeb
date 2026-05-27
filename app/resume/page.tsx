@@ -56,7 +56,7 @@ export default function ResumePage() {
           <p>
             Mechanical Engineering graduate (SUT, May 2026) with hands-on internship experience
             at Global-Thaixon Precision Industry. Identified process gaps on the shop floor and
-            designed four production-tested tools for G-code validation, NC revision comparison,
+            designed four manufacturing workflow tools for G-code validation, NC revision comparison,
             toolpath inspection, and fixture management using Python, PySide6, React, and FastAPI.
             Interested in process engineering, automotive, precision manufacturing, CNC automation,
             and industrial software roles. Available for entry-level roles starting May 2026.
@@ -140,7 +140,7 @@ export default function ResumePage() {
           </div>
           <div className="resume__skill-row">
             <strong>Tools &amp; Technologies (working knowledge):</strong>{" "}
-            Python, React, FastAPI, PySide6, Git, SQL, AI-assisted development (ChatGPT, Cursor)
+            Python, React, FastAPI, PySide6, Git, SQL, ChatGPT, Cursor
           </div>
           <div className="resume__skill-row">
             <strong>Software:</strong>{" "}
