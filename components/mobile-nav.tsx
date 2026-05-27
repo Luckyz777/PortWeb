@@ -48,6 +48,7 @@ export function MobileNav() {
             <a href="#projects" onClick={close}>{t(copy.nav.projects)}</a>
             <a href="#prototype" onClick={close}>{t(copy.nav.prototype)}</a>
             <a href="#experience" onClick={close}>{t(copy.nav.experience)}</a>
+            <a href="#methodology" onClick={close}>{t(copy.nav.methodology)}</a>
             <a href="#profile" onClick={close}>{t(copy.nav.about)}</a>
             <a href="#skills" onClick={close}>{t(copy.nav.skills)}</a>
             <a href="#contact" className="mobile-cta" onClick={close}>{t(copy.nav.contact)}</a>

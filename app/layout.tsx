@@ -4,9 +4,10 @@ import { I18nProvider } from "@/lib/i18n";
 import { ThemeProvider, themeBootScript } from "@/lib/theme";
 import "./globals.css";
 
-const siteUrl = process.env.GITHUB_PAGES === "true"
-  ? "https://luckyz777.github.io/PortWeb"
-  : "https://luckyz777.github.io";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.GITHUB_PAGES === "true"
+    ? "https://luckyz777.github.io/PortWeb"
+    : "https://industrial-portfolio-ten.vercel.app");
 
 const dmSerif = DM_Serif_Display({
   subsets: ["latin"],
@@ -33,7 +34,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 const siteTitle = "Anirut Butnongwa | Mechanical Engineer & Software Developer";
 const siteDescription =
-  "Mechanical Engineering graduate from Suranaree University of Technology. Builds production-tested Python and web tools for CNC, toolpath verification, and fixture workflows.";
+  "Mechanical Engineering graduate from Suranaree University of Technology. Builds production-tested Python and web tools for CNC, NC comparison, toolpath verification, and fixture workflows.";
 
 export const metadata: Metadata = {
   title: siteTitle,
@@ -46,12 +47,18 @@ export const metadata: Metadata = {
     "Mechanical Engineer",
     "Process Engineer",
     "Manufacturing Software",
+    "Industrial Software Developer",
+    "Automotive",
+    "Precision Manufacturing",
+    "Tool Room",
+    "Lean Manufacturing",
     "CNC",
     "G-code",
     "PySide6",
     "Python",
     "React",
     "FastAPI",
+    "NC Compare",
     "Suranaree University of Technology",
     "Thailand",
     "Fresh Graduate 2026",
@@ -63,11 +70,13 @@ export const metadata: Metadata = {
     siteName: "Anirut Butnongwa",
     title: siteTitle,
     description: siteDescription,
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: siteTitle }],
   },
   twitter: {
     card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
+    images: ["/opengraph-image"],
   },
   robots: { index: true, follow: true },
 };
@@ -77,8 +86,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   colorScheme: "light dark",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fffced" },
-    { media: "(prefers-color-scheme: dark)", color: "#0E100E" },
+    { media: "(prefers-color-scheme: light)", color: "#F8FAFC" },
+    { media: "(prefers-color-scheme: dark)", color: "#0B1120" },
   ],
 };
 
@@ -90,7 +99,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${dmSerif.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}>
+    <html
+      lang="en"
+      className={`${dmSerif.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeBootScript }} />
         {plausibleDomain && (

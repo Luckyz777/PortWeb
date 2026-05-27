@@ -1,14 +1,17 @@
 "use client";
 
+import { Magnetic } from "@/components/ui/magnetic-button";
+import { MotionSection } from "@/components/ui/motion-section";
+import { SectionTag } from "@/components/ui/section-tag";
 import { copy, profile } from "@/data/portfolio";
 import { useT } from "@/lib/i18n";
 
 export function ContactSection() {
   const t = useT();
   return (
-    <section id="contact" aria-labelledby="contact-heading">
+    <MotionSection id="contact" aria-labelledby="contact-heading">
       <div className="section-inner">
-        <div className="section-tag">{t(copy.contact.tag)}</div>
+        <SectionTag>{t(copy.contact.tag)}</SectionTag>
         <h2 id="contact-heading" className="section-heading">{t(copy.contact.heading)}</h2>
         <p className="section-subheading">{t(copy.contact.sub)}</p>
         <div className="contact-grid">
@@ -17,11 +20,15 @@ export function ContactSection() {
             <div className="contact-list">
               <div>
                 <span>{t(copy.contact.labelEmail)}</span>
-                <a href={t(copy.cta.mailto)}>{profile.email}</a>
+                <Magnetic as="a" href={t(copy.cta.mailto)} strength={0.25} radius={70}>
+                  {profile.email}
+                </Magnetic>
               </div>
               <div>
                 <span>{t(copy.contact.labelPhone)}</span>
-                <a href="tel:+66981186694">{profile.phoneIntl}</a>
+                <Magnetic as="a" href="tel:+66981186694" strength={0.25} radius={70}>
+                  {profile.phoneIntl}
+                </Magnetic>
               </div>
               <div>
                 <span>{t(copy.contact.labelLocation)}</span>
@@ -31,6 +38,10 @@ export function ContactSection() {
                 <span>{t(copy.contact.labelStatus)}</span>
                 <p>{t(copy.contact.statusValue)}</p>
               </div>
+              <div>
+                <span>{t(copy.contact.labelMilitary)}</span>
+                <p>{t(profile.militaryStatus)}</p>
+              </div>
             </div>
           </div>
           <div className="contact-panel">
@@ -38,32 +49,42 @@ export function ContactSection() {
             <div className="contact-list">
               <div>
                 <span>{t(copy.contact.labelGithub)}</span>
-                <a href={profile.github} target="_blank" rel="noreferrer">github.com/Luckyz777</a>
+                <Magnetic as="a" href={profile.github} target="_blank" rel="noreferrer" strength={0.25} radius={70}>
+                  github.com/Luckyz777
+                </Magnetic>
               </div>
               <div>
                 <span>{t(copy.contact.labelLinkedin)}</span>
-                <a href={profile.linkedin} target="_blank" rel="noreferrer">linkedin.com/in/anirut-butnongwa</a>
+                <Magnetic as="a" href={profile.linkedin} target="_blank" rel="noreferrer" strength={0.25} radius={70}>
+                  linkedin.com/in/anirut-butnongwa
+                </Magnetic>
               </div>
               <div>
                 <span>{t(copy.contact.labelResume)}</span>
-                <a href={profile.cv} target="_blank" rel="noreferrer">View on Canva</a>
+                <Magnetic as="a" href={profile.cv} target="_blank" rel="noreferrer" strength={0.25} radius={70}>
+                  Print View
+                </Magnetic>
               </div>
               <div>
                 <span>{t(copy.contact.labelDownload)}</span>
-                <a href="/anirut-resume.pdf" download>Resume PDF</a>
                 <a href="/resume">Print View</a>
               </div>
               <div>
-                <span>{t(copy.contact.labelRepos)}</span>
-                <a href="https://github.com/Luckyz777/GT-ACT" target="_blank" rel="noreferrer">GT-ACT</a>
-                <a href="https://github.com/Luckyz777/GT-PATH" target="_blank" rel="noreferrer">GT-PATH</a>
-                <a href="https://github.com/Luckyz777/GT-FIXSYS" target="_blank" rel="noreferrer">GT-FIXSYS</a>
+                <span>{t(copy.contact.labelPresentation)}</span>
+                <Magnetic as="a" href="/#projects" strength={0.25} radius={70}>
+                  {t(copy.contact.presentationCta)}
+                </Magnetic>
+                <a href="/resume">{t(copy.contact.presentationPdfCta)}</a>
+              </div>
+              <div>
+                <span>{t(copy.contact.labelSource)}</span>
+                <p>{t(copy.contact.sourcePrivateShort)}</p>
               </div>
             </div>
           </div>
         </div>
         <p className="references-note">{t(copy.contact.references)}</p>
       </div>
-    </section>
+    </MotionSection>
   );
 }
