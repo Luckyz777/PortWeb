@@ -5,6 +5,7 @@ import {
   SlidingStrip,
   ProjectsSection,
   PrototypeSection,
+  LogoMarquee,
   ExperienceSection,
   MethodologySection,
   AboutSection,
@@ -82,6 +83,7 @@ export default function Home() {
         <SlidingStrip />
         <ProjectsSection />
         <PrototypeSection />
+        <LogoMarquee />
         <ExperienceSection />
         <MethodologySection />
         <AboutSection />

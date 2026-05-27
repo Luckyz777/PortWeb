@@ -108,7 +108,6 @@ test.describe("portfolio", () => {
       "/GT-ACT.png",
       "/GT-PATH.png",
       "/GT-FIXSYS.png",
-      "/NC-Compare.svg",
       "/Hero.png",
       "/screenshots/gt-act/Cycle time.png",
       "/screenshots/gt-path/iso.png",

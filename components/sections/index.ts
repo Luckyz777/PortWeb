@@ -3,6 +3,7 @@ export { Hero } from "./hero";
 export { SlidingStrip } from "./sliding-strip";
 export { ProjectsSection } from "./projects";
 export { PrototypeSection } from "./prototype";
+export { LogoMarquee } from "./logo-marquee";
 export { ExperienceSection } from "./experience";
 export { MethodologySection } from "./methodology";
 export { AboutSection } from "./about";

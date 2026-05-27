@@ -410,7 +410,7 @@ export const projects: Project[] = [
     name: "NC Compare",
     title: "NC file revision comparison and change tracking",
     role: "Tool Developer",
-    image: "/NC-Compare.svg",
+    image: "/screenshots/nc-compare/compare.png",
     imageAlt: "NC Compare side-by-side revision comparison interface",
     imageMode: "screenshot",
     screenshots: [
