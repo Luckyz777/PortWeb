@@ -1,5 +1,6 @@
 "use client";
 
+import { ContactForm } from "@/components/contact/ContactForm";
 import { Magnetic } from "@/components/ui/magnetic-button";
 import { MotionSection } from "@/components/ui/motion-section";
 import { SectionTag } from "@/components/ui/section-tag";
@@ -14,7 +15,11 @@ export function ContactSection() {
         <SectionTag>{t(copy.contact.tag)}</SectionTag>
         <h2 id="contact-heading" className="section-heading">{t(copy.contact.heading)}</h2>
         <p className="section-subheading">{t(copy.contact.sub)}</p>
-        <div className="contact-grid">
+        <div className="contact-grid contact-grid--extended">
+          <div className="contact-panel contact-panel--form">
+            <h3>{t(copy.contact.formTitle)}</h3>
+            <ContactForm />
+          </div>
           <div className="contact-panel">
             <h3>{t(copy.contact.directTitle)}</h3>
             <div className="contact-list">

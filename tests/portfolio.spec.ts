@@ -46,6 +46,44 @@ test.describe("portfolio", () => {
     await expect(page.getByRole("tabpanel")).toContainText("Offline NC and G-code path viewer");
   });
 
+  test("contact form renders fields", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.getByRole("heading", { name: /Send a Message/i })).toBeVisible();
+    await expect(page.getByLabel("Name")).toBeVisible();
+    await expect(page.getByLabel("Email")).toBeVisible();
+    await expect(page.getByLabel("Message")).toBeVisible();
+    await expect(page.getByRole("button", { name: "Send Message" })).toBeVisible();
+  });
+
+  test("contact form validation and success (mocked)", async ({ page }) => {
+    await page.goto("/");
+
+    // Client-side validation: required fields
+    await page.getByRole("button", { name: "Send Message" }).click();
+    const alerts = page.getByRole("alert");
+    await expect(alerts.first()).toHaveText("This field is required.");
+    const alertsCount = await alerts.count();
+    expect(alertsCount).toBeGreaterThanOrEqual(3);
+
+    // Success flow: mock API response so tests don't require SMTP
+    await page.route("**/api/contact", async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ ok: true }),
+      });
+    });
+
+    await page.getByLabel("Name").fill("Anirut");
+    await page.getByLabel("Email").fill("anirut@example.com");
+    await page.getByLabel("Message").fill("Hello from Playwright e2e test.");
+
+    await page.getByRole("button", { name: "Send Message" }).click();
+    await expect(
+      page.getByText("Message sent. I will reply as soon as I can."),
+    ).toBeVisible();
+  });
+
   test("mobile nav hamburger opens with experience link", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");

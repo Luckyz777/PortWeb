@@ -45,10 +45,9 @@ export async function generateMetadata({
   };
 }
 
-const ruleLight = { borderColor: "var(--border-strong)" };
-const ruleDarkOnLight = ruleLight;
-const ruleLightOnDark = { borderColor: "rgba(255, 255, 255, 0.45)" };
-const ruleLightOnBrand = { borderColor: "rgba(255, 255, 255, 0.55)" };
+const ruleOnLight = { borderColor: "var(--panel-rule-on-light)" };
+const ruleOnInverse = { borderColor: "var(--panel-rule-on-inverse)" };
+const ruleOnBrand = { borderColor: "var(--panel-rule-on-brand)" };
 
 export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   const { id } = await params;
@@ -68,8 +67,8 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           <FlowSection
             aria-label={`${project.name} — the problem`}
             style={{
-              background: "var(--bg-page)",
-              color: "var(--ink)",
+              background: "var(--panel-default-bg)",
+              color: "var(--panel-default-fg)",
             }}
           >
             <div className="case-panel__top">
@@ -79,7 +78,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               <p className="case-panel__kicker">01 — The Problem</p>
             </div>
 
-            <hr className="case-panel__rule" style={ruleDarkOnLight} />
+            <hr className="case-panel__rule" style={ruleOnLight} />
 
             <div>
               <p className="case-panel__role">{project.role}</p>
@@ -89,7 +88,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               </h1>
             </div>
 
-            <hr className="case-panel__rule" style={ruleDarkOnLight} />
+            <hr className="case-panel__rule" style={ruleOnLight} />
 
             <p className="case-panel__lead">{project.problem}</p>
             <div className="case-panel__columns">
@@ -110,12 +109,12 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           <FlowSection
             aria-label={`${project.name} — approach`}
             style={{
-              background: "var(--ink)",
-              color: "var(--bg-page)",
+              background: "var(--panel-inverse-bg)",
+              color: "var(--panel-inverse-fg)",
             }}
           >
             <p className="case-panel__kicker">02 — Approach</p>
-            <hr className="case-panel__rule" style={ruleLightOnDark} />
+            <hr className="case-panel__rule" style={ruleOnInverse} />
 
             <div>
               <h2 className="case-panel__heading">
@@ -127,14 +126,14 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               </h2>
             </div>
 
-            <hr className="case-panel__rule" style={ruleLightOnDark} />
+            <hr className="case-panel__rule" style={ruleOnInverse} />
 
             <p className="case-panel__lead">{project.built}</p>
             <p className="case-panel__body case-panel__body--muted">
               {project.caseStudy.approach}
             </p>
 
-            <hr className="case-panel__rule" style={ruleLightOnDark} />
+            <hr className="case-panel__rule" style={ruleOnInverse} />
 
             <div className="case-panel__workflow">
               {project.workflow.map((step, i) => (
@@ -147,7 +146,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               ))}
             </div>
 
-            <hr className="case-panel__rule" style={ruleLightOnDark} />
+            <hr className="case-panel__rule" style={ruleOnInverse} />
 
             <div>
               <p className="case-panel__label case-panel__label--light">
@@ -167,12 +166,12 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           <FlowSection
             aria-label={`${project.name} — result`}
             style={{
-              background: "var(--brand)",
-              color: "#FFFFFF",
+              background: "var(--panel-brand-bg)",
+              color: "var(--panel-brand-fg)",
             }}
           >
             <p className="case-panel__kicker">03 — Result</p>
-            <hr className="case-panel__rule" style={ruleLightOnBrand} />
+            <hr className="case-panel__rule" style={ruleOnBrand} />
 
             <div>
               <h2 className="case-panel__heading">
@@ -182,7 +181,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               </h2>
             </div>
 
-            <hr className="case-panel__rule" style={ruleLightOnBrand} />
+            <hr className="case-panel__rule" style={ruleOnBrand} />
 
             {project.impact && (
               <p className="case-panel__lead">{project.impact}</p>
@@ -191,7 +190,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               {project.caseStudy.result}
             </p>
 
-            <hr className="case-panel__rule" style={ruleLightOnBrand} />
+            <hr className="case-panel__rule" style={ruleOnBrand} />
 
             <ul className="case-panel__proof">
               {project.proof.map((point) => (
@@ -199,7 +198,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               ))}
             </ul>
 
-            <hr className="case-panel__rule" style={ruleLightOnBrand} />
+            <hr className="case-panel__rule" style={ruleOnBrand} />
 
             <blockquote className="case-panel__quote">
               &ldquo;{project.consoleMetric}&rdquo;
@@ -213,12 +212,12 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           <FlowSection
             aria-label={`${project.name} — lessons`}
             style={{
-              background: "var(--bg-page)",
-              color: "var(--ink)",
+              background: "var(--panel-default-bg)",
+              color: "var(--panel-default-fg)",
             }}
           >
             <p className="case-panel__kicker">04 — Lessons</p>
-            <hr className="case-panel__rule" style={ruleDarkOnLight} />
+            <hr className="case-panel__rule" style={ruleOnLight} />
 
             <div>
               <h2 className="case-panel__heading">
@@ -228,13 +227,13 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               </h2>
             </div>
 
-            <hr className="case-panel__rule" style={ruleDarkOnLight} />
+            <hr className="case-panel__rule" style={ruleOnLight} />
 
             <p className="case-panel__lead">{project.caseStudy.lessons}</p>
 
             {project.screenshots.length > 0 && (
               <>
-                <hr className="case-panel__rule" style={ruleDarkOnLight} />
+                <hr className="case-panel__rule" style={ruleOnLight} />
                 <div>
                   <p className="case-panel__label">Evidence</p>
                   <div className="case-panel__gallery">
@@ -258,7 +257,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               </>
             )}
 
-            <hr className="case-panel__rule" style={ruleDarkOnLight} />
+            <hr className="case-panel__rule" style={ruleOnLight} />
 
             <div className="case-panel__footer">
               <div className="case-panel__source">

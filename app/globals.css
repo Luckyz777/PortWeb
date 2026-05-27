@@ -7,35 +7,36 @@
 
 :root,
 [data-theme="light"] {
-  /* ─── Surfaces (paper hierarchy) ─────────────────────── */
+  /* ─── Primitives — surfaces ──────────────────────────── */
   --bg-page:    #FBFAF1;
   --bg-band:    var(--bg-page);
   --bg-surface: #FFFFFF;
   --bg-sunken:  #EFE9D6;
 
-  /* ─── Text ───────────────────────────────────────────── */
+  /* ─── Primitives — text ──────────────────────────────── */
   --ink:    #1A1A1A;
   --ink-2:  #3D3833;
   --muted:  #756F65;
 
-  /* ─── Borders ────────────────────────────────────────── */
+  /* ─── Primitives — borders ───────────────────────────── */
   --border:        #E5DEC7;
   --border-strong: #C8BFA4;
 
-  /* ─── Brand — vermillion (primary action) ────────────── */
+  /* ─── Primitives — brand (vermillion) ────────────────── */
   --brand:      #C0392B;
   --brand-dim:  #9A2E22;
   --brand-soft: #F4DDD9;
 
-  /* ─── Gold accent (secondary) ────────────────────────── */
+  /* ─── Primitives — gold accent ─────────────────────── */
   --gold:      #B8956B;
   --gold-dim:  #93764D;
   --gold-soft: #EDE2CC;
 
-  /* ─── Effects ────────────────────────────────────────── */
+  /* ─── Primitives — elevation & overlay ─────────────── */
   --overlay:     rgba(26, 26, 26, 0.40);
   --shadow-1:    0 2px 8px -2px rgba(26, 26, 26, 0.08);
   --shadow-2:    0 16px 40px -18px rgba(26, 26, 26, 0.22);
+  --shadow-soft: 0 10px 30px -26px rgba(26, 26, 26, 0.18);
   --shadow-tint: rgba(26, 26, 26, 0.07);
   --glow-brand: 0 0 0 1px color-mix(in srgb, var(--brand) 22%, transparent),
                 0 14px 38px -10px color-mix(in srgb, var(--brand) 40%, transparent),
@@ -43,6 +44,91 @@
   --glow-gold:  0 0 0 1px color-mix(in srgb, var(--gold) 28%, transparent),
                 0 14px 38px -10px color-mix(in srgb, var(--gold) 45%, transparent),
                 0 4px 18px color-mix(in srgb, var(--gold) 20%, transparent);
+
+  /* ─── Semantic — typography ────────────────────────── */
+  --text-primary:   var(--ink);
+  --text-secondary: var(--ink-2);
+  --text-muted:     var(--muted);
+  --text-brand:     var(--brand);
+  --text-gold:      var(--gold);
+  --text-link:      var(--brand);
+  --text-link-hover: var(--brand-dim);
+  --text-on-brand:  #FFFFFF;
+  --text-on-ink:    var(--bg-page);
+
+  /* ─── Semantic — surfaces ──────────────────────────── */
+  --surface-page:   var(--bg-page);
+  --surface-raised: var(--bg-surface);
+  --surface-sunken: var(--bg-sunken);
+  --surface-nav:    color-mix(in srgb, var(--bg-page) 92%, transparent);
+
+  /* ─── Semantic — borders ───────────────────────────── */
+  --border-default:  var(--border);
+  --border-emphasis: var(--border-strong);
+
+  /* ─── Semantic — focus & selection ─────────────────── */
+  --focus-ring:       var(--brand);
+  --focus-ring-width: 3px;
+  --selection-bg:     var(--brand);
+  --selection-fg:     var(--text-on-brand);
+
+  /* ─── Semantic — buttons ───────────────────────────── */
+  --btn-primary-bg:        var(--brand);
+  --btn-primary-fg:        var(--text-on-brand);
+  --btn-primary-bg-hover:  var(--brand-dim);
+  --btn-secondary-border:  var(--border-strong);
+  --btn-secondary-fg:      var(--ink-2);
+  --btn-secondary-border-hover: var(--gold);
+  --btn-secondary-fg-hover:   var(--gold);
+
+  /* ─── Semantic — cards & panels ────────────────────── */
+  --card-bg:          var(--bg-surface);
+  --card-border:      var(--border);
+  --card-border-hover: var(--border-strong);
+  --card-shadow-hover: var(--shadow-tint);
+  --chip-bg:          var(--bg-surface);
+  --chip-border:      var(--border);
+  --chip-fg:          var(--muted);
+  --chip-bg-active:   var(--brand-soft);
+  --chip-border-active: var(--brand-soft);
+  --chip-fg-active:   var(--brand);
+  --impact-bg:        color-mix(in srgb, var(--brand) 6%, var(--bg-band));
+  --impact-border:    var(--brand);
+
+  /* ─── Semantic — case study panels ─────────────────── */
+  --panel-default-bg: var(--bg-page);
+  --panel-default-fg: var(--ink);
+  --panel-inverse-bg: var(--ink);
+  --panel-inverse-fg: var(--bg-page);
+  --panel-brand-bg:   var(--brand);
+  --panel-brand-fg:   var(--text-on-brand);
+  --panel-rule-on-light: var(--border-strong);
+  --panel-rule-on-inverse: rgba(255, 255, 255, 0.45);
+  --panel-rule-on-brand: rgba(255, 255, 255, 0.55);
+  --stack-chip-border: rgba(255, 255, 255, 0.35);
+  --stack-chip-bg:     rgba(255, 255, 255, 0.04);
+
+  /* ─── Semantic — hero & chrome ─────────────────────── */
+  --hero-watermark-gold: color-mix(in srgb, var(--gold) 14%, transparent);
+  --hero-watermark-ink:  color-mix(in srgb, var(--ink) 5%, transparent);
+  --skip-link-bg:        var(--ink);
+  --skip-link-fg:        var(--text-on-brand);
+  --nav-link-fg:         var(--muted);
+  --nav-link-fg-hover:   var(--brand);
+  --nav-cta-border:      var(--brand);
+  --nav-cta-fg:          var(--brand);
+  --nav-cta-bg-hover:    var(--brand);
+  --nav-cta-fg-hover:    var(--text-on-brand);
+  --console-tab-active-bg: var(--brand-soft);
+  --timeline-rail:       var(--border);
+  --timeline-fill:       linear-gradient(180deg, var(--brand) 0%, var(--gold) 100%);
+  --big-cta-bg:          var(--brand);
+  --big-cta-fg:          var(--text-on-brand);
+  --big-cta-bg-hover:    var(--brand-dim);
+  --scroll-indicator-bg: var(--bg-surface);
+  --scroll-indicator-border: var(--border-strong);
+  --scroll-indicator-fg: var(--ink);
+  --scroll-indicator-fg-hover: var(--brand);
 
   /* ─── Layout & type ──────────────────────────────────── */
   --radius-md:  7px;
@@ -58,35 +144,36 @@
 }
 
 [data-theme="dark"] {
-  /* ─── Surfaces (sumi night) ──────────────────────────── */
+  /* ─── Primitives — surfaces ──────────────────────────── */
   --bg-page:    #1A1814;
   --bg-band:    var(--bg-page);
   --bg-surface: #2A2620;
   --bg-sunken:  #14120E;
 
-  /* ─── Text ───────────────────────────────────────────── */
+  /* ─── Primitives — text ──────────────────────────────── */
   --ink:    #F2EFE3;
   --ink-2:  #C9C3B0;
   --muted:  #8A8474;
 
-  /* ─── Borders ────────────────────────────────────────── */
+  /* ─── Primitives — borders ───────────────────────────── */
   --border:        #332F27;
   --border-strong: #4A4538;
 
-  /* ─── Brand — brighter vermillion for dark bg ────────── */
+  /* ─── Primitives — brand ───────────────────────────── */
   --brand:      #E55340;
   --brand-dim:  #C0392B;
   --brand-soft: #3E1A14;
 
-  /* ─── Gold — brighter for dark bg ────────────────────── */
+  /* ─── Primitives — gold ─────────────────────────────── */
   --gold:      #D4B486;
   --gold-dim:  #B8956B;
   --gold-soft: #2E2516;
 
-  /* ─── Effects (dark-tuned) ───────────────────────────── */
+  /* ─── Primitives — elevation & overlay ─────────────── */
   --overlay:     rgba(0, 0, 0, 0.55);
   --shadow-1:    0 4px 16px -4px rgba(0, 0, 0, 0.45);
   --shadow-2:    0 22px 50px -18px rgba(0, 0, 0, 0.65);
+  --shadow-soft: 0 10px 30px -26px rgba(0, 0, 0, 0.42);
   --shadow-tint: rgba(0, 0, 0, 0.25);
   --glow-brand: 0 0 0 1px color-mix(in srgb, var(--brand) 35%, transparent),
                 0 14px 38px -10px color-mix(in srgb, var(--brand) 55%, transparent),
@@ -94,6 +181,103 @@
   --glow-gold:  0 0 0 1px color-mix(in srgb, var(--gold) 35%, transparent),
                 0 14px 38px -10px color-mix(in srgb, var(--gold) 50%, transparent),
                 0 4px 18px color-mix(in srgb, var(--gold) 22%, transparent);
+
+  /* ─── Semantic — typography ────────────────────────── */
+  --text-primary:   var(--ink);
+  --text-secondary: var(--ink-2);
+  --text-muted:     var(--muted);
+  --text-brand:     var(--brand);
+  --text-gold:      var(--gold);
+  --text-link:      var(--brand);
+  --text-link-hover: var(--gold);
+  --text-on-brand:  #FFFFFF;
+  --text-on-ink:    var(--bg-page);
+
+  /* ─── Semantic — surfaces ──────────────────────────── */
+  --surface-page:   var(--bg-page);
+  --surface-raised: var(--bg-surface);
+  --surface-sunken: var(--bg-sunken);
+  --surface-nav:    color-mix(in srgb, var(--bg-page) 90%, transparent);
+
+  /* ─── Semantic — borders ───────────────────────────── */
+  --border-default:  var(--border);
+  --border-emphasis: var(--border-strong);
+
+  /* ─── Semantic — focus & selection ─────────────────── */
+  --focus-ring:       var(--brand);
+  --focus-ring-width: 3px;
+  --selection-bg:     var(--brand);
+  --selection-fg:     var(--text-on-brand);
+
+  /* ─── Semantic — buttons ───────────────────────────── */
+  --btn-primary-bg:        var(--brand);
+  --btn-primary-fg:        var(--text-on-brand);
+  --btn-primary-bg-hover:  var(--brand-dim);
+  --btn-secondary-border:  var(--border-strong);
+  --btn-secondary-fg:      var(--ink-2);
+  --btn-secondary-border-hover: var(--gold);
+  --btn-secondary-fg-hover:   var(--gold);
+
+  /* ─── Semantic — cards & panels ────────────────────── */
+  --card-bg:          var(--bg-surface);
+  --card-border:      var(--border);
+  --card-border-hover: var(--border-strong);
+  --card-shadow-hover: var(--shadow-tint);
+  --chip-bg:          var(--bg-sunken);
+  --chip-border:      var(--border);
+  --chip-fg:          var(--muted);
+  --chip-bg-active:   var(--brand-soft);
+  --chip-border-active: color-mix(in srgb, var(--brand) 35%, transparent);
+  --chip-fg-active:   var(--brand);
+  --impact-bg:        color-mix(in srgb, var(--brand) 12%, var(--bg-sunken));
+  --impact-border:    var(--brand);
+
+  /* ─── Semantic — case study panels ─────────────────── */
+  --panel-default-bg: var(--bg-page);
+  --panel-default-fg: var(--ink);
+  --panel-inverse-bg: var(--ink);
+  --panel-inverse-fg: var(--bg-page);
+  --panel-brand-bg:   var(--brand);
+  --panel-brand-fg:   var(--text-on-brand);
+  --panel-rule-on-light: var(--border-strong);
+  --panel-rule-on-inverse: rgba(255, 255, 255, 0.38);
+  --panel-rule-on-brand: rgba(255, 255, 255, 0.5);
+  --stack-chip-border: rgba(255, 255, 255, 0.32);
+  --stack-chip-bg:     rgba(255, 255, 255, 0.06);
+
+  /* ─── Semantic — hero & chrome ─────────────────────── */
+  --hero-watermark-gold: color-mix(in srgb, var(--gold) 18%, transparent);
+  --hero-watermark-ink:  color-mix(in srgb, var(--ink) 6%, transparent);
+  --skip-link-bg:        var(--bg-surface);
+  --skip-link-fg:        var(--ink);
+  --nav-link-fg:         var(--muted);
+  --nav-link-fg-hover:   var(--gold);
+  --nav-cta-border:      var(--brand);
+  --nav-cta-fg:          var(--brand);
+  --nav-cta-bg-hover:    var(--brand);
+  --nav-cta-fg-hover:    var(--text-on-brand);
+  --console-tab-active-bg: var(--brand-soft);
+  --timeline-rail:       var(--border);
+  --timeline-fill:       linear-gradient(180deg, var(--brand) 0%, var(--gold) 100%);
+  --big-cta-bg:          var(--brand);
+  --big-cta-fg:          var(--text-on-brand);
+  --big-cta-bg-hover:    var(--brand-dim);
+  --scroll-indicator-bg: var(--bg-surface);
+  --scroll-indicator-border: var(--border-strong);
+  --scroll-indicator-fg: var(--ink);
+  --scroll-indicator-fg-hover: var(--gold);
+}
+
+/* Tailwind v4 — optional utilities aligned to tokens */
+@theme inline {
+  --color-page: var(--bg-page);
+  --color-surface: var(--bg-surface);
+  --color-sunken: var(--bg-sunken);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-brand: var(--brand);
+  --color-gold: var(--gold);
+  --color-border: var(--border);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -124,8 +308,11 @@ body::before {
 a { text-decoration: none; color: inherit; }
 img { display: block; }
 
-::selection { background: var(--brand); color: #fff; }
-:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; }
+::selection { background: var(--selection-bg); color: var(--selection-fg); }
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring);
+  outline-offset: 3px;
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -139,7 +326,7 @@ img { display: block; }
 .skip-link {
   position: fixed; left: 16px; top: 16px; z-index: 50;
   transform: translateY(-150%);
-  background: var(--ink); color: #fff;
+  background: var(--skip-link-bg); color: var(--skip-link-fg);
   padding: 0.7rem 1rem; font-weight: 600;
   border-radius: 4px;
 }
@@ -149,9 +336,9 @@ img { display: block; }
 .site-header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   height: var(--nav-height);
-  background: color-mix(in srgb, var(--bg-page) 92%, transparent);
+  background: var(--surface-nav);
   backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-default);
 }
 
 .nav-frame {
@@ -171,17 +358,17 @@ img { display: block; }
   font-family: var(--f-mono); font-size: 11px;
   letter-spacing: 0.12em; text-transform: uppercase;
 }
-.nav-links a { color: var(--muted); transition: color 0.2s; }
-.nav-links a:hover { color: var(--brand); }
+.nav-links a { color: var(--nav-link-fg); transition: color 0.2s; }
+.nav-links a:hover { color: var(--nav-link-fg-hover); }
 
 .nav-cta {
   font-family: var(--f-mono); font-size: 11px;
   letter-spacing: 0.1em; text-transform: uppercase;
-  border: 1.5px solid var(--brand); color: var(--brand);
+  border: 1.5px solid var(--nav-cta-border); color: var(--nav-cta-fg);
   padding: 8px 20px; border-radius: 2px;
   transition: background 0.2s, color 0.2s;
 }
-.nav-cta:hover { background: var(--brand); color: #fff; }
+.nav-cta:hover { background: var(--nav-cta-bg-hover); color: var(--nav-cta-fg-hover); }
 
 /* ── HERO ── */
 .hero {
@@ -196,7 +383,7 @@ img { display: block; }
   font-family: var(--f-head);
   font-style: italic;
   font-size: clamp(220px, 28vw, 480px);
-  color: color-mix(in srgb, var(--gold) 14%, transparent);
+  color: var(--hero-watermark-gold);
   letter-spacing: -0.04em; line-height: 0.9;
   pointer-events: none; user-select: none; white-space: nowrap;
   z-index: 0;
@@ -286,23 +473,26 @@ img { display: block; }
 
 .btn-primary {
   display: inline-flex; align-items: center; gap: 10px;
-  background: var(--brand); color: #fff;
+  background: var(--btn-primary-bg); color: var(--btn-primary-fg);
   font-family: var(--f-mono); font-size: 11px; font-weight: 500;
   letter-spacing: 0.1em; text-transform: uppercase;
   padding: 13px 26px; border-radius: 2px;
   transition: background 0.2s, transform 0.1s;
 }
-.btn-primary:hover { background: var(--brand-dim); transform: translateY(-1px); }
+.btn-primary:hover { background: var(--btn-primary-bg-hover); transform: translateY(-1px); }
 
 .btn-secondary {
   display: inline-flex; align-items: center; gap: 10px;
-  border: 1.5px solid var(--border-strong); color: var(--ink-2);
+  border: 1.5px solid var(--btn-secondary-border); color: var(--btn-secondary-fg);
   font-family: var(--f-mono); font-size: 11px;
   letter-spacing: 0.1em; text-transform: uppercase;
   padding: 13px 26px; border-radius: 2px;
   transition: border-color 0.2s, color 0.2s;
 }
-.btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+.btn-secondary:hover {
+  border-color: var(--btn-secondary-border-hover);
+  color: var(--btn-secondary-fg-hover);
+}
 
 /* Specimen card — portrait wrapped with editorial metadata caption */
 .hero-specimen {
@@ -417,7 +607,7 @@ section { position: relative; z-index: 1; }
 .projects-grid { display: grid; gap: 2px; }
 
 .project-card {
-  background: var(--bg-surface); border: 1px solid var(--border);
+  background: var(--card-bg); border: 1px solid var(--card-border);
   padding: 44px; display: grid;
   grid-template-columns: 1fr auto; gap: 28px; align-items: start;
   transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
@@ -429,8 +619,8 @@ section { position: relative; z-index: 1; }
   transition: width 0.5s ease;
 }
 .project-card:hover {
-  border-color: var(--border-strong); background: var(--bg-surface);
-  box-shadow: 0 8px 32px var(--shadow-tint);
+  border-color: var(--card-border-hover); background: var(--card-bg);
+  box-shadow: 0 8px 32px var(--card-shadow-hover);
 }
 .project-card:hover::before { width: 100%; }
 
@@ -522,11 +712,15 @@ section { position: relative; z-index: 1; }
 .tag {
   font-family: var(--f-mono); font-size: 10px;
   letter-spacing: 0.08em; text-transform: uppercase;
-  padding: 4px 11px; border: 1px solid var(--border);
-  color: var(--muted); border-radius: 2px; background: var(--bg-surface);
+  padding: 4px 11px; border: 1px solid var(--chip-border);
+  color: var(--chip-fg); border-radius: 2px; background: var(--chip-bg);
   transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
-.project-card:hover .tag { border-color: var(--brand-soft); background: var(--brand-soft); color: var(--brand); }
+.project-card:hover .tag {
+  border-color: var(--chip-border-active);
+  background: var(--chip-bg-active);
+  color: var(--chip-fg-active);
+}
 
 .project-num {
   font-family: var(--f-head); font-size: 72px; font-weight: 400;
@@ -538,10 +732,10 @@ section { position: relative; z-index: 1; }
   display: inline-flex; align-items: center; gap: 8px;
   font-family: var(--f-mono); font-size: 10px;
   letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--brand); margin-top: 14px; padding: 6px 0;
-  border-bottom: 1px solid transparent; transition: border-color 0.2s;
+  color: var(--text-link); margin-top: 14px; padding: 6px 0;
+  border-bottom: 1px solid transparent; transition: border-color 0.2s, color 0.2s;
 }
-.project-link:hover { border-color: var(--brand); }
+.project-link:hover { border-color: var(--text-link); color: var(--text-link-hover); }
 
 /* ── PROTOTYPE CONSOLE ── */
 /* #prototype now inherits body bg via the unified palette */
@@ -569,7 +763,7 @@ section { position: relative; z-index: 1; }
   border-top: 1px solid var(--border);
 }
 .console-tab[aria-selected="true"] {
-  background: var(--brand-soft); color: var(--ink);
+  background: var(--console-tab-active-bg); color: var(--ink);
 }
 .console-tab span {
   font-family: var(--f-head); font-size: 1.35rem; font-weight: 400; line-height: 1;
@@ -603,12 +797,12 @@ section { position: relative; z-index: 1; }
 
 .text-link {
   display: inline-flex; width: fit-content; min-height: 40px;
-  align-items: center; border-bottom: 1.5px solid var(--brand);
-  color: var(--brand); font-family: var(--f-mono);
+  align-items: center; border-bottom: 1.5px solid var(--text-link);
+  color: var(--text-link); font-family: var(--f-mono);
   font-size: 11px; font-weight: 500; letter-spacing: 0.06em;
   text-transform: uppercase; margin-top: 1rem;
 }
-.text-link:hover { border-color: var(--brand-dim); color: var(--brand-dim); }
+.text-link:hover { border-color: var(--text-link-hover); color: var(--text-link-hover); }
 
 .console-actions {
   display: flex;
@@ -636,7 +830,7 @@ section { position: relative; z-index: 1; }
 }
 .flow-list b {
   display: inline-grid; width: 2.6rem; height: 2.6rem; place-items: center;
-  border-radius: 999px; background: var(--ink); color: #fff;
+  border-radius: 999px; background: var(--panel-inverse-bg); color: var(--text-on-ink);
   font-family: var(--f-mono); font-size: 0.68rem;
 }
 
@@ -761,14 +955,98 @@ section { position: relative; z-index: 1; }
 .contact-grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
 }
+.contact-grid--extended {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.92fr) minmax(0, 0.92fr);
+}
 
 .contact-panel {
   border: 1px solid var(--border); border-radius: 6px;
   background: var(--bg-surface); padding: clamp(1.2rem, 2.5vw, 1.6rem);
 }
+.contact-panel--form {
+  grid-row: span 1;
+}
 .contact-panel h3 {
   font-family: var(--f-head); font-size: 18px; font-weight: 400;
   margin-bottom: 1rem; color: var(--ink);
+}
+
+.contact-form {
+  display: grid;
+  gap: 1rem;
+}
+.contact-form__field {
+  display: grid;
+  gap: 0.35rem;
+}
+.contact-form__field label {
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.contact-form__field input,
+.contact-form__field textarea {
+  width: 100%;
+  font-family: var(--f-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--bg-page);
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  padding: 0.65rem 0.75rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.contact-form__field input:focus-visible,
+.contact-form__field textarea:focus-visible {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 18%, transparent);
+  outline: none;
+}
+.contact-form__field input[aria-invalid="true"],
+.contact-form__field textarea[aria-invalid="true"] {
+  border-color: var(--brand);
+}
+.contact-form__field textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+.contact-form__submit {
+  justify-self: start;
+  margin-top: 0.25rem;
+}
+.contact-form__submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+.contact-form__error {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--brand);
+}
+.contact-form__error--global {
+  margin-top: 0.25rem;
+}
+.contact-form__success {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--gold-dim);
+}
+.contact-form__status {
+  min-height: 1.25rem;
+}
+.contact-form__honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 .contact-list { display: grid; gap: 0.9rem; }
@@ -778,10 +1056,10 @@ section { position: relative; z-index: 1; }
   font-size: 0.72rem; font-weight: 500; letter-spacing: 0.06em;
 }
 .contact-list a {
-  color: var(--brand); font-size: 14px;
+  color: var(--text-link); font-size: 14px;
   transition: color 0.2s;
 }
-.contact-list a:hover { color: var(--brand-dim); text-decoration: underline; }
+.contact-list a:hover { color: var(--text-link-hover); text-decoration: underline; }
 .contact-list p { color: var(--ink-2); font-size: 14px; margin: 0; }
 .contact-source-links {
   display: flex;
@@ -841,7 +1119,7 @@ footer {
   top: 8px;
   bottom: 8px;
   width: 2px;
-  background: var(--border);
+  background: var(--timeline-rail);
   border-radius: 1px;
   overflow: hidden;
 }
@@ -850,7 +1128,7 @@ footer {
   left: 0;
   top: 0;
   width: 100%;
-  background: linear-gradient(180deg, var(--brand) 0%, var(--gold) 100%);
+  background: var(--timeline-fill);
   transform-origin: top;
 }
 .exp-card { position: relative; }
@@ -892,8 +1170,8 @@ footer {
 .project-impact {
   margin: 14px 0 18px;
   padding: 12px 14px;
-  background: color-mix(in srgb, var(--brand) 6%, var(--bg-band));
-  border-left: 3px solid var(--brand);
+  background: var(--impact-bg);
+  border-left: 3px solid var(--impact-border);
   border-radius: 4px;
   display: flex;
   flex-direction: column;
@@ -944,7 +1222,7 @@ body {
 }
 
 .site-header {
-  background: color-mix(in srgb, var(--bg-page) 90%, transparent);
+  background: var(--surface-nav);
 }
 
 /* Hairline divider between consecutive sections — keeps the page
@@ -954,7 +1232,7 @@ main > section + section {
 }
 
 .hero-bg-text {
-  color: color-mix(in srgb, var(--ink) 5%, transparent);
+  color: var(--hero-watermark-ink);
 }
 
 .section-heading,
@@ -1003,7 +1281,7 @@ main > section + section {
   display: grid;
   align-content: start;
   gap: 0.7rem;
-  box-shadow: 0 10px 30px -26px rgba(15, 23, 42, 0.45);
+  box-shadow: var(--shadow-soft);
 }
 
 .method-card__label {
@@ -1138,7 +1416,7 @@ main > section + section {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   background: var(--bg-page);
-  box-shadow: 0 10px 34px -28px rgba(15, 23, 42, 0.45);
+  box-shadow: var(--shadow-soft);
 }
 
 .project-detail__closing {
@@ -1159,7 +1437,7 @@ main > section + section {
 
 /* ── RESPONSIVE ── */
 @media (max-width: 1020px) {
-  .about-grid, .skills-grid, .contact-grid, .edu-grid,
+  .about-grid, .skills-grid, .contact-grid, .contact-grid--extended, .edu-grid,
   .console, .console-grid {
     grid-template-columns: 1fr;
   }
@@ -1469,7 +1747,10 @@ main > section + section {
   color: var(--brand); text-align: center;
   padding: 14px 20px; border-radius: 2px; border-bottom: 1.5px solid var(--brand);
 }
-.mobile-drawer .mobile-cta:hover { background: var(--brand); color: #fff; }
+.mobile-drawer .mobile-cta:hover {
+  background: var(--nav-cta-bg-hover);
+  color: var(--nav-cta-fg-hover);
+}
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
@@ -1547,7 +1828,7 @@ main > section + section {
   border-radius: 4px;
   background: var(--bg-surface);
   overflow: hidden;
-  box-shadow: 0 8px 24px -16px rgba(15, 23, 42, 0.4);
+  box-shadow: var(--shadow-soft);
 }
 .sliding-strip__frame img {
   width: 100%;
@@ -1718,17 +1999,17 @@ main > section + section {
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ink);
-  background: var(--bg-surface);
-  border: 1px solid var(--border-strong);
+  color: var(--scroll-indicator-fg);
+  background: var(--scroll-indicator-bg);
+  border: 1px solid var(--scroll-indicator-border);
   border-radius: 999px;
-  box-shadow: 0 14px 36px -18px rgba(15, 23, 42, 0.35);
+  box-shadow: var(--shadow-1);
   text-decoration: none;
   transition: border-color 0.2s, color 0.2s;
 }
 .scroll-indicator__link:hover {
-  border-color: var(--brand);
-  color: var(--brand);
+  border-color: var(--scroll-indicator-fg-hover);
+  color: var(--scroll-indicator-fg-hover);
 }
 
 /* ── PAGE TRANSITION CURTAIN ── */
@@ -1756,8 +2037,8 @@ main > section + section {
   width: 168px;
   height: 168px;
   border-radius: 50%;
-  background: var(--brand);
-  color: #fff !important;
+  background: var(--big-cta-bg);
+  color: var(--big-cta-fg) !important;
   text-decoration: none;
   box-shadow:
     0 18px 36px -16px color-mix(in srgb, var(--brand) 60%, transparent),
@@ -1770,7 +2051,7 @@ main > section + section {
   text-align: center;
   line-height: 1.3;
 }
-.big-circle-cta:hover { background: var(--brand-dim); }
+.big-circle-cta:hover { background: var(--big-cta-bg-hover); }
 .big-circle-cta__label {
   display: block;
   max-width: 90%;
@@ -1917,9 +2198,9 @@ main > section + section {
   font-size: 10px; letter-spacing: 0.12em;
   text-transform: uppercase;
   padding: 6px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  border: 1px solid var(--stack-chip-border);
   border-radius: 2px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--stack-chip-bg);
 }
 
 /* Proof list (Panel 03) */
@@ -2012,19 +2293,19 @@ main > section + section {
   text-decoration-thickness: 1px;
   text-underline-offset: 0.25em;
 }
-.case-panel__source a:hover { color: var(--brand); }
+.case-panel__source a:hover { color: var(--text-link-hover); }
 .case-panel__cta {
   font-family: var(--f-mono);
   font-size: 12px; font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--brand);
+  color: var(--text-link);
   text-decoration: none;
   border-bottom: 1.5px solid currentColor;
   padding-bottom: 4px;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, color 0.2s;
 }
-.case-panel__cta:hover { opacity: 0.7; }
+.case-panel__cta:hover { color: var(--text-link-hover); opacity: 0.85; }
 
 /* Mobile tweaks for case-panel */
 @media (max-width: 720px) {
