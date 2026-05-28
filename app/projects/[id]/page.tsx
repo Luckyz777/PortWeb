@@ -1,18 +1,26 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 import { Footer, Header } from "@/components/sections";
 import FlowArt, { FlowSection } from "@/components/ui/story-scroll";
+import type { Project } from "@/data/portfolio";
 import { profile, projects } from "@/data/portfolio";
+import {
+  ARTICLE_ACCESS_COOKIE,
+  ARTICLE_ACCESS_MAX_AGE_SECONDS,
+  createArticleAccessToken,
+  isArticlePasswordValid,
+  verifyArticleAccessToken,
+} from "@/lib/article-access";
 
 type ProjectPageProps = {
   params: Promise<{ id: string }>;
+  searchParams?: Promise<{ access?: string }>;
 };
 
-export function generateStaticParams() {
-  return projects.map((project) => ({ id: project.id }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
@@ -30,6 +38,16 @@ export async function generateMetadata({
     title: `${project.name} Case Study | Anirut Butnongwa`,
     description: `${project.title}. ${project.impact ?? project.strapline}`,
     alternates: { canonical: `/projects/${project.id}` },
+    robots: {
+      index: false,
+      follow: false,
+      nocache: true,
+      googleBot: {
+        index: false,
+        follow: false,
+        noimageindex: true,
+      },
+    },
     openGraph: {
       title: `${project.name} Case Study`,
       description: project.impact ?? project.strapline,
@@ -50,10 +68,121 @@ const ruleDarkOnLight = ruleLight;
 const ruleLightOnDark = { borderColor: "rgba(255, 255, 255, 0.45)" };
 const ruleLightOnBrand = { borderColor: "rgba(255, 255, 255, 0.55)" };
 
-export default async function ProjectDetailPage({ params }: ProjectPageProps) {
+async function unlockProjectArticle(formData: FormData) {
+  "use server";
+
+  const projectId = String(formData.get("projectId") ?? "");
+  const projectExists = projects.some((item) => item.id === projectId);
+  if (!projectExists) redirect("/#projects");
+
+  if (!isArticlePasswordValid(formData.get("password"))) {
+    redirect(`/projects/${projectId}?access=denied`);
+  }
+
+  const cookieStore = await cookies();
+  cookieStore.set(ARTICLE_ACCESS_COOKIE, createArticleAccessToken(), {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/projects",
+    maxAge: ARTICLE_ACCESS_MAX_AGE_SECONDS,
+  });
+
+  redirect(`/projects/${projectId}`);
+}
+
+function ProjectAccessGate({
+  project,
+  invalidPassword,
+}: {
+  project: Project;
+  invalidPassword: boolean;
+}) {
+  return (
+    <section className="article-gate" aria-labelledby="article-gate-heading">
+      <div className="article-gate__panel">
+        <Link href="/#projects" className="article-gate__back">
+          Back to projects
+        </Link>
+        <p className="article-gate__eyebrow">Private case study</p>
+        <h1 id="article-gate-heading">{project.name}</h1>
+        <p className="article-gate__copy">
+          This article contains project context and implementation notes. Enter
+          any username and the shared reader password to continue.
+        </p>
+
+        <form action={unlockProjectArticle} className="article-gate__form">
+          <input type="hidden" name="projectId" value={project.id} />
+          <div className="article-gate__field">
+            <label htmlFor="article-username">Username</label>
+            <input
+              id="article-username"
+              name="username"
+              type="text"
+              autoComplete="username"
+              placeholder="Recruiter / Hiring team"
+            />
+          </div>
+          <div className="article-gate__field">
+            <label htmlFor="article-password">Password</label>
+            <input
+              id="article-password"
+              name="password"
+              type="password"
+              autoComplete="current-password"
+              required
+            />
+          </div>
+          {invalidPassword && (
+            <p className="article-gate__error" role="alert">
+              Password is incorrect. Please check the reader password and try again.
+            </p>
+          )}
+          <button className="btn-primary article-gate__submit" type="submit">
+            Read case study
+          </button>
+        </form>
+
+        <p className="article-gate__note">
+          Access is stored only in a secure browser cookie. No account or
+          database record is created.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+export default async function ProjectDetailPage({
+  params,
+  searchParams,
+}: ProjectPageProps) {
   const { id } = await params;
   const project = projects.find((item) => item.id === id);
   if (!project) notFound();
+
+  const cookieStore = await cookies();
+  const hasArticleAccess = verifyArticleAccessToken(
+    cookieStore.get(ARTICLE_ACCESS_COOKIE)?.value,
+  );
+
+  if (!hasArticleAccess) {
+    const query = await searchParams;
+    return (
+      <div>
+        <a className="skip-link" href="#main">
+          Skip to content
+        </a>
+        <Header />
+        <main id="main">
+          <ProjectAccessGate
+            project={project}
+            invalidPassword={query?.access === "denied"}
+          />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div>

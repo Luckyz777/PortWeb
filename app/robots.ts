@@ -8,11 +8,32 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ??
     : "https://anirut-portfolio.vercel.app");
 
 export default function robots(): MetadataRoute.Robots {
+  const aiCrawlers = [
+    "GPTBot",
+    "ChatGPT-User",
+    "Google-Extended",
+    "CCBot",
+    "ClaudeBot",
+    "Claude-Web",
+    "anthropic-ai",
+    "PerplexityBot",
+    "Bytespider",
+    "Amazonbot",
+    "Applebot-Extended",
+  ];
+
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-    },
+    rules: [
+      ...aiCrawlers.map((userAgent) => ({
+        userAgent,
+        disallow: "/",
+      })),
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/projects/", "/api/"],
+      },
+    ],
     sitemap: `${siteUrl}/sitemap.xml`,
   };
 }

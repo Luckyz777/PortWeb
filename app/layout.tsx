@@ -6,6 +6,7 @@ import {
   JetBrains_Mono,
   Trirong,
 } from "next/font/google";
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { I18nProvider } from "@/lib/i18n";
 import { ThemeProvider, themeBootScript } from "@/lib/theme";
 import "./globals.css";
@@ -115,6 +116,11 @@ export const viewport: Viewport = {
 };
 
 const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
+const gaMeasurementId = /^G-[A-Z0-9]+$/i.test(
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "",
+)
+  ? process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+  : undefined;
 
 export default function RootLayout({
   children,
@@ -141,6 +147,7 @@ export default function RootLayout({
         <ThemeProvider>
           <I18nProvider>{children}</I18nProvider>
         </ThemeProvider>
+        {gaMeasurementId && <GoogleAnalytics measurementId={gaMeasurementId} />}
       </body>
     </html>
   );
