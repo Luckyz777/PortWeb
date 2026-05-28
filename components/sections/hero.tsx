@@ -83,7 +83,7 @@ export function Hero() {
           custom: delay,
         };
 
-  const headlineText = `${t(copy.hero.headlineL1)} ${t(copy.hero.headlineL2)} ${t(copy.hero.headlineAccent)}`;
+  const headlineText = `${t(copy.hero.headlineL1)} ${t(copy.hero.headlineL2)}\n${t(copy.hero.headlineAccent)}`;
 
   return (
     <section id="top" className="hero" aria-labelledby="hero-title" ref={heroRef}>
@@ -198,6 +198,18 @@ export function Hero() {
           </figcaption>
         </motion.figure>
       </div>
+
+      <motion.div
+        className="hero-scroll-cue"
+        initial={reduce ? false : { opacity: 0, y: 10 }}
+        animate={reduce ? undefined : { opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 1.28, ease: [0.16, 1, 0.3, 1] }}
+        aria-hidden="true"
+      >
+        <span>Scroll down</span>
+        <i />
+        <span>to see projects</span>
+      </motion.div>
 
       <motion.div
         className="hero-ticker"

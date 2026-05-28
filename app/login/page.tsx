@@ -64,7 +64,10 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
       <section className="login-shell">
         <div className="login-mast">
           <p className="login-mast__eyebrow">Private reader access</p>
-          <h1 id="login-heading">Anirut Butnongwa</h1>
+          <h1 id="login-heading">
+            <span>Anirut</span>
+            <span>Butnongwa</span>
+          </h1>
           <p>
             Mechanical engineer and industrial software developer portfolio for
             manufacturing, CNC, fixture systems, and production workflow tools.

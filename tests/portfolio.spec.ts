@@ -75,6 +75,16 @@ test.describe("portfolio", () => {
     await expect(drawer.getByText("Method")).toBeVisible();
   });
 
+  test("homepage does not horizontally overflow on mobile", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    );
+    expect(overflow).toBeLessThanOrEqual(2);
+  });
+
   test("all nav anchor links resolve to sections", async ({ page }) => {
     await page.goto("/");
     const anchors = ["#projects", "#prototype", "#experience", "#methodology", "#profile", "#skills", "#contact"];
@@ -174,18 +184,14 @@ test.describe("portfolio", () => {
     await expect(alerts.first()).toContainText("This field is required.");
   });
 
-  test("contact form opens a Gmail draft by default", async ({ page, context }) => {
+  test("contact form submits through the contact API when email is disabled", async ({ page }) => {
     await page.goto("/#contact");
     const form = page.locator("#contact .contact-form");
     await form.getByLabel("Name").fill("Test User");
     await form.getByLabel("Email").fill("test@example.com");
     await form.getByLabel("Message").fill("Hello from Playwright e2e test.");
 
-    const popupPromise = context.waitForEvent("page");
     await form.getByRole("button", { name: "Send Message" }).click();
-    const popup = await popupPromise;
-
-    expect(popup.url()).toContain("mail.google.com/mail/");
-    await expect(page.getByRole("status")).toContainText("Gmail draft is ready.");
+    await expect(page.getByRole("status")).toContainText("Message sent successfully.");
   });
 });

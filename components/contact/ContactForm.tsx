@@ -110,14 +110,6 @@ export function ContactForm() {
     if (!validateClient()) return;
 
     const gmailDraftUrl = buildGmailDraftUrl(fields);
-    const shouldUseSmtp = process.env.NEXT_PUBLIC_CONTACT_FORM_MODE === "smtp";
-
-    if (!shouldUseSmtp) {
-      setMailFallbackHref(gmailDraftUrl);
-      setSuccess(true);
-      window.open(gmailDraftUrl, "_blank", "noopener,noreferrer");
-      return;
-    }
 
     setSubmitting(true);
 
