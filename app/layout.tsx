@@ -102,7 +102,7 @@ export const metadata: Metadata = {
     description: siteDescription,
     images: ["/opengraph-image"],
   },
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: false, nocache: true },
 };
 
 export const viewport: Viewport = {
@@ -110,8 +110,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   colorScheme: "light dark",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#FBFAF1" },
-    { media: "(prefers-color-scheme: dark)", color: "#1A1814" },
+    { media: "(prefers-color-scheme: light)", color: "#F7F1E3" },
+    { media: "(prefers-color-scheme: dark)", color: "#0F0E0A" },
   ],
 };
 

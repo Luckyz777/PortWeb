@@ -1,15 +1,17 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
+import {
+  ARTICLE_ACCESS_COOKIE,
+  ARTICLE_ACCESS_ERROR_COOKIE,
+  ARTICLE_ACCESS_MAX_AGE_SECONDS,
+  getArticleAuthSecret,
+  getArticlePassword,
+} from "./access-constants";
 
-export const ARTICLE_ACCESS_COOKIE = "anirut_article_access";
-export const ARTICLE_ACCESS_MAX_AGE_SECONDS = 60 * 60 * 24 * 14;
-
-function getArticlePassword(): string {
-  return process.env.ARTICLE_PASSWORD ?? "lucky101";
-}
-
-function getArticleAuthSecret(): string {
-  return process.env.ARTICLE_AUTH_SECRET ?? `${getArticlePassword()}:industrial-portfolio`;
-}
+export {
+  ARTICLE_ACCESS_COOKIE,
+  ARTICLE_ACCESS_ERROR_COOKIE,
+  ARTICLE_ACCESS_MAX_AGE_SECONDS,
+};
 
 function sign(value: string): string {
   return createHmac("sha256", getArticleAuthSecret()).update(value).digest("hex");

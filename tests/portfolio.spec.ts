@@ -1,6 +1,21 @@
 import { expect, test } from "@playwright/test";
 
+async function unlockPortfolio(page: import("@playwright/test").Page) {
+  await page.goto("/");
+  const password = page.getByLabel("Password");
+  if (await password.isVisible().catch(() => false)) {
+    await page.getByLabel("Username").fill("Playwright");
+    await password.fill("lucky101");
+    await page.getByRole("button", { name: "Enter portfolio" }).click();
+    await expect(page.locator(".hero-name")).toBeVisible();
+  }
+}
+
 test.describe("portfolio", () => {
+  test.beforeEach(async ({ page }) => {
+    await unlockPortfolio(page);
+  });
+
   test("renders hero and key sections on desktop", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/");
@@ -89,17 +104,6 @@ test.describe("portfolio", () => {
   test("project detail route renders NC Compare case study", async ({ page }) => {
     await page.goto("/projects/nc-compare");
     await expect(page.getByRole("heading", { name: "NC Compare" })).toBeVisible();
-    await expect(page.getByText("Private case study")).toBeVisible();
-
-    await page.getByLabel("Username").fill("Recruiter");
-    await page.getByLabel("Password").fill("wrong-password");
-    await page.getByRole("button", { name: "Read case study" }).click();
-    await expect(page.getByRole("alert")).toContainText("Password is incorrect.");
-
-    await page.getByLabel("Username").fill("Recruiter");
-    await page.getByLabel("Password").fill("lucky101");
-    await page.getByRole("button", { name: "Read case study" }).click();
-
     await expect(page.getByLabel("NC Compare case study")).toBeVisible();
     await expect(page.getByRole("link", { name: "View source code on GitHub" })).toHaveAttribute(
       "href",
@@ -112,7 +116,7 @@ test.describe("portfolio", () => {
     expect(response?.headers()["x-robots-tag"]).toContain("noindex");
 
     const robots = await page.request.get("/robots.txt");
-    expect(await robots.text()).toContain("Disallow: /projects/");
+    expect(await robots.text()).toContain("Disallow: /");
 
     const sitemap = await page.request.get("/sitemap.xml");
     expect(await sitemap.text()).not.toContain("/projects/nc-compare");
@@ -170,22 +174,18 @@ test.describe("portfolio", () => {
     await expect(alerts.first()).toContainText("This field is required.");
   });
 
-  test("contact form shows success when API accepts submission", async ({ page }) => {
-    await page.route("**/api/contact", async (route) => {
-      await route.fulfill({
-        status: 200,
-        contentType: "application/json",
-        body: JSON.stringify({ ok: true }),
-      });
-    });
-
+  test("contact form opens a Gmail draft by default", async ({ page, context }) => {
     await page.goto("/#contact");
     const form = page.locator("#contact .contact-form");
     await form.getByLabel("Name").fill("Test User");
     await form.getByLabel("Email").fill("test@example.com");
     await form.getByLabel("Message").fill("Hello from Playwright e2e test.");
-    await form.getByRole("button", { name: "Send Message" }).click();
 
-    await expect(page.getByRole("status")).toContainText("Message sent.");
+    const popupPromise = context.waitForEvent("page");
+    await form.getByRole("button", { name: "Send Message" }).click();
+    const popup = await popupPromise;
+
+    expect(popup.url()).toContain("mail.google.com/mail/");
+    await expect(page.getByRole("status")).toContainText("Gmail draft is ready.");
   });
 });

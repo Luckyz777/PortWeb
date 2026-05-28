@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
-import { copy } from "@/data/portfolio";
+import { copy, profile } from "@/data/portfolio";
 import { CONTACT_LIMITS } from "@/lib/contact/constants";
 import { validateContactPayload } from "@/lib/contact/validation";
 import { useT } from "@/lib/i18n";
@@ -27,6 +27,17 @@ function resolveApiBasePath(): string {
   return base.replace(/\/$/, "");
 }
 
+function buildGmailDraftUrl(fields: FormFields): string {
+  const subject = encodeURIComponent(`Portfolio inquiry from ${fields.name}`);
+  const body = encodeURIComponent(
+    [`Name: ${fields.name}`, `Email: ${fields.email}`, "", fields.message].join("\n"),
+  );
+
+  return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+    profile.email,
+  )}&su=${subject}&body=${body}`;
+}
+
 export function ContactForm() {
   const t = useT();
   const formId = useId();
@@ -42,6 +53,7 @@ export function ContactForm() {
     {},
   );
   const [formError, setFormError] = useState<string | null>(null);
+  const [mailFallbackHref, setMailFallbackHref] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
@@ -92,9 +104,20 @@ export function ContactForm() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setFormError(null);
+    setMailFallbackHref(null);
     setSuccess(false);
 
     if (!validateClient()) return;
+
+    const gmailDraftUrl = buildGmailDraftUrl(fields);
+    const shouldUseSmtp = process.env.NEXT_PUBLIC_CONTACT_FORM_MODE === "smtp";
+
+    if (!shouldUseSmtp) {
+      setMailFallbackHref(gmailDraftUrl);
+      setSuccess(true);
+      window.open(gmailDraftUrl, "_blank", "noopener,noreferrer");
+      return;
+    }
 
     setSubmitting(true);
 
@@ -124,7 +147,12 @@ export function ContactForm() {
           }
           setFieldErrors(next);
         }
-        setFormError(data.error ?? t(copy.contact.formErrorGeneric));
+        if (data.error === "email_not_configured") {
+          setMailFallbackHref(gmailDraftUrl);
+          setFormError(t(copy.contact.formEmailUnavailable));
+          return;
+        }
+        setFormError(t(copy.contact.formErrorGeneric));
         return;
       }
 
@@ -244,12 +272,37 @@ export function ContactForm() {
         aria-atomic="true"
       >
         {success && (
-          <p className="contact-form__success">{t(copy.contact.formSuccess)}</p>
+          <p className="contact-form__success">
+            {t(copy.contact.formSuccess)}
+            {mailFallbackHref && (
+              <>
+                {" "}
+                <a
+                  className="contact-form__fallback"
+                  href={mailFallbackHref}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {t(copy.contact.formEmailFallbackCta)}
+                </a>
+              </>
+            )}
+          </p>
         )}
         {formError && (
-          <p className="contact-form__error contact-form__error--global" role="alert">
-            {formError}
-          </p>
+          <div className="contact-form__error contact-form__error--global" role="alert">
+            <p>{formError}</p>
+            {mailFallbackHref && (
+              <a
+                className="contact-form__fallback"
+                href={mailFallbackHref}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {t(copy.contact.formEmailFallbackCta)}
+              </a>
+            )}
+          </div>
         )}
       </div>
     </form>

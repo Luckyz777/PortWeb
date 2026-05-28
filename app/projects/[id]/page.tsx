@@ -84,7 +84,7 @@ async function unlockProjectArticle(formData: FormData) {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
-    path: "/projects",
+    path: "/",
     maxAge: ARTICLE_ACCESS_MAX_AGE_SECONDS,
   });
 
@@ -297,7 +297,7 @@ export default async function ProjectDetailPage({
             aria-label={`${project.name} — result`}
             style={{
               background: "var(--brand)",
-              color: "#FFFFFF",
+              color: "var(--on-brand)",
             }}
           >
             <p className="case-panel__kicker">03 — Result</p>

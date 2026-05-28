@@ -41,7 +41,7 @@ export async function sendContactEmail(
 
   const smtp = getSmtpConfig();
   if (!smtp) {
-    return { ok: false, reason: "SMTP is not configured." };
+    return { ok: false, reason: "email_not_configured" };
   }
 
   const to = process.env.CONTACT_TO_EMAIL?.trim() || profile.email;

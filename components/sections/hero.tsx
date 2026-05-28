@@ -13,7 +13,7 @@ import { WordReveal } from "@/components/ui/word-reveal";
 import { copy, education, profile } from "@/data/portfolio";
 import { useT } from "@/lib/i18n";
 
-const HERO_IMAGE_SRC = "/Hero.png";
+const HERO_IMAGE_SRC = "/Hero-section.jpg";
 
 function Portrait() {
   const [errored, setErrored] = useState(false);

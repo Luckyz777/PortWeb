@@ -27,11 +27,14 @@ export const FlowSection: React.FC<FlowSectionProps> = ({
   <section
     data-flow-section
     aria-label={ariaLabel}
-    className={cx("flow-art-section", className)}
+    className={cx("relative min-h-screen w-full overflow-hidden", className)}
   >
     <div
       data-flow-inner
-      className="flow-art-container"
+      className={cx(
+        "flow-art-container relative flex min-h-screen w-full flex-col justify-between gap-6 px-[4vw] pt-[clamp(2rem,8vw,4vw)] pb-[4vw]",
+        "will-change-transform"
+      )}
       style={{ transformOrigin: "bottom left", ...style }}
     >
       {children}
@@ -53,7 +56,7 @@ const FlowArt: React.FC<FlowArtProps> = ({
   className,
   "aria-label": ariaLabel = "Story scroll",
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLElement>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
@@ -78,30 +81,37 @@ const FlowArt: React.FC<FlowArtProps> = ({
       const triggers: ScrollTrigger[] = [];
 
       sections.forEach((section, i) => {
+        gsap.set(section, { zIndex: i + 1 });
+
         const inner = section.querySelector<HTMLElement>(".flow-art-container");
         if (!inner) return;
 
-        if (i === 0) {
-          gsap.set(inner, { autoAlpha: 1, y: 0 });
-          return;
-        }
-
-        const tween = gsap.fromTo(
-          inner,
-          { autoAlpha: 0.92, y: 28 },
-          {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.65,
-            ease: "power2.out",
+        if (i > 0) {
+          gsap.set(inner, { rotation: 30, transformOrigin: "bottom left" });
+          const tween = gsap.to(inner, {
+            rotation: 0,
+            ease: "none",
             scrollTrigger: {
               trigger: section,
-              start: "top 82%",
-              once: true,
+              start: "top bottom",
+              end: "top 25%",
+              scrub: true,
             },
-          },
-        );
-        if (tween.scrollTrigger) triggers.push(tween.scrollTrigger);
+          });
+          if (tween.scrollTrigger) triggers.push(tween.scrollTrigger);
+        }
+
+        if (i < sections.length - 1) {
+          triggers.push(
+            ScrollTrigger.create({
+              trigger: section,
+              start: "bottom bottom",
+              end: "bottom top",
+              pin: true,
+              pinSpacing: false,
+            })
+          );
+        }
       });
 
       ScrollTrigger.refresh();
@@ -114,14 +124,13 @@ const FlowArt: React.FC<FlowArtProps> = ({
   );
 
   return (
-    <div
+    <main
       ref={containerRef}
-      role="region"
       aria-label={ariaLabel}
-      className={cx("flow-art", className)}
+      className={cx("w-full overflow-x-hidden", className)}
     >
       {children}
-    </div>
+    </main>
   );
 };
 
