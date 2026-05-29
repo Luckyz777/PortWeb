@@ -2,11 +2,16 @@ import { expect, test } from "@playwright/test";
 
 async function unlockPortfolio(page: import("@playwright/test").Page) {
   await page.goto("/");
-  const password = page.getByLabel("Password");
-  if (await password.isVisible().catch(() => false)) {
+  await page.waitForLoadState("networkidle");
+
+  if (new URL(page.url()).pathname === "/login") {
+    const password = page.getByLabel("Password");
     await page.getByLabel("Username").fill("Playwright");
     await password.fill("lucky101");
-    await page.getByRole("button", { name: "Enter portfolio" }).click();
+    await Promise.all([
+      page.waitForURL(/\/$/, { waitUntil: "networkidle" }),
+      page.getByRole("button", { name: "Enter portfolio" }).click(),
+    ]);
     await expect(page.locator(".hero-name")).toBeVisible();
   }
 }

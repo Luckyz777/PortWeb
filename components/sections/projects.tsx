@@ -20,10 +20,6 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             <div className="project-media__main">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={project.screenshots[0] ?? project.image} alt={project.imageAlt} loading="lazy" decoding="async" />
-              <a className="project-media__cta" href={`/projects/${project.id}`}>
-                {t(copy.projects.viewCase)}
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="14" height="14" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-              </a>
             </div>
             <div className="project-media__strip" aria-label={t(copy.projects.evidence)}>
               {project.screenshots.slice(0, 3).map((src, screenshotIndex) => (
@@ -93,15 +89,8 @@ export function ProjectsSection() {
     <MotionSection id="projects" aria-labelledby="projects-heading">
       <div className="section-inner">
         <SectionTag>{t(copy.projects.tag)}</SectionTag>
-        <div className="projects-heading-row">
-          <div>
-            <h2 id="projects-heading" className="section-heading">{t(copy.projects.heading)}</h2>
-            <p className="section-subheading">{t(copy.projects.sub)}</p>
-          </div>
-          <a className="projects-heading-row__link" href={profile.github} target="_blank" rel="noreferrer">
-            {t(copy.projects.sourceIndex)}
-          </a>
-        </div>
+        <h2 id="projects-heading" className="section-heading">{t(copy.projects.heading)}</h2>
+        <p className="section-subheading">{t(copy.projects.sub)}</p>
         <MotionReveal className="projects-grid" stagger={0.12}>
           {projects.map((project, i) => (
             <ProjectCard project={project} index={i} key={project.id} />

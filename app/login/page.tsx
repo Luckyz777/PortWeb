@@ -7,7 +7,6 @@ import {
   ARTICLE_ACCESS_MAX_AGE_SECONDS,
   createArticleAccessToken,
   isArticlePasswordValid,
-  verifyArticleAccessToken,
 } from "@/lib/article-access";
 
 export const dynamic = "force-dynamic";
@@ -53,11 +52,6 @@ async function unlockPortfolio(formData: FormData) {
 export default async function LoginPage({ searchParams }: LoginPageProps) {
   const query = await searchParams;
   const nextPath = safeRedirectPath(query?.next);
-  const cookieStore = await cookies();
-
-  if (verifyArticleAccessToken(cookieStore.get(ARTICLE_ACCESS_COOKIE)?.value)) {
-    redirect(nextPath);
-  }
 
   return (
     <main className="login-page" aria-labelledby="login-heading">

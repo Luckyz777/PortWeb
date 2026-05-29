@@ -200,18 +200,6 @@ export function Hero() {
       </div>
 
       <motion.div
-        className="hero-scroll-cue"
-        initial={reduce ? false : { opacity: 0, y: 10 }}
-        animate={reduce ? undefined : { opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 1.28, ease: [0.16, 1, 0.3, 1] }}
-        aria-hidden="true"
-      >
-        <span>Scroll down</span>
-        <i />
-        <span>to see projects</span>
-      </motion.div>
-
-      <motion.div
         className="hero-ticker"
         initial={reduce ? false : { opacity: 0, y: 14 }}
         animate={reduce ? undefined : { opacity: 1, y: 0 }}

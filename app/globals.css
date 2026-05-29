@@ -284,10 +284,11 @@ img { display: block; }
 
 .hero-name {
   font-family: var(--f-head);
-  font-size: clamp(50px, 7.2vw, 96px);
-  font-weight: 400; line-height: 0.88;
+  font-size: clamp(40px, 5vw, 68px);
+  font-weight: 400; line-height: 0.92;
   letter-spacing: 0; color: var(--ink);
   margin-bottom: 24px;
+  max-width: 100%;
   text-wrap: balance;
 }
 .hero-name .accent {
@@ -559,12 +560,12 @@ section { position: relative; z-index: 1; }
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(14px, 2vw, 22px);
+  grid-template-columns: 1fr;
+  gap: clamp(12px, 1.6vw, 18px);
 }
 
 .projects-grid > :first-child {
-  grid-column: 1 / -1;
+  grid-column: auto;
 }
 
 .project-card {
@@ -599,13 +600,13 @@ section { position: relative; z-index: 1; }
 
 .project-card__body {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(260px, 0.76fr) minmax(0, 1.24fr);
   gap: 0;
   align-items: start;
 }
 
 .projects-grid > :first-child .project-card__body {
-  grid-template-columns: minmax(0, 1.1fr) minmax(340px, 0.9fr);
+  grid-template-columns: minmax(260px, 0.76fr) minmax(0, 1.24fr);
   align-items: stretch;
 }
 
@@ -1584,6 +1585,7 @@ main > section + section {
 }
 
 .login-mast {
+  container-type: inline-size;
   min-height: min(720px, calc(100svh - 56px));
   display: flex;
   flex-direction: column;
@@ -1609,12 +1611,14 @@ main > section + section {
 
 .login-mast h1 {
   font-family: var(--f-head);
-  font-size: clamp(4rem, 7.4vw, 6.9rem);
-  line-height: 0.86;
-  max-width: 8.8ch;
+  font-size: clamp(3.2rem, 5.4vw, 5.35rem);
+  font-size: clamp(3.2rem, 16cqi, 5.35rem);
+  line-height: 0.9;
+  max-width: 100%;
   margin: 0 0 1.3rem;
   color: var(--ink);
   overflow-wrap: normal;
+  text-wrap: balance;
 }
 
 .login-mast h1 span {
@@ -1727,7 +1731,8 @@ main > section + section {
   }
 
   .login-mast h1 {
-    font-size: clamp(3rem, 14vw, 5.2rem);
+    font-size: clamp(2.75rem, 11vw, 4.7rem);
+    font-size: clamp(2.75rem, 14cqi, 4.7rem);
     max-width: 100%;
   }
 }
@@ -1738,7 +1743,8 @@ main > section + section {
   }
 
   .login-mast h1 {
-    font-size: clamp(3.8rem, 6.6vw, 5.7rem);
+    font-size: clamp(3rem, 5.8vw, 4.9rem);
+    font-size: clamp(3rem, 15cqi, 4.9rem);
   }
 }
 
@@ -2246,6 +2252,8 @@ main > section + section {
   will-change: transform;
 }
 .word-reveal__word.accent { color: var(--brand); }
+.hero-name .word-reveal__line:first-child { white-space: nowrap; }
+.hero-name .word-reveal__mask { margin-right: 0.18em; }
 
 /* ── SLIDING STRIP ── */
 .sliding-strip {

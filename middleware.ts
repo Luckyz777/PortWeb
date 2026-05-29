@@ -58,24 +58,7 @@ export async function middleware(request: NextRequest) {
     request.cookies.get(ARTICLE_ACCESS_COOKIE)?.value,
   );
 
-  if (pathname === "/login") {
-    if (hasAccess) {
-      const nextPath = request.nextUrl.searchParams.get("next") ?? "/";
-      const url = request.nextUrl.clone();
-      if (
-        nextPath.startsWith("/") &&
-        !nextPath.startsWith("//") &&
-        !nextPath.startsWith("/login")
-      ) {
-        const target = new URL(nextPath, request.url);
-        url.pathname = target.pathname;
-        url.search = target.search;
-      } else {
-        url.pathname = "/";
-        url.search = "";
-      }
-      return NextResponse.redirect(url);
-    }
+  if (pathname === "/login" || pathname === "/logout") {
     return NextResponse.next();
   }
 
